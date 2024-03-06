@@ -5,8 +5,10 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   isLoading?: boolean
 }
 
+// ...rest cac attributes khac dc gom lai
 export default function Button({ className, isLoading, disabled, children, ...rest }: ButtonProps) {
-  const newClassName = disabled ? className + ' cursor-not-allowed' : className
+  const newClassName = disabled ? className + ' cursor-not-allowed' : className // active button or disabled
+
   return (
     <button className={newClassName} disabled={disabled} {...rest}>
       {isLoading && (

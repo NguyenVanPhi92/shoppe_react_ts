@@ -1,9 +1,20 @@
+/**
+ * MẸO
+ * gọi type trc khi import thì sẽ chỉ import đc những type của package
+ */
 import type { RegisterOptions, UseFormGetValues } from 'react-hook-form'
 import * as yup from 'yup'
 import { AnyObject } from 'yup/lib/types'
 
+/**
+ * CHỨA CÁC SCHEMA QUY TẮC CỦA FORM INPUT
+ */
+
 // RegisterOptions chứa các option của form trong react hook form
 // tạo 3 kiểu của form register
+/**
+ * [key in 'email' | 'password' | 'confirm_password']?: => tạo các Rules
+ */
 type Rules = { [key in 'email' | 'password' | 'confirm_password']?: RegisterOptions }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

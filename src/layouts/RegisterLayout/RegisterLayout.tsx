@@ -5,7 +5,7 @@ interface Props {
   children?: React.ReactNode
 }
 
-// layout page register
+// Layout page register
 export default function RegisterLayout({ children }: Props) {
   return (
     <div>

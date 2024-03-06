@@ -22,6 +22,7 @@ function App() {
   return (
     <HelmetProvider>
       <ErrorBoundary>
+        {/* Route Các Page */}
         {routeElements}
         <ToastContainer />
       </ErrorBoundary>

@@ -10,6 +10,7 @@ module.exports = {
   },
   theme: {
     extend: {
+      // thêm color vào trong taillwind
       colors: {
         orange: '#ee4d2d'
       }

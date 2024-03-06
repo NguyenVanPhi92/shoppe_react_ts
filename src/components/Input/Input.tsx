@@ -1,7 +1,7 @@
 import { InputHTMLAttributes, useState } from 'react'
 import type { UseFormRegister, RegisterOptions } from 'react-hook-form'
 
-// kế thửa lại các kiểu dữ liệu của Input attribute
+// Tạo Props kế thừa lại các kiểu dữ liệu của Input attribute
 interface Props extends InputHTMLAttributes<HTMLInputElement> {
   errorMessage?: string
   classNameInput?: string
@@ -12,6 +12,7 @@ interface Props extends InputHTMLAttributes<HTMLInputElement> {
   rules?: RegisterOptions
 }
 
+// tạo component Input Field
 export default function Input({
   errorMessage,
   className,
@@ -21,11 +22,12 @@ export default function Input({
   classNameInput = 'p-3 w-full outline-none border border-gray-300 focus:border-gray-500 rounded-sm focus:shadow-sm',
   classNameError = 'mt-1 text-red-600 min-h-[1.25rem] text-sm',
   classNameEye = 'absolute top-[8px] right-[5px] h-5 w-5 cursor-pointer',
-  ...rest
+  ...rest // chưa các attributes còn lại khi có kiểu truyền vào input
 }: Props) {
-  const [openEye, setOpenEye] = useState(false)
+  const [openEye, setOpenEye] = useState(false) // hide show password
   const registerResult = register && name ? register(name, rules) : null
 
+  // handle event
   const toggleEye = () => {
     setOpenEye((prev) => !prev)
   }
@@ -40,6 +42,7 @@ export default function Input({
   return (
     <div className={'relative ' + className}>
       <input className={classNameInput} {...registerResult} {...rest} type={handleType()} />
+
       {rest.type === 'password' && openEye && (
         <svg
           xmlns='http://www.w3.org/2000/svg'

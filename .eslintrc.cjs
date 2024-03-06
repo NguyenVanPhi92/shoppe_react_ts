@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
+// vite sd js module
 const path = require('path')
 module.exports = {
   extends: [
@@ -21,7 +22,7 @@ module.exports = {
       // Nói eslint-plugin-react tự động biết version của React.
       version: 'detect'
     },
-    // Nói ESLint cách xử lý các import
+    // Nói ESLint cách xử lý các import file
     'import/resolver': {
       node: {
         paths: [path.resolve(__dirname)],
@@ -29,7 +30,7 @@ module.exports = {
       }
     }
   },
-  // nói cho eslint biết là có sử dụng moi trường node
+  // nói cho eslint biết là có sử dụng môi trường node
   env: {
     node: true
   },

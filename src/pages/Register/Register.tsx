@@ -25,10 +25,10 @@ export default function Register() {
   const { setIsAuthenticated, setProfile } = useContext(AppContext)
   const navigate = useNavigate()
   const {
-    register,
-    handleSubmit,
-    setError,
-    formState: { errors }
+    register, // đk thông tin từng field cho form
+    handleSubmit, // sự kiện submit form
+    setError, // set lỗi cho field
+    formState: { errors } // các trạng thái của form
   } = useForm<FormData>({
     resolver: yupResolver(registerSchema)
   })
@@ -39,7 +39,7 @@ export default function Register() {
   })
 
   const onSubmit = handleSubmit((data) => {
-    // dùng lodash loại bỏ confirm_password trong object schema
+    // dùng omit trong lodash loại bỏ confirm_password trong object schema
     const body = omit(data, ['confirm_password'])
     registerAccountMutation.mutate(body, {
       // call api thành công
@@ -48,7 +48,7 @@ export default function Register() {
         setProfile(data.data.data.user)
         navigate('/')
       },
-      // call api lỗii
+      // call api khi lỗii
       onError: (error) => {
         if (isAxiosUnprocessableEntityError<ErrorResponse<Omit<FormData, 'confirm_password'>>>(error)) {
           const formError = error.response?.data.data
@@ -71,6 +71,8 @@ export default function Register() {
         <title>Đăng ký | Shopee Clone</title>
         <meta name='description' content='Đăng ký tài khoản vào dự án Shopee Clone' />
       </Helmet>
+
+      {/* Form */}
       <div className='container'>
         <div className='grid grid-cols-1 py-12 lg:grid-cols-5 lg:py-32 lg:pr-10'>
           <div className='lg:col-span-2 lg:col-start-4'>
@@ -92,7 +94,7 @@ export default function Register() {
                 classNameEye='absolute right-[5px] h-5 w-5 cursor-pointer top-[12px]'
                 errorMessage={errors.password?.message}
                 placeholder='Password'
-                autoComplete='on'
+                autoComplete='on' // các input là passwork nên thêm trường này để tốt cho mặt UX
               />
 
               <Input
@@ -103,7 +105,7 @@ export default function Register() {
                 classNameEye='absolute right-[5px] h-5 w-5 cursor-pointer top-[12px]'
                 errorMessage={errors.confirm_password?.message}
                 placeholder='Confirm Password'
-                autoComplete='on'
+                autoComplete='on' // các input là passwork nên thêm trường này để tốt cho mặt UX
               />
 
               <div className='mt-2'>

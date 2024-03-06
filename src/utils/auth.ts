@@ -1,7 +1,6 @@
 import { User } from 'src/types/user.type'
 
 //Tạo các method quản lý việc xác thực User đã đăng nhập hay chưa
-
 export const LocalStorageEventTarget = new EventTarget()
 
 export const setAccessTokenToLS = (access_token: string) => {

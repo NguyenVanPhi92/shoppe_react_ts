@@ -6,6 +6,7 @@ export default function Footer() {
           <div className='lg:col-span-1'>
             <div>© 2022 Shopee. Tất cả các quyền được bảo lưu.</div>
           </div>
+
           <div className='lg:col-span-2'>
             <div>
               Quốc gia & Khu vực: Singapore Indonesia Đài Loan Thái Lan Malaysia Việt Nam Philippines Brazil México
@@ -13,6 +14,7 @@ export default function Footer() {
             </div>
           </div>
         </div>
+
         <div className='mt-10 text-center text-sm'>
           <div>Công ty TNHH Shopee</div>
           <div className='mt-6'>
