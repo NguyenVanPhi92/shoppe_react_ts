@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Dự án Shopee Clone Typescript
 
 ## Chức năng trong dự án
@@ -314,3 +315,6 @@ Các bạn thêm đoạn code này vào `settings.json` của VS Code
   "tailwindCSS.experimental.classRegex": ["[a-zA-Z]*class[a-zA-Z]*='([^']+)'"]
 }
 ```
+=======
+# shoppe_react_ts
+>>>>>>> 18f341be4ae34d89d73a16b2406e1a93a0ed7348
