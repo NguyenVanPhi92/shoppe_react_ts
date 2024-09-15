@@ -6,7 +6,7 @@ export default function RegisterHeader() {
 
   return (
     <header className='py-5'>
-      <div className='container'>
+      <div className='container flex items-center justify-between'>
         <nav className='flex items-end'>
           <Link to='/'>
             <svg viewBox='0 0 192 65' className='h-8 fill-orange lg:h-11'>
@@ -17,6 +17,7 @@ export default function RegisterHeader() {
           </Link>
           <div className='ml-5 text-xl lg:text-2xl'>{isRegister ? 'Đăng ký' : 'Đăng nhập'}</div>
         </nav>
+        <p className='cursor-pointer text-red-400 hover:text-red-300'>Bạn cần giúp đỡ?</p>
       </div>
     </header>
   )

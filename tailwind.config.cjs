@@ -12,7 +12,11 @@ module.exports = {
     extend: {
       // thêm color vào trong taillwind
       colors: {
-        orange: '#ee4d2d'
+        orange: '#ee4d2d',
+        backgroundImage: {
+          'bg-login': "url('https://down-vn.img.susercontent.com/file/sg-11134004-7rdww-lz7fzhaqivg745')"
+          // 'footer-texture': "url('/img/footer-texture.png')",
+        }
       }
     }
   },

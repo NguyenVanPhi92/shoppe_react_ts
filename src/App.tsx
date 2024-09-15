@@ -21,11 +21,15 @@ function App() {
 
   return (
     <HelmetProvider>
+      {/* Chuyển đến page 404 khi path sai */}
       <ErrorBoundary>
         {/* Route Các Page */}
         {routeElements}
+
+        {/* motify when erorr and user togger */}
         <ToastContainer />
       </ErrorBoundary>
+
       <ReactQueryDevtools initialIsOpen={false} />
     </HelmetProvider>
   )

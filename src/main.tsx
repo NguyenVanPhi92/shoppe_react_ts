@@ -7,6 +7,7 @@ import 'src/i18n/i18n'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { AppProvider } from './contexts/app.context'
 
+//setup Stanstack query
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -18,6 +19,7 @@ const queryClient = new QueryClient({
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
+    {/* Route la cao nhat */}
     <BrowserRouter>
       <QueryClientProvider client={queryClient}>
         <AppProvider>

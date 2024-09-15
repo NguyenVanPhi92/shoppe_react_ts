@@ -17,11 +17,11 @@ type FormData = Pick<Schema, 'email' | 'password'> // tạo type cho form
 const loginSchema = schema.pick(['email', 'password']) // tạo schema cho login
 
 export default function Login() {
-  // Gọi state trong context
+  // Call state in ContextAPI
   const { setIsAuthenticated, setProfile } = useContext(AppContext)
   const navigate = useNavigate()
 
-  // useForm từ React hook form
+  // Khai báo Form
   const {
     register, // đk thông tin từng files vào useForm của react hook form
     setError,
@@ -31,15 +31,23 @@ export default function Login() {
     resolver: yupResolver(loginSchema)
   })
 
-  // dùng mustaion react tanstank query call api
+  // Use mustaion react tanstank query call api
   const loginMutation = useMutation({
+    /**
+     *
+     * @param body is data đc truyền từ form input
+     * @returns Promise async function
+     * Omit: dùng type của formData nhưng loại bỏ confirm_password
+     */
     mutationFn: (body: Omit<FormData, 'confirm_password'>) => authApi.login(body)
   })
 
-  // Event submit form
-  // data là data từ form từ người dùng nhập vào
+  // Handle submit form
   const onSubmit = handleSubmit((data) => {
-    // loginMutation trả về 1 Promise
+    /**
+     * @param data Event submit form login success or failed
+     * data là data từ form người dùng nhập vào
+     */
     loginMutation.mutate(data, {
       // gọi sự kiện thành công sau khi call API
       onSuccess: (data) => {
@@ -47,6 +55,7 @@ export default function Login() {
         setProfile(data.data.data.user) // lưu info user vào store context
         navigate('/')
       },
+
       // gọi sự kiện thất bại sau khi call API
       onError: (error) => {
         // nếu như response trả về error
@@ -67,7 +76,7 @@ export default function Login() {
   })
 
   return (
-    <div className='bg-orange'>
+    <div className="bg-[url('https://down-vn.img.susercontent.com/file/sg-11134004-7rdww-lz7fzhaqivg745')]">
       <Helmet>
         <title>Đăng nhập | Shopee Clone</title>
         <meta name='description' content='Đăng nhập vào dự án Shopee Clone' />

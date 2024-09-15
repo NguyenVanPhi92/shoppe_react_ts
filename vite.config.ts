@@ -15,7 +15,7 @@ export default defineConfig({
   server: {
     port: 3000
   },
-  // bật "devSourcemap" css file để biết css đó thuộc file nào mặc định là false
+  // bật "devSourcemap" css file để biết css đó thuộc file nào, mặc định là false
   css: {
     devSourcemap: true
   },

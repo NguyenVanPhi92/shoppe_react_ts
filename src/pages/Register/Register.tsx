@@ -1,22 +1,22 @@
-import { Link, useNavigate } from 'react-router-dom'
-import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useMutation } from '@tanstack/react-query'
+import { useForm } from 'react-hook-form'
+import { Link, useNavigate } from 'react-router-dom'
 // Không có tính năng tree-shaking
 // import { omit } from 'lodash'
 
 // Import chỉ mỗi function omit
 import omit from 'lodash/omit'
 
-import { schema, Schema } from 'src/utils/rules'
-import Input from 'src/components/Input'
-import authApi from 'src/apis/auth.api'
-import { isAxiosUnprocessableEntityError } from 'src/utils/utils'
-import { ErrorResponse } from 'src/types/utils.type'
 import { useContext } from 'react'
-import { AppContext } from 'src/contexts/app.context'
-import Button from 'src/components/Button'
 import { Helmet } from 'react-helmet-async'
+import authApi from 'src/apis/auth.api'
+import Button from 'src/components/Button'
+import Input from 'src/components/Input'
+import { AppContext } from 'src/contexts/app.context'
+import { ErrorResponse } from 'src/types/utils.type'
+import { schema, Schema } from 'src/utils/rules'
+import { isAxiosUnprocessableEntityError } from 'src/utils/utils'
 
 type FormData = Pick<Schema, 'email' | 'password' | 'confirm_password'>
 const registerSchema = schema.pick(['email', 'password', 'confirm_password'])
@@ -24,6 +24,8 @@ const registerSchema = schema.pick(['email', 'password', 'confirm_password'])
 export default function Register() {
   const { setIsAuthenticated, setProfile } = useContext(AppContext)
   const navigate = useNavigate()
+
+  // Khai báo Form
   const {
     register, // đk thông tin từng field cho form
     handleSubmit, // sự kiện submit form
@@ -33,13 +35,14 @@ export default function Register() {
     resolver: yupResolver(registerSchema)
   })
 
-  // dùng mustaion react tanstank query call api
+  // Use Mutation react tanstank-query call api
   const registerAccountMutation = useMutation({
     mutationFn: (body: Omit<FormData, 'confirm_password'>) => authApi.registerAccount(body)
   })
 
+  // Handle submit form
   const onSubmit = handleSubmit((data) => {
-    // dùng omit trong lodash loại bỏ confirm_password trong object schema
+    // Use omit trong lodash loại bỏ confirm_password trong object schema
     const body = omit(data, ['confirm_password'])
     registerAccountMutation.mutate(body, {
       // call api thành công
@@ -66,7 +69,7 @@ export default function Register() {
   })
 
   return (
-    <div className='bg-orange'>
+    <div className="bg-[url('https://down-vn.img.susercontent.com/file/sg-11134004-7rdww-lz7fzhaqivg745')]">
       <Helmet>
         <title>Đăng ký | Shopee Clone</title>
         <meta name='description' content='Đăng ký tài khoản vào dự án Shopee Clone' />
@@ -78,6 +81,7 @@ export default function Register() {
           <div className='lg:col-span-2 lg:col-start-4'>
             <form className='rounded bg-white p-10 shadow-sm' onSubmit={onSubmit} noValidate>
               <div className='text-2xl'>Đăng ký</div>
+
               <Input
                 name='email'
                 register={register}
@@ -86,6 +90,7 @@ export default function Register() {
                 errorMessage={errors.email?.message}
                 placeholder='Email'
               />
+
               <Input
                 name='password'
                 register={register}
@@ -117,6 +122,7 @@ export default function Register() {
                   Đăng ký
                 </Button>
               </div>
+
               <div className='mt-8 flex items-center justify-center'>
                 <span className='text-gray-400'>Bạn đã có tài khoản?</span>
                 <Link className='ml-1 text-red-400' to='/login'>

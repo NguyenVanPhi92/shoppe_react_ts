@@ -1,4 +1,9 @@
-HỌC XONG VIDEO 159 XONG PHẦN VALIDATE REGISTER FORM
+HỌC XONG VIDEO 156
+Có 3 môi trường làm việc:
+
+1. Môi trường vsCode khi chúng ta đưa chuột vào click thì nó đưa đến file
+2. Môi trường Eslint
+3. Môi trường Terminal: quan trọng nhất
 
 node version 16.16.0
 yarn version 1.22.19
@@ -43,7 +48,7 @@ II Công nghệ sử dụng
 - State Management: Stantack query
 - Form Management: React Hook Form
 - Router: React Router v6
-- Build tool: Vite (chỉ hỗ trợ node version 14 trở lên)
+- Build tool: Vite (chỉ hỗ trợ node version 14 trở lên),vite code theo dang module
 - Api: Rest API dựa trên sever
 - Hỗ trợ đa ngôn ngữ react.i18next
 - Hỗ trợ seo với React Helmet

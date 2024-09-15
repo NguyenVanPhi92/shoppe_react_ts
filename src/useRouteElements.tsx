@@ -19,22 +19,30 @@ const NotFound = lazy(() => import('./pages/NotFound'))
 
 // check user đã login chưa
 function ProtectedRoute() {
+  // Login: route Outlet/các page
+  // !Login: route login
   const { isAuthenticated } = useContext(AppContext)
   return isAuthenticated ? <Outlet /> : <Navigate to='/login' />
 }
 
-// check user đã login rồi thì kh cho vào trang login nữa
+// check user đã login rồi thì không cho vào trang login nữa
 function RejectedRoute() {
   const { isAuthenticated } = useContext(AppContext)
+  // Login: route Outlet
+  // !Login: route home
   return !isAuthenticated ? <Outlet /> : <Navigate to='/' />
 }
 
+// tạo hook router page
 export default function useRouteElements() {
   //element: check trc khi vào children
   const routeElements = useRoutes([
+    // run web check user first time access-truy cap the website
+    // khi chưa login thì không đc vào các trang thông tin user
     {
       path: '',
       element: <RejectedRoute />,
+      // then access page when accept
       children: [
         {
           path: path.login,
@@ -58,6 +66,15 @@ export default function useRouteElements() {
         }
       ]
     },
+
+    /**
+     * Check user khi đã login thì mới cho phép vào các trang như:
+     * - CartProduct
+     * - User
+     * - Profile user
+     * - Change password
+     * - HistoryPurchase-lịch sử mua hàng
+     */
     {
       path: '',
       element: <ProtectedRoute />,
@@ -108,6 +125,8 @@ export default function useRouteElements() {
         }
       ]
     },
+
+    // route không cần check chỉ lấy id của product
     {
       path: path.productDetail,
       element: (
@@ -118,6 +137,8 @@ export default function useRouteElements() {
         </MainLayout>
       )
     },
+
+    // page không cần check route
     {
       path: '',
       index: true,
@@ -129,6 +150,8 @@ export default function useRouteElements() {
         </MainLayout>
       )
     },
+
+    // link sai thì sẽ vào page notfound
     {
       path: '*',
       element: (
