@@ -1,6 +1,6 @@
 import { rest } from 'msw'
+import { HttpStatusCode } from 'src/constants'
 import config from 'src/constants/config'
-import HttpStatusCode from 'src/constants/httpStatusCode.enum'
 
 const productsRes = {
   message: 'Lấy các sản phẩm thành công',

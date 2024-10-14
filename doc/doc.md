@@ -1,12 +1,18 @@
-HỌC XONG VIDEO 156
+HỌC XONG VIDEO 167 15:23
 Có 3 môi trường làm việc:
 
 1. Môi trường vsCode khi chúng ta đưa chuột vào click thì nó đưa đến file
 2. Môi trường Eslint
 3. Môi trường Terminal: quan trọng nhất
 
-node version 16.16.0
-yarn version 1.22.19
+node version >= 16.14.0
+yarn version >=1.22.19
+
+Tech:
+validate form: react hook form - yup - resolve
+management state: contextAPI, Tanstack, Redux, Redux toolkit, Redux-thunk, React-redux, Redux persist
+Handler error when sever tra ve
+Handler input form
 
 I Các chức năng chính
 

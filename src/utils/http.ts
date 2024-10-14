@@ -1,7 +1,9 @@
 import axios, { AxiosError, type AxiosInstance } from 'axios'
-import HttpStatusCode from 'src/constants/httpStatusCode.enum'
 import { toast } from 'react-toastify'
+import { HttpStatusCode, URL_LOGIN, URL_LOGOUT, URL_REFRESH_TOKEN, URL_REGISTER } from 'src/constants'
+import config from 'src/constants/config'
 import { AuthResponse, RefreshTokenReponse } from 'src/types/auth.type'
+import { ErrorResponse } from 'src/types/utils.type'
 import {
   clearLS,
   getAccessTokenFromLS,
@@ -10,10 +12,7 @@ import {
   setProfileToLS,
   setRefreshTokenToLS
 } from './auth'
-import config from 'src/constants/config'
-import { URL_LOGIN, URL_LOGOUT, URL_REFRESH_TOKEN, URL_REGISTER } from 'src/apis/auth.api'
 import { isAxiosExpiredTokenError, isAxiosUnauthorizedError } from './utils'
-import { ErrorResponse } from 'src/types/utils.type'
 
 // Purchase: 1 - 3
 // Me: 2 - 5
@@ -38,13 +37,16 @@ export class Http {
       timeout: 10000, // sau 10s thì không gọi api
       // setup headers
       headers: {
-        'Content-Type': 'application/json', // client gửi json lên cho server
+        'Content-Type': 'application/json', // client gửi json xuong cho server
         'expire-access-token': 60 * 60 * 24, // 1 ngày
         'expire-refresh-token': 60 * 60 * 24 * 160 // 160 ngày
       }
     })
 
-    // Xử lý các route cần xác thực token
+    /**
+     * Xử lý các route cần xác thực token
+     * request cli to server
+     */
     this.instance.interceptors.request.use(
       (config) => {
         if (this.accessToken && config.headers) {
@@ -59,7 +61,10 @@ export class Http {
       }
     )
 
-    // Xử lý lưu các token vào trong localStorage
+    /**
+     * Xử lý lưu các token vào trong localStorage
+     * response server to cli
+     */
     this.instance.interceptors.response.use(
       // dùng arrow function mới truy cập đc this
       (response) => {
@@ -83,6 +88,7 @@ export class Http {
         return response
       },
 
+      // handler error msg server send cli
       (error: AxiosError) => {
         // Chỉ toast lỗi không phải 422 và 401
         if (
@@ -91,7 +97,7 @@ export class Http {
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           const data: any | undefined = error.response?.data
           const message = data?.message || error.message // nếu server lỗi và trả về kiểu string html thì sẽ lấy error message của axios show lên
-          toast.error(message)
+          toast.error(message) // send error to toastyfi
         }
 
         // Lỗi Unauthorized (401) có rất nhiều trường hợp

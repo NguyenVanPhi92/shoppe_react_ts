@@ -12,6 +12,7 @@ export const locales = {
 
 export const resources = {
   en: {
+    // namespace and value
     home: HOME_EN,
     product: PRODUCT_EN
   },
@@ -26,10 +27,11 @@ export const defaultNS = 'product'
 // eslint-disable-next-line import/no-named-as-default-member
 i18n.use(initReactI18next).init({
   resources,
+  // default langue
   lng: 'vi',
-  ns: ['home', 'product'],
+  ns: ['home', 'product'], // cac namespace dung i18n
   fallbackLng: 'vi',
-  defaultNS,
+  defaultNS, // set namespace default
   interpolation: {
     escapeValue: false // react already safes from xss
   }

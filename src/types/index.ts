@@ -1,0 +1,6 @@
+export * from './auth.type'
+export * from './category.type'
+export * from './product.type'
+export * from './purchase.type'
+export * from './user.type'
+export * from './utils.type'

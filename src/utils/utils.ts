@@ -1,8 +1,9 @@
 import axios, { AxiosError } from 'axios'
 import config from 'src/constants/config'
-import HttpStatusCode from 'src/constants/httpStatusCode.enum'
 import userImage from 'src/assets/images/user.svg'
 import { ErrorResponse } from 'src/types/utils.type'
+import { HttpStatusCode } from 'src/constants'
+// xem video 145 phut thu 5
 
 // function check có phải lỗi của axios không
 // fuction sẽ trả về kiểu  error is AxiosError<T> => là 1 dạng lõi ép kiểu sang axios
@@ -12,6 +13,11 @@ export function isAxiosError<T>(error: unknown): error is AxiosError<T> {
 }
 
 // function check lỗi có phải là lỗi 422 không
+/**
+ *
+ * @param error check error cli
+ * @returns error to server error
+ */
 export function isAxiosUnprocessableEntityError<FormError>(error: unknown): error is AxiosError<FormError> {
   return isAxiosError(error) && error.response?.status === HttpStatusCode.UnprocessableEntity
 }

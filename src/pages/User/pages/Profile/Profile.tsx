@@ -11,7 +11,7 @@ import InputNumber from 'src/components/InputNumber'
 import { AppContext } from 'src/contexts/app.context'
 import { ErrorResponse } from 'src/types/utils.type'
 import { setProfileToLS } from 'src/utils/auth'
-import { userSchema, UserSchema } from 'src/utils/rules'
+import { userSchema, UserSchemaYup } from 'src/utils/rules'
 import { getAvatarUrl, isAxiosUnprocessableEntityError } from 'src/utils/utils'
 import DateSelect from '../../components/DateSelect'
 
@@ -57,7 +57,7 @@ function Info() {
   )
 }
 
-type FormData = Pick<UserSchema, 'name' | 'address' | 'phone' | 'date_of_birth' | 'avatar'>
+type FormData = Pick<UserSchemaYup, 'name' | 'address' | 'phone' | 'date_of_birth' | 'avatar'>
 type FormDataError = Omit<FormData, 'date_of_birth'> & {
   date_of_birth?: string
 }

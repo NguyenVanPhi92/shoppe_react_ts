@@ -21,7 +21,7 @@ function App() {
 
   return (
     <HelmetProvider>
-      {/* Chuyển đến page 404 khi path sai */}
+      {/* Detect Component error   */}
       <ErrorBoundary>
         {/* Route Các Page */}
         {routeElements}

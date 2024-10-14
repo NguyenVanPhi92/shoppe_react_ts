@@ -1,6 +1,7 @@
 import { User } from './user.type'
 import { SuccessResponse } from './utils.type'
 
+// AuthResponse extend all SuccessResponse and add new interface new
 export type AuthResponse = SuccessResponse<{
   access_token: string
   refresh_token: string

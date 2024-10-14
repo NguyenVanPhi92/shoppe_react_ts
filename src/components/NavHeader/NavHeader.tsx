@@ -1,7 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useContext } from 'react'
 import { Link } from 'react-router-dom'
-import authApi from 'src/apis/auth.api'
 import path from 'src/constants/path'
 import { purchasesStatus } from 'src/constants/purchase'
 import { AppContext } from 'src/contexts/app.context'
@@ -9,15 +8,16 @@ import { getAvatarUrl } from 'src/utils/utils'
 import Popover from '../Popover'
 import { useTranslation } from 'react-i18next'
 import { locales } from 'src/i18n/i18n'
+import { logout } from 'src/apis'
 
 export default function NavHeader() {
   const { i18n } = useTranslation()
   const currentLanguage = locales[i18n.language as keyof typeof locales]
-
   const { setIsAuthenticated, isAuthenticated, setProfile, profile } = useContext(AppContext)
   const queryClient = useQueryClient()
+
   const logoutMutation = useMutation({
-    mutationFn: authApi.logout,
+    mutationFn: logout,
     onSuccess: () => {
       setIsAuthenticated(false)
       setProfile(null)
@@ -25,13 +25,8 @@ export default function NavHeader() {
     }
   })
 
-  const handleLogout = () => {
-    logoutMutation.mutate()
-  }
-
-  const changeLanguage = (lng: 'en' | 'vi') => {
-    i18n.changeLanguage(lng)
-  }
+  const handleLogout = () => logoutMutation.mutate()
+  const changeLanguage = (lng: 'en' | 'vi') => i18n.changeLanguage(lng)
 
   return (
     <div className='flex justify-end'>

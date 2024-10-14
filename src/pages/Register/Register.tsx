@@ -10,15 +10,16 @@ import omit from 'lodash/omit'
 
 import { useContext } from 'react'
 import { Helmet } from 'react-helmet-async'
-import authApi from 'src/apis/auth.api'
 import Button from 'src/components/Button'
 import Input from 'src/components/Input'
 import { AppContext } from 'src/contexts/app.context'
 import { ErrorResponse } from 'src/types/utils.type'
-import { schema, Schema } from 'src/utils/rules'
+import { schema, SchemaYup } from 'src/utils/rules'
 import { isAxiosUnprocessableEntityError } from 'src/utils/utils'
+import { registerAccount } from 'src/apis'
 
-type FormData = Pick<Schema, 'email' | 'password' | 'confirm_password'>
+// form chỉ được chọn 1 kiểu trong 3 kiêu email or password or confirm_password
+type FormData = Pick<SchemaYup, 'email' | 'password' | 'confirm_password'>
 const registerSchema = schema.pick(['email', 'password', 'confirm_password'])
 
 export default function Register() {
@@ -37,7 +38,13 @@ export default function Register() {
 
   // Use Mutation react tanstank-query call api
   const registerAccountMutation = useMutation({
-    mutationFn: (body: Omit<FormData, 'confirm_password'>) => authApi.registerAccount(body)
+    /**
+     Omit<FormData, 'confirm_password': delete confirm_password in FormData
+     *
+     * @param body 'email' && 'password'
+     * @returns data then call api
+     */
+    mutationFn: (body: Omit<FormData, 'confirm_password'>) => registerAccount(body)
   })
 
   // Handle submit form
@@ -51,13 +58,15 @@ export default function Register() {
         setProfile(data.data.data.user)
         navigate('/')
       },
-      // call api khi lỗii
+      // call api khi error
       onError: (error) => {
         if (isAxiosUnprocessableEntityError<ErrorResponse<Omit<FormData, 'confirm_password'>>>(error)) {
           const formError = error.response?.data.data
           if (formError) {
             Object.keys(formError).forEach((key) => {
+              //key as keyof Omit<FormData, 'confirm_password': set key
               setError(key as keyof Omit<FormData, 'confirm_password'>, {
+                //message: get error from sever
                 message: formError[key as keyof Omit<FormData, 'confirm_password'>],
                 type: 'Server'
               })

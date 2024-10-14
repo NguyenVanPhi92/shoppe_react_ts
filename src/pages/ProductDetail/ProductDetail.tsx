@@ -53,6 +53,7 @@ export default function ProductDetail() {
     }
   }, [product])
 
+  // Handler
   const next = () => {
     if (currentIndexImages[1] < (product as ProductType).images.length) {
       setCurrentIndexImages((prev) => [prev[0] + 1, prev[1] + 1])
@@ -65,9 +66,7 @@ export default function ProductDetail() {
     }
   }
 
-  const chooseActive = (img: string) => {
-    setActiveImage(img)
-  }
+  const chooseActive = (img: string) => setActiveImage(img)
 
   const handleZoom = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     const rect = event.currentTarget.getBoundingClientRect()
@@ -89,9 +88,7 @@ export default function ProductDetail() {
     image.style.left = left + 'px'
   }
 
-  const handleRemoveZoom = () => {
-    imageRef.current?.removeAttribute('style')
-  }
+  const handleRemoveZoom = () => imageRef.current?.removeAttribute('style')
 
   const handleBuyCount = (value: number) => {
     setBuyCount(value)
@@ -120,6 +117,7 @@ export default function ProductDetail() {
   }
 
   if (!product) return null
+
   return (
     <div className='bg-gray-200 py-6'>
       <Helmet>
@@ -133,6 +131,7 @@ export default function ProductDetail() {
           })}
         />
       </Helmet>
+
       <div className='container'>
         <div className='bg-white p-4 shadow'>
           <div className='grid grid-cols-12 gap-9'>
@@ -149,6 +148,7 @@ export default function ProductDetail() {
                   ref={imageRef}
                 />
               </div>
+
               <div className='relative mt-4 grid grid-cols-5 gap-1'>
                 <button
                   className='absolute left-0 top-1/2 z-10 h-9 w-5 -translate-y-1/2 bg-black/20 text-white'
@@ -195,6 +195,7 @@ export default function ProductDetail() {
                 </button>
               </div>
             </div>
+
             <div className='col-span-7'>
               <h1 className='text-xl font-medium uppercase'>{product.name}</h1>
               <div className='mt-8 flex items-center'>
@@ -212,6 +213,7 @@ export default function ProductDetail() {
                   <span className='ml-1 text-gray-500'>Đã bán</span>
                 </div>
               </div>
+
               <div className='mt-8 flex items-center bg-gray-50 px-5 py-4'>
                 <div className='text-gray-500 line-through'>₫{formatCurrency(product.price_before_discount)}</div>
                 <div className='ml-3 text-3xl font-medium text-orange'>₫{formatCurrency(product.price)}</div>
@@ -219,6 +221,7 @@ export default function ProductDetail() {
                   {rateSale(product.price_before_discount, product.price)} giảm
                 </div>
               </div>
+
               <div className='mt-8 flex items-center'>
                 <div className='capitalize text-gray-500'>Số lượng</div>
                 <QuantityController
@@ -232,6 +235,7 @@ export default function ProductDetail() {
                   {product.quantity} {t('product:available')}
                 </div>
               </div>
+
               <div className='mt-8 flex items-center'>
                 <button
                   onClick={addToCart}

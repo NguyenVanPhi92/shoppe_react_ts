@@ -1,0 +1,98 @@
+$second-font: "Dosis", sans-serif;
+$main-font: "Open Sans", sans-serif;
+$container-width: 1200px;
+$header-login-height: 80px;
+
+$header-height: 110px;
+$header-mobile-height: 45px;
+$header-mobile-box-shadow: rgba(0, 0, 0, 0.06) 0px 0px 6px 0px;
+
+$chat-height: 700px;
+$chat-width: 350px;
+$chat-expand-width: 700px;
+$chat-header-height: 65px;
+$chat-body-header-height: 60px;
+$chat-form-height: 55px;
+$chat-body-list-height: 400px;
+$channel-body-height: 455px;
+
+$bg-white-opacity-linear-gradient: rgba(0, 0, 0, 0)
+  linear-gradient(to right, rgb(255, 255, 255), rgba(255, 255, 255, 0)) repeat scroll 0% 0%;
+
+$text-white: #dcefff;
+$product-heading-color: #202435;
+$primary: #007bff;
+$primary-opacity-2: #1b7fe9;
+$primary-opacity-5: #3c83ce;
+$chat-primary: #daf3ff;
+$bg-primary-opacity: #f5f5fa;
+$primary-color: #007bff;
+$primary-color-opacity: #cce5ff;
+$indigo: #001e94;
+$indigo-opacity: #525f93;
+$red: #dc3545;
+$orange: #fd7e14;
+$yellow: #ffc107;
+$star-bg: #ffcd00;
+$star-empty-bg: #d9d9e9;
+$yellow-bg: #fffbec;
+$green: #28a745;
+$green-opacity: #e5f8ed;
+$teal: #20c997;
+$cyan: #53cafa;
+$white: #fff;
+$gray: #6c757d;
+$gray-dark: #343a40;
+$chat-secondary: #efefef;
+$secondary: #a7a7a7;
+$success: #28a745;
+$info: #0dcaf0;
+$warning: #ffc107;
+$danger: #dc3545;
+$gray-color-4: #373737;
+$danger-opacity: #ffeef2;
+$heading-color: #50566a;
+$text-color: #3e445a;
+$text-color-opacity: #9b9bb4;
+$white-opacity: #eff1f8;
+$gray-color: #f3f4f7;
+$gray-color-opacity: #f7f7f7;
+$gray-color-opacity-active: #e0e0e0;
+$border-color-1: #e3e4e6;
+$border-color-2: #edeef5;
+$home-heading-color: #202435;
+$nav-bottom-height: 55px;
+$banner-2-bg: #f8efea;
+$input-bg: #f3f4f7;
+$bg-gray: #f7f8fd;
+$border-product-hover: #d8d8e3;
+$background: #efefef;
+
+$black-opacity-005: rgba(
+  $color: #000000,
+  $alpha: 0.05,
+);
+
+$black-opacity-007: rgba(
+  $color: #000000,
+  $alpha: 0.07,
+);
+
+$black-opacity-01: rgba(
+  $color: #000000,
+  $alpha: 0.1,
+);
+
+$black-opacity-02: rgba(
+  $color: #000000,
+  $alpha: 0.2,
+);
+
+$transition-1: all 0.25s cubic-bezier(0.17, 0.62, 0.44, 0.99);
+$box-shadow-1: 0px 5px 10px rgba(62, 68, 90, 0.1);
+$box-shadow-2: 0 10px 15px -3px rgb(0 0 0 / 10%), 0 4px 6px -2px rgb(0 0 0 / 5%);
+$box-shadow-3: 0 0 13px 0 rgb(82 63 105 / 5%);
+$box-shadow-4: 0px 0px 60px rgb(0 0 0 / 8%);
+$nav-bottom-box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.07);
+
+$numbers: (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12);

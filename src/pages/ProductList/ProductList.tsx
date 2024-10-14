@@ -16,9 +16,7 @@ export default function ProductList() {
   const { data: productsData } = useQuery({
     // Khi queryConfig thay đổi thì api sẽ được gọi lại
     queryKey: ['products', queryConfig],
-    queryFn: () => {
-      return productApi.getProducts(queryConfig as ProductListConfig)
-    },
+    queryFn: () => productApi.getProducts(queryConfig as ProductListConfig),
     keepPreviousData: true,
     staleTime: 3 * 60 * 1000
   })
@@ -26,9 +24,7 @@ export default function ProductList() {
   // Call Api lấy ra list category
   const { data: categoriesData } = useQuery({
     queryKey: ['categories'],
-    queryFn: () => {
-      return categoryApi.getCategories()
-    }
+    queryFn: () => categoryApi.getCategories()
   })
 
   return (
@@ -37,6 +33,7 @@ export default function ProductList() {
         <title>Trang chủ | Shopee Clone</title>
         <meta name='description' content='Trang chủ dự án Shopee Clone' />
       </Helmet>
+
       <div className='container'>
         {productsData && (
           <div className='grid grid-cols-12 gap-6'>

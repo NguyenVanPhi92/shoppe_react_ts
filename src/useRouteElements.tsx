@@ -7,6 +7,7 @@ import RegisterLayout from './layouts/RegisterLayout'
 import CartLayout from './layouts/CartLayout'
 import UserLayout from './pages/User/layouts/UserLayout'
 
+//Kỹ thuật lazy load: dùng đến page nào load ra page đó
 const Login = lazy(() => import('./pages/Login'))
 const ProductList = lazy(() => import('./pages/ProductList'))
 const Profile = lazy(() => import('./pages/User/pages/Profile'))
@@ -151,7 +152,7 @@ export default function useRouteElements() {
       )
     },
 
-    // link sai thì sẽ vào page notfound
+    // Link sai thì sẽ vào page notfound
     {
       path: '*',
       element: (

@@ -1,0 +1,402 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .flex-center {
+    @apply flex justify-center items-center;
+  }
+
+  .container {
+    @apply w-full mx-auto max-w-container-width px-12 sm:px-16 lg:px-24;
+  }
+
+  button {
+    background-color: unset;
+  }
+
+  button,
+  [type="button"],
+  [type="reset"],
+  [type="submit"] {
+    background-color: unset;
+  }
+
+  .btn {
+    @apply cursor-pointer py-[10px] w-full sm:w-fit px-[32px] rounded-[5px] text-[14px] lg:text-16 outline-none font-semibold leading-[26px] flex-center sm:rounded-[30px] text-white-color;
+  }
+
+  .absolute-center {
+    @apply absolute left-[50%] top-[50%] transform -translate-x-1/2 -translate-y-1/2;
+  }
+
+  .absolute-vertical {
+    @apply absolute top-[50%] transform -translate-y-1/2;
+  }
+
+  .absolute-horizontal {
+    @apply absolute left-[50%] transform -translate-x-1/2;
+  }
+
+  .form-item {
+    @apply mb-[12px];
+  }
+
+  .form-err-msg {
+    @apply text-[12px] text-error leading-[18px] mt-[4px] font-normal;
+  }
+
+  .form-input-sm {
+    @apply px-[15px] rounded-[5px] md:rounded-[10px] border border-solid border-gray-20 md:border-gray-color-2 h-[32px] w-full outline-none text-14 md:text-16 font-medium;
+  }
+
+  .form-input {
+    @apply form-input-sm py-12 h-[44px] md:h-[52px];
+  }
+
+  .form-textarea {
+    @apply form-input h-[unset];
+  }
+
+  .form-input-err {
+    @apply border-error;
+  }
+
+  .form-label {
+    @apply text-13 md:text-14 text-text-body leading-[26px] font-medium mb-[4px] inline-block;
+  }
+
+  .form-date {
+    @apply form-input py-[0];
+  }
+
+  .form-date-err {
+    @apply border-error;
+  }
+
+  .btn-disabled {
+    @apply bg-[#bbbbbb] pointer-events-none text-gray-color-1 border-none;
+  }
+
+  .content-container {
+    @apply sm:max-w-content-container-width w-full mx-auto;
+  }
+
+  .block-element {
+    @apply bg-white-color rounded-[5px] shadow-shadow-base;
+  }
+
+  .h1 {
+    @apply text-[20px] font-semibold leading-[28px] md:text-[28px] md:leading-[36px] md:font-medium lg:text-[48px] lg:leading-[56px] text-text-body;
+  }
+
+  .h2 {
+    @apply text-[18px] leading-[24px] md:text-[22px] md:leading-[34px] lg:text-[40px] font-medium lg:leading-[48px] text-text-body;
+  }
+
+  .h3 {
+    @apply text-[20px] leading-[28px] md:text-[28px] font-medium md:leading-[36px] text-text-body;
+  }
+
+  .h4 {
+    @apply text-[20px] leading-[26px] md:text-[24px] font-medium md:leading-[32px] text-text-body;
+  }
+
+  .text-base {
+    @apply text-16 leading-26 font-medium text-text-body;
+  }
+
+  .text-sm {
+    @apply text-14 leading-26 font-medium text-text-body;
+  }
+
+  .text-xs {
+    @apply text-12 leading-16 font-medium text-text-body;
+  }
+
+  .text-lg {
+    @apply text-[18px] leading-[28px] font-medium text-text-body;
+  }
+
+  .text-xl {
+    @apply text-[24px] leading-[32px] font-medium text-text-body;
+  }
+
+  .px-custom {
+    @apply px-12 sm:px-16 lg:px-24;
+  }
+
+  .pt-custom {
+    @apply pt-12 sm:pt-16 lg:pt-24;
+  }
+
+  .pb-custom {
+    @apply pb-12 sm:pb-16 lg:pb-24;
+  }
+
+  .p-custom {
+    @apply p-12 sm:p-16 lg:p-24;
+  }
+
+  .gap-custom {
+    @apply gap-12 sm:gap-16 lg:gap-24;
+  }
+
+  .m-custom {
+    @apply m-12 sm:m-16 lg:m-24;
+  }
+
+  .mx-custom {
+    @apply mx-12 sm:mx-16 lg:mx-24;
+  }
+
+  .py-custom {
+    @apply py-12 sm:py-16 lg:py-24;
+  }
+
+  .pr-custom {
+    @apply pr-12 sm:pr-16 lg:pr-24;
+  }
+
+  .pl-custom {
+    @apply pl-12 sm:pl-16 lg:pl-24;
+  }
+}
+
+.news__page {
+  font-size: 1.4rem;
+  line-height: 2rem;
+  font-weight: 500;
+
+  h1 {
+    font-weight: 700;
+    font-size: 2.2rem;
+    line-height: 3rem;
+  }
+
+  h2 {
+    font-weight: 600;
+    font-size: 2rem;
+    line-height: 2.8rem;
+  }
+
+  h3 {
+    font-weight: 600;
+    font-size: 1.8rem;
+    line-height: 2.6rem;
+  }
+
+  h4 {
+    font-weight: 600;
+    font-size: 1.7rem;
+    line-height: 2.5rem;
+  }
+
+  h5 {
+    font-weight: 600;
+    line-height: 2.4rem;
+    font-size: 1.6rem;
+  }
+
+  u {
+    font-size: 1.2rem;
+    line-height: 1.8rem;
+    font-weight: 400;
+  }
+
+  p {
+    font-weight: 500;
+    font-size: 1.4rem;
+    line-height: 2.2rem;
+    color: #595959;
+
+    @media screen and (min-width: 640px) {
+      font-size: 1.5rem;
+      line-height: 2.3rem;
+    }
+
+    @media screen and (min-width: 768px) {
+      font-size: 1.5rem;
+      line-height: 2.3rem;
+    }
+  }
+
+  img {
+    width: auto !important;
+    height: auto !important;
+  }
+}
+
+.chat-page {
+  & .chat-room {
+    &-list {
+      max-height: calc(100vh - 148px);
+
+      @media screen and (min-width: 768px) {
+        max-height: calc(100vh - 218px);
+      }
+
+      @media screen and (min-width: 1024px) {
+        max-height: calc(100vh - 250px);
+      }
+
+      & #scrollableDiv {
+        scrollbar-width: thin;
+
+        &::-webkit-scrollbar {
+          width: 10px;
+        }
+
+        &::-webkit-scrollbar-track {
+          border: 1px solid #f3f3f3;
+          border-radius: 10px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+          border-radius: 10px;
+          background-color: #dcdcdc;
+        }
+      }
+    }
+  }
+  & .chat-message {
+    &-list {
+      scrollbar-width: thin;
+      max-height: calc(100vh - 132px);
+
+      @media screen and (min-width: 768px) {
+        max-height: calc(100vh - 242px);
+      }
+
+      @media screen and (min-width: 1024px) {
+        max-height: calc(100vh - 258px);
+      }
+
+      &::-webkit-scrollbar {
+        width: 10px;
+      }
+
+      &::-webkit-scrollbar-track {
+        border: 1px solid #f3f3f3;
+        border-radius: 10px;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        background-color: #dcdcdc;
+      }
+    }
+  }
+}
+
+.word-wrap-anywhere {
+  word-wrap: anywhere;
+}
+
+.word-break {
+  word-break: break-all;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-color: #f2f2f2;
+  }
+  100% {
+    background-color: #c4c4c4;
+  }
+}
+
+.skeleton {
+  animation: skeleton-loading 1s linear infinite alternate;
+}
+
+.body-hidden {
+  overflow: hidden;
+  @media screen and (min-width: 1024px) {
+    padding-right: 17px;
+  }
+}
+
+.news__page {
+  font-size: 1.4rem;
+  line-height: 2rem;
+  font-weight: 500;
+
+  h1 {
+    font-weight: 700;
+    font-size: 2.2rem;
+    line-height: 3rem;
+  }
+
+  h2 {
+    font-weight: 600;
+    font-size: 2rem;
+    line-height: 2.8rem;
+  }
+
+  h3 {
+    font-weight: 600;
+    font-size: 1.8rem;
+    line-height: 2.6rem;
+  }
+
+  h4 {
+    font-weight: 600;
+    font-size: 1.7rem;
+    line-height: 2.5rem;
+  }
+
+  h5 {
+    font-weight: 600;
+    line-height: 2.4rem;
+    font-size: 1.6rem;
+  }
+
+  u {
+    font-size: 1.2rem;
+    line-height: 1.8rem;
+    font-weight: 400;
+  }
+
+  p {
+    font-weight: 500;
+    font-size: 1.4rem;
+    line-height: 2.2rem;
+    color: #595959;
+
+    @media screen and (min-width: 640px) {
+      font-size: 1.5rem;
+      line-height: 2.3rem;
+    }
+
+    @media screen and (min-width: 768px) {
+      font-size: 1.5rem;
+      line-height: 2.3rem;
+    }
+  }
+
+  img {
+    width: auto !important;
+    height: auto !important;
+  }
+}
+
+@keyframes opacity {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.react-transform-wrapper {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.EmojiPickerReact {
+  width: 100% !important;
+  height: 100% !important;
+  border-color: #f0f0f0 !important;
+}

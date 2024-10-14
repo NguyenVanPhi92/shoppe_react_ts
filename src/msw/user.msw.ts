@@ -1,7 +1,7 @@
 import { rest } from 'msw'
 import config from 'src/constants/config'
-import HttpStatusCode from 'src/constants/httpStatusCode.enum'
 import { access_token_1s } from './auth.msw'
+import { HttpStatusCode } from 'src/constants'
 
 const meRes = {
   message: 'Lấy người dùng thành công',

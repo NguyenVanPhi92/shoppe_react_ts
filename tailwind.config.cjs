@@ -6,7 +6,7 @@ module.exports = {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   // xóa class css trong tailwind
   corePlugins: {
-    container: false
+    container: false // delete class container
   },
   theme: {
     extend: {
@@ -21,8 +21,10 @@ module.exports = {
     }
   },
   plugins: [
+    // add new class tailwind
     plugin(function ({ addComponents, theme }) {
       addComponents({
+        // add mew class container
         '.container': {
           maxWidth: theme('columns.7xl'),
           marginLeft: 'auto',

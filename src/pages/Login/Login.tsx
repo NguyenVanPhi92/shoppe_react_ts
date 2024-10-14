@@ -4,17 +4,19 @@ import { useContext } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { useForm } from 'react-hook-form'
 import { Link, useNavigate } from 'react-router-dom'
-import authApi from 'src/apis/auth.api'
+import { login } from 'src/apis'
 import Button from 'src/components/Button'
 import Input from 'src/components/Input'
 import { AppContext } from 'src/contexts/app.context'
 import { ErrorResponse } from 'src/types/utils.type'
-import { Schema, schema } from 'src/utils/rules'
+import { SchemaYup, schema } from 'src/utils/rules'
 import { isAxiosUnprocessableEntityError } from 'src/utils/utils'
 
+// tạo type cho form
 // form chỉ được chọn 1 kiểu trong 2 kiêu email or password
-type FormData = Pick<Schema, 'email' | 'password'> // tạo type cho form
-const loginSchema = schema.pick(['email', 'password']) // tạo schema cho login
+type FormData = Pick<SchemaYup, 'email' | 'password'>
+// tạo schema cho login
+const loginSchema = schema.pick(['email', 'password'])
 
 export default function Login() {
   // Call state in ContextAPI
@@ -39,7 +41,7 @@ export default function Login() {
      * @returns Promise async function
      * Omit: dùng type của formData nhưng loại bỏ confirm_password
      */
-    mutationFn: (body: Omit<FormData, 'confirm_password'>) => authApi.login(body)
+    mutationFn: (body: Omit<FormData, 'confirm_password'>) => login(body)
   })
 
   // Handle submit form

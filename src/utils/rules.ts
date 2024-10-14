@@ -127,6 +127,5 @@ export const userSchema = yup.object({
 })
 
 // xuất ra interface type data của schema để add vào form
-export type UserSchema = yup.InferType<typeof userSchema>
-
-export type Schema = yup.InferType<typeof schema>
+export type UserSchemaYup = yup.InferType<typeof userSchema>
+export type SchemaYup = yup.InferType<typeof schema>

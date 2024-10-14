@@ -16,17 +16,20 @@ import { formatCurrency, generateNameId } from 'src/utils/utils'
 
 export default function Cart() {
   const { extendedPurchases, setExtendedPurchases } = useContext(AppContext)
+
   // dùng react query mutation
   const { data: purchasesInCartData, refetch } = useQuery({
     queryKey: ['purchases', { status: purchasesStatus.inCart }],
     queryFn: () => purchaseApi.getPurchases({ status: purchasesStatus.inCart })
   })
+
   const updatePurchaseMutation = useMutation({
     mutationFn: purchaseApi.updatePurchase,
     onSuccess: () => {
       refetch()
     }
   })
+
   const buyProductsMutation = useMutation({
     mutationFn: purchaseApi.buyProducts,
     onSuccess: (data) => {
@@ -37,6 +40,7 @@ export default function Cart() {
       })
     }
   })
+
   const deletePurchasesMutation = useMutation({
     mutationFn: purchaseApi.deletePurchase,
     onSuccess: () => {
@@ -50,6 +54,7 @@ export default function Cart() {
   const isAllChecked = useMemo(() => extendedPurchases.every((purchase) => purchase.checked), [extendedPurchases])
   const checkedPurchases = useMemo(() => extendedPurchases.filter((purchase) => purchase.checked), [extendedPurchases])
   const checkedPurchasesCount = checkedPurchases.length
+
   const totalCheckedPurchasePrice = useMemo(
     () =>
       checkedPurchases.reduce((result, current) => {
@@ -57,6 +62,7 @@ export default function Cart() {
       }, 0),
     [checkedPurchases]
   )
+
   const totalCheckedPurchaseSavingPrice = useMemo(
     () =>
       checkedPurchases.reduce((result, current) => {
@@ -269,6 +275,7 @@ export default function Cart() {
                 )}
               </div>
             </div>
+
             <div className='sticky bottom-0 z-10 mt-8 flex flex-col rounded-sm border border-gray-100 bg-white p-5 shadow sm:flex-row sm:items-center'>
               <div className='flex items-center'>
                 <div className='flex flex-shrink-0 items-center justify-center pr-3'>

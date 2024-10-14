@@ -1,24 +1,24 @@
+import { yupResolver } from '@hookform/resolvers/yup'
 import classNames from 'classnames'
+import omit from 'lodash/omit'
+import { Controller, useForm } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 import { createSearchParams, Link, useNavigate } from 'react-router-dom'
 import Button from 'src/components/Button'
 import InputNumber from 'src/components/InputNumber'
 import path from 'src/constants/path'
-import { Category } from 'src/types/category.type'
-import { useForm, Controller } from 'react-hook-form'
-import { Schema, schema } from 'src/utils/rules'
-import { yupResolver } from '@hookform/resolvers/yup'
-import { NoUndefinedField } from 'src/types/utils.type'
-import RatingStars from '../RatingStars'
-import omit from 'lodash/omit'
 import { QueryConfig } from 'src/hooks/useQueryConfig'
-import { useTranslation } from 'react-i18next'
+import { Category } from 'src/types/category.type'
+import { NoUndefinedField } from 'src/types/utils.type'
+import { schema, SchemaYup } from 'src/utils/rules'
+import RatingStars from '../RatingStars'
 
 interface Props {
   queryConfig: QueryConfig
   categories: Category[]
 }
 
-type FormData = NoUndefinedField<Pick<Schema, 'price_max' | 'price_min'>>
+type FormData = NoUndefinedField<Pick<SchemaYup, 'price_max' | 'price_min'>>
 /**
  * Rule validate
  * Nếu có price_min và price_max thì price_max >= price_min
@@ -43,6 +43,8 @@ export default function AsideFilter({ queryConfig, categories }: Props) {
     resolver: yupResolver(priceSchema)
   })
   const navigate = useNavigate()
+
+  // Handler
   const onSubmit = handleSubmit((data) => {
     navigate({
       pathname: path.home,
