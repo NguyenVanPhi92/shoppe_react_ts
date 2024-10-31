@@ -23,6 +23,7 @@ export default function DateSelect({ value, onChange, errorMessage }: Props) {
     }
   }, [value])
 
+  // Handle event
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const { value: valueFromSelect, name } = event.target
     const newDate = {

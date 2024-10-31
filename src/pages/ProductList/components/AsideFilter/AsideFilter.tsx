@@ -29,7 +29,10 @@ const priceSchema = schema.pick(['price_min', 'price_max'])
 
 export default function AsideFilter({ queryConfig, categories }: Props) {
   const { t } = useTranslation('home')
+  const navigate = useNavigate()
   const { category } = queryConfig
+
+  // Declaration form
   const {
     control,
     handleSubmit,
@@ -42,9 +45,8 @@ export default function AsideFilter({ queryConfig, categories }: Props) {
     },
     resolver: yupResolver(priceSchema)
   })
-  const navigate = useNavigate()
 
-  // Handler
+  // Handle event
   const onSubmit = handleSubmit((data) => {
     navigate({
       pathname: path.home,
@@ -90,7 +92,7 @@ export default function AsideFilter({ queryConfig, categories }: Props) {
 
       <div className='my-4 h-[1px] bg-gray-300' />
 
-      {/* FILTER THEO CATEGORY */}
+      {/* Filter by category */}
       <ul>
         {categories.map((categoryItem) => {
           const isActive = category === categoryItem._id
@@ -144,7 +146,7 @@ export default function AsideFilter({ queryConfig, categories }: Props) {
 
       <div className='my-4 h-[1px] bg-gray-300' />
 
-      {/* FILTER THEO KHOẢNG GIÁ */}
+      {/* Filter by price ranges */}
       <div className='my-5'>
         <div>Khoảng giá</div>
         <form className='mt-2' onSubmit={onSubmit}>
@@ -213,13 +215,13 @@ export default function AsideFilter({ queryConfig, categories }: Props) {
 
       <div className='my-4 h-[1px] bg-gray-300' />
 
-      {/* FILTER THEO SAO */}
+      {/* Filter by star */}
       <div className='text-sm'>Đánh giá</div>
       <RatingStars queryConfig={queryConfig} />
 
       <div className='my-4 h-[1px] bg-gray-300' />
 
-      {/* CLEAR FILTER */}
+      {/* Clear filter */}
       <Button
         onClick={handleRemoveAll}
         className='flex w-full items-center justify-center bg-orange p-2 text-sm uppercase text-white hover:bg-orange/80'

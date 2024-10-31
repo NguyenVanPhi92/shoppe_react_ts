@@ -1,20 +1,13 @@
-/**
- * MẸO
- * gọi type trc khi import thì sẽ chỉ import đc những type của package
- */
+// MẸO: gọi type trc khi import thì sẽ chỉ import đc những type của package
 import type { RegisterOptions, UseFormGetValues } from 'react-hook-form'
 import * as yup from 'yup'
 import { AnyObject } from 'yup/lib/types'
 
-/**
- * CHỨA CÁC SCHEMA QUY TẮC CỦA FORM INPUT
- */
+// ALL SCHEMA QUY TẮC CỦA FORM INPUT
 
 // RegisterOptions chứa các option của form trong react hook form
 // tạo 3 kiểu của form register
-/**
- * [key in 'email' | 'password' | 'confirm_password']?: => tạo các Rules
- */
+// [key in 'email' | 'password' | 'confirm_password']?: => tạo các Rules
 type Rules = { [key in 'email' | 'password' | 'confirm_password']?: RegisterOptions }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -79,7 +72,7 @@ function testPriceMinMax(this: yup.TestContext<AnyObject>) {
   return price_min !== '' || price_max !== ''
 }
 
-// match pass
+// match password_confirm
 const handleConfirmPasswordYup = (refString: string) => {
   return yup
     .string()
@@ -126,6 +119,6 @@ export const userSchema = yup.object({
   confirm_password: handleConfirmPasswordYup('new_password')
 })
 
-// xuất ra interface type data của schema để add vào form
+// export interface type data của schema để add vào form
 export type UserSchemaYup = yup.InferType<typeof userSchema>
 export type SchemaYup = yup.InferType<typeof schema>

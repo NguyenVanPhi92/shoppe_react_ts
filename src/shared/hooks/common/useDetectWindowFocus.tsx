@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState } from 'react'
 
 const useDetectWindowFocus = (): boolean => {
   const [chatFocus, setChatFocus] = useState(true)
@@ -12,12 +12,12 @@ const useDetectWindowFocus = (): boolean => {
       setChatFocus(true)
     }
 
-    window.addEventListener("focus", handleActivityTrue)
-    window.addEventListener("blur", handleActivityFalse)
+    window.addEventListener('focus', handleActivityTrue)
+    window.addEventListener('blur', handleActivityFalse)
 
     return () => {
-      window.removeEventListener("focus", handleActivityTrue)
-      window.removeEventListener("blur", handleActivityFalse)
+      window.removeEventListener('focus', handleActivityTrue)
+      window.removeEventListener('blur', handleActivityFalse)
     }
   }, [chatFocus])
 

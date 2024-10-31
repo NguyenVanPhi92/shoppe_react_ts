@@ -14,10 +14,8 @@ button,
 label,
 textarea {
   font-family: $main-font;
-  font-family: "Open Sans", sans-serif;
+  font-family: 'Open Sans', sans-serif;
 }
-
-
 
 ::-webkit-input-placeholder {
   /* Edge */
@@ -39,8 +37,8 @@ body {
   color: $text-color;
   font-weight: normal;
   font-family: $main-font;
-  font-family: "Lato", sans-serif;
-  font-family: "Open Sans", sans-serif;
+  font-family: 'Lato', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   font-size: 1.4rem;
 }
 
@@ -83,14 +81,13 @@ body {
   }
 }
 
-.forward-link{
+.forward-link {
   cursor: pointer;
   color: $primary-color;
 
-  &:hover{
-    color: $primary-opacity-5
+  &:hover {
+    color: $primary-opacity-5;
   }
-
 }
 
 .hide-on-mobile {
@@ -462,10 +459,10 @@ textarea {
   cursor: pointer;
 }
 
-.button-confirm{
+.button-confirm {
   background-color: $danger;
   color: $white;
-  &:hover{
+  &:hover {
     opacity: 0.7;
   }
 }
@@ -473,42 +470,42 @@ textarea {
 .button-back {
   background-color: $gray-color-opacity;
   color: $gray;
-  &:hover{
+  &:hover {
     background-color: $gray-color;
   }
 }
 
-.uom-select{
-    &-container {
-        cursor: pointer;
+.uom-select {
+  &-container {
+    cursor: pointer;
+  }
+  &__control {
+    min-width: 100px;
+    max-width: max-content;
+    cursor: pointer;
+  }
+
+  &__indicator {
+    padding-left: 5px;
+  }
+
+  &__value-container {
+    padding: 0 5px;
+  }
+
+  &__menu {
+    min-width: 100px;
+
+    &-list {
+      padding: 5px;
     }
-    &__control {
-      min-width: 100px;
-      max-width: max-content;
-      cursor: pointer;
-    }
-  
-    &__indicator {
-      padding-left: 5px;
-    }
-  
-    &__value-container {
-      padding: 0 5px;
-    }
-  
-    &__menu {
-      min-width: 100px;
-  
-      &-list {
-        padding: 5px;
-      }
-    }
-  
-    &__option {
-      border-radius: 5px;
-      cursor: pointer;
-      margin-bottom: 5px;
-    }
+  }
+
+  &__option {
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 5px;
+  }
 }
 
 .main__layout__no-footer {

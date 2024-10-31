@@ -1,5 +1,5 @@
 import { InputHTMLAttributes, useState } from 'react'
-import { FieldValues, FieldPath, useController, UseControllerProps } from 'react-hook-form'
+import { FieldPath, FieldValues, useController, UseControllerProps } from 'react-hook-form'
 
 export type InputNumberProps<
   TFieldValues extends FieldValues = FieldValues,
@@ -21,11 +21,12 @@ function InputV2<
     classNameInput = 'p-3 w-full outline-none border border-gray-300 focus:border-gray-500 rounded-sm focus:shadow-sm',
     classNameError = 'mt-1 text-red-600 min-h-[1.25rem] text-sm',
     value = '',
-    ...rest
+    ...rest // ...rest are all attributes
   } = props
   const { field, fieldState } = useController(props)
   const [localValue, setLocalValue] = useState<string>(field.value)
 
+  // handle event
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const valueFromInput = event.target.value
     const numberCondition = type === 'number' && (/^\d+$/.test(valueFromInput) || valueFromInput === '')

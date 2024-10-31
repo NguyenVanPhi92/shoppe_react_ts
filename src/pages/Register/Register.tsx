@@ -26,7 +26,7 @@ export default function Register() {
   const { setIsAuthenticated, setProfile } = useContext(AppContext)
   const navigate = useNavigate()
 
-  // Khai báo Form
+  // Declaration form
   const {
     register, // đk thông tin từng field cho form
     handleSubmit, // sự kiện submit form
@@ -36,7 +36,7 @@ export default function Register() {
     resolver: yupResolver(registerSchema)
   })
 
-  // Use Mutation react tanstank-query call api
+  // Mutations async create/update/delete-post/put/delete
   const registerAccountMutation = useMutation({
     /**
      Omit<FormData, 'confirm_password': delete confirm_password in FormData
@@ -47,7 +47,7 @@ export default function Register() {
     mutationFn: (body: Omit<FormData, 'confirm_password'>) => registerAccount(body)
   })
 
-  // Handle submit form
+  // Handle event
   const onSubmit = handleSubmit((data) => {
     // Use omit trong lodash loại bỏ confirm_password trong object schema
     const body = omit(data, ['confirm_password'])

@@ -7,10 +7,10 @@ import userApi from 'src/apis/user.api'
 import Button from 'src/components/Button'
 import Input from 'src/components/Input'
 import { ErrorResponse } from 'src/types/utils.type'
-import { userSchema, UserSchema } from 'src/utils/rules'
+import { userSchema, UserSchemaYup } from 'src/utils/rules'
 import { isAxiosUnprocessableEntityError } from 'src/utils/utils'
 
-type FormData = Pick<UserSchema, 'password' | 'new_password' | 'confirm_password'>
+type FormData = Pick<UserSchemaYup, 'password' | 'new_password' | 'confirm_password'>
 const passwordSchema = userSchema.pick(['password', 'new_password', 'confirm_password'])
 
 export default function ChangePassword() {
@@ -28,8 +28,11 @@ export default function ChangePassword() {
     },
     resolver: yupResolver(passwordSchema)
   })
+
+  // Mutation async create/update/delete-post/put/delete
   const updateProfileMutation = useMutation(userApi.updateProfile)
 
+  // Handle event
   const onSubmit = handleSubmit(async (data) => {
     try {
       const res = await updateProfileMutation.mutateAsync(omit(data, ['confirm_password']))

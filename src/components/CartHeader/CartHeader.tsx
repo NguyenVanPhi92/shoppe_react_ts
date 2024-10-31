@@ -8,14 +8,18 @@ export default function CartHeader() {
 
   return (
     <div className='border-b border-b-black/10'>
+      {/* Navbar head*/}
       <div className='bg-orange text-white'>
         <div className='container'>
           <NavHeader />
         </div>
       </div>
+
+      {/* Navbar bottom */}
       <div className='bg-white py-6'>
         <div className='container'>
           <nav className='md:flex md:items-center md:justify-between'>
+            {/* Icon Shopee */}
             <Link to={path.home} className='flex flex-shrink-0 items-end'>
               <div>
                 <svg viewBox='0 0 192 65' className='h-8 fill-orange md:h-11'>
@@ -27,6 +31,8 @@ export default function CartHeader() {
               <div className='mx-4 h-6 w-[1px] bg-orange md:h-8' />
               <div className='capitalize text-orange md:text-xl'>Giỏ hàng</div>
             </Link>
+
+            {/* Navbar search */}
             <form className='mt-3 md:mt-0 md:w-[50%]' onSubmit={onSubmitSearch}>
               <div className='flex rounded-sm border-2 border-orange'>
                 <input

@@ -1,6 +1,6 @@
 import { AxiosError } from 'axios'
-import HttpStatusCode from 'src/constants/httpStatusCode.enum'
-import { describe, it, test, expect } from 'vitest'
+import { HttpStatusCode } from 'src/constants'
+import { describe, expect, it } from 'vitest'
 import { isAxiosError, isAxiosUnprocessableEntityError } from '../utils'
 
 // describe dùng để mô tả tập hợp các ngữ cảnh

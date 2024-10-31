@@ -1,5 +1,6 @@
 import { forwardRef, InputHTMLAttributes, useState } from 'react'
 
+// Input inherit InputHtml node properties
 export interface InputNumberProps extends InputHTMLAttributes<HTMLInputElement> {
   errorMessage?: string
   classNameInput?: string
@@ -14,19 +15,18 @@ const InputNumber = forwardRef<HTMLInputElement, InputNumberProps>(function Inpu
     classNameError = 'mt-1 text-red-600 min-h-[1.25rem] text-sm',
     onChange,
     value = '',
-    ...rest
+    ...rest // ...rest are all attributes
   },
   ref
 ) {
   const [localValue, setLocalValue] = useState<string>(value as string)
 
+  // handle event
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target
     if (/^\d+$/.test(value) || value === '') {
-      // Thực thi onChange callback từ bên ngoài truyền vào props
-      onChange && onChange(event)
-      // Cập nhật localValue state
-      setLocalValue(value)
+      onChange && onChange(event) // Thực thi onChange callback từ bên ngoài truyền vào props
+      setLocalValue(value) // Cập nhật localValue state
     }
   }
   return (

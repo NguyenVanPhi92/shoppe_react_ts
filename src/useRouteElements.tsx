@@ -1,11 +1,21 @@
-import path from 'src/constants/path'
-import { useContext, lazy, Suspense } from 'react'
+import { lazy, Suspense, useContext } from 'react'
 import { Navigate, Outlet, useRoutes } from 'react-router-dom'
+import path from 'src/constants/path'
 import { AppContext } from './contexts/app.context'
+import CartLayout from './layouts/CartLayout'
 import MainLayout from './layouts/MainLayout'
 import RegisterLayout from './layouts/RegisterLayout'
-import CartLayout from './layouts/CartLayout'
 import UserLayout from './pages/User/layouts/UserLayout'
+
+// import Login from './pages/Login'
+// import Register from './pages/Register'
+// import Cart from './pages/Cart'
+// import Profile from './pages/User/pages/Profile'
+// import ChangePassword from './pages/User/pages/ChangePassword'
+// import HistoryPurchase from './pages/User/pages/HistoryPurchase'
+// import ProductDetail from './pages/ProductDetail'
+// import ProductList from './pages/ProductList'
+// import NotFound from './pages/NotFound'
 
 //Kỹ thuật lazy load: dùng đến page nào load ra page đó
 const Login = lazy(() => import('./pages/Login'))

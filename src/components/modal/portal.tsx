@@ -8,14 +8,8 @@ function createWrapperAndAppendToBody(wrapperId: string) {
   return wrapperElement
 }
 
-function ReactPortal({
-  children,
-  wrapperId = 'react-portal-wrapper',
-}: {
-  children: ReactNode
-  wrapperId: string
-}) {
-  const [wrapperElement, setWrapperElement] = useState<HTMLElement  | null>(null)
+function ReactPortal({ children, wrapperId = 'react-portal-wrapper' }: { children: ReactNode; wrapperId: string }) {
+  const [wrapperElement, setWrapperElement] = useState<HTMLElement | null>(null)
 
   useLayoutEffect(() => {
     let element = document.getElementById(wrapperId)

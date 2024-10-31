@@ -1,7 +1,7 @@
-import { MouseEvent, useRef, useState } from "react"
+import { MouseEvent, useRef, useState } from 'react'
 
 export function useLongPress() {
-  const [action, setAction] = useState<"click" | "longpress" | undefined>()
+  const [action, setAction] = useState<'click' | 'longpress' | undefined>()
 
   const timerRef = useRef<any>()
   const isLongPress = useRef<boolean>()
@@ -10,7 +10,7 @@ export function useLongPress() {
     isLongPress.current = false
     timerRef.current = setTimeout(() => {
       isLongPress.current = true
-      setAction("longpress")
+      setAction('longpress')
       navigator.vibrate(200)
     }, 500)
   }
@@ -19,7 +19,7 @@ export function useLongPress() {
     if (isLongPress.current) {
       return
     }
-    setAction("click")
+    setAction('click')
   }
 
   function handleOnMouseDown() {
@@ -35,7 +35,7 @@ export function useLongPress() {
   }
 
   function handleOnTouchEnd() {
-    if (action === "longpress") return
+    if (action === 'longpress') return
     clearTimeout(timerRef.current)
   }
 
@@ -47,7 +47,7 @@ export function useLongPress() {
       onMouseDown: handleOnMouseDown,
       onMouseUp: handleOnMouseUp,
       onTouchStart: handleOnTouchStart,
-      onTouchEnd: handleOnTouchEnd,
-    },
+      onTouchEnd: handleOnTouchEnd
+    }
   }
 }

@@ -34,6 +34,7 @@ const RANGE = 2
 export default function Pagination({ queryConfig, pageSize }: Props) {
   const page = Number(queryConfig.page)
 
+  // handle event
   const renderPagination = () => {
     let dotAfter = false
     let dotBefore = false
@@ -102,6 +103,7 @@ export default function Pagination({ queryConfig, pageSize }: Props) {
         )
       })
   }
+
   return (
     <div className='mt-6 flex flex-wrap justify-center'>
       {page === 1 ? (
@@ -122,6 +124,7 @@ export default function Pagination({ queryConfig, pageSize }: Props) {
       )}
 
       {renderPagination()}
+
       {page === pageSize ? (
         <span className='mx-2 cursor-not-allowed rounded border bg-white/60 px-3 py-2  shadow-sm'>Next</span>
       ) : (

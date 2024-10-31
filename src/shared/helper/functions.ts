@@ -14,6 +14,7 @@ export const checkNumberPhone = (number: string) => {
   ;/^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/.test(number)
 }
 
+// eslint-disable-next-line @typescript-eslint/ban-types
 export const onScrollBottom = (callBack: Function) => {
   window.onscroll = function (event) {
     if (window.innerHeight + window.scrollY > document.body.offsetHeight) {
@@ -70,7 +71,7 @@ export function getWindowDimensions() {
   const { innerWidth: width, innerHeight: height } = window
   return {
     width,
-    height,
+    height
   }
 }
 
@@ -178,19 +179,19 @@ export function convertViToEn(str: string, toUpperCase = false) {
 
 export const calculateElapsedTime = (timeCreated: string) => {
   const created = new Date(timeCreated).getTime()
-  let periods: any = {
+  const periods: any = {
     year: 365 * 30 * 24 * 60 * 60 * 1000,
     month: 30 * 24 * 60 * 60 * 1000,
     week: 7 * 24 * 60 * 60 * 1000,
     day: 24 * 60 * 60 * 1000,
     hour: 60 * 60 * 1000,
-    minute: 60 * 1000,
+    minute: 60 * 1000
   }
-  let diff = Date.now() - created
+  const diff = Date.now() - created
 
   for (const key in periods) {
     if (diff >= periods[key]) {
-      let result = Math.floor(diff / periods[key])
+      const result = Math.floor(diff / periods[key])
       return `${result} ${result === 1 ? key : key + 's'} ago`
     }
   }
@@ -223,10 +224,7 @@ export const formatMoneyVndString = (number: number): string => {
 
 export const toImageUrl = (url: string) => `${process.env.NEXT_PUBLIC_API_URL}${url}`
 
-export const getActiveStringOrListString = (
-  a: string[] | string,
-  b: string[] | string
-): boolean => {
+export const getActiveStringOrListString = (a: string[] | string, b: string[] | string): boolean => {
   if (typeof a !== typeof b) return false
   if (typeof a === 'string') {
     return a === b

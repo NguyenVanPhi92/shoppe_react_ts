@@ -1,27 +1,29 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import DOMPurify from 'dompurify'
+import { convert } from 'html-to-text'
 import { useEffect, useMemo, useRef, useState } from 'react'
+import { Helmet } from 'react-helmet-async'
+import { useTranslation } from 'react-i18next'
 import { useNavigate, useParams } from 'react-router-dom'
+import { toast } from 'react-toastify'
 import productApi from 'src/apis/product.api'
 import purchaseApi from 'src/apis/purchase.api'
-import { toast } from 'react-toastify'
 import ProductRating from 'src/components/ProductRating'
 import QuantityController from 'src/components/QuantityController'
+import path from 'src/constants/path'
 import { purchasesStatus } from 'src/constants/purchase'
-import { Product as ProductType, ProductListConfig } from 'src/types/product.type'
+import { ProductListConfig, Product as ProductType } from 'src/types/product.type'
 import { formatCurrency, formatNumberToSocialStyle, getIdFromNameId, rateSale } from 'src/utils/utils'
 import Product from '../ProductList/components/Product'
-import path from 'src/constants/path'
-import { useTranslation } from 'react-i18next'
-import { Helmet } from 'react-helmet-async'
-import { convert } from 'html-to-text'
 
 export default function ProductDetail() {
   const { t } = useTranslation(['product'])
   const queryClient = useQueryClient()
   const [buyCount, setBuyCount] = useState(1)
+  const navigate = useNavigate()
   const { nameId } = useParams()
   const id = getIdFromNameId(nameId as string)
+  // Queries async
   const { data: productDetailData } = useQuery({
     queryKey: ['product', id],
     queryFn: () => productApi.getProductDetail(id as string)
@@ -35,7 +37,7 @@ export default function ProductDetail() {
     [product, currentIndexImages]
   )
   const queryConfig: ProductListConfig = { limit: '20', page: '1', category: product?.category._id }
-
+  // Queries async
   const { data: productsData } = useQuery({
     queryKey: ['products', queryConfig],
     queryFn: () => {
@@ -44,30 +46,23 @@ export default function ProductDetail() {
     staleTime: 3 * 60 * 1000,
     enabled: Boolean(product)
   })
+  // Mutations async
   const addToCartMutation = useMutation(purchaseApi.addToCart)
-  const navigate = useNavigate()
 
+  console.log('char: ', product?.description.substring(1, 100))
   useEffect(() => {
-    if (product && product.images.length > 0) {
-      setActiveImage(product.images[0])
-    }
+    if (product && product.images.length > 0) setActiveImage(product.images[0])
   }, [product])
 
-  // Handler
+  // Handle event
   const next = () => {
-    if (currentIndexImages[1] < (product as ProductType).images.length) {
+    if (currentIndexImages[1] < (product as ProductType).images.length)
       setCurrentIndexImages((prev) => [prev[0] + 1, prev[1] + 1])
-    }
   }
-
   const prev = () => {
-    if (currentIndexImages[0] > 0) {
-      setCurrentIndexImages((prev) => [prev[0] - 1, prev[1] - 1])
-    }
+    if (currentIndexImages[0] > 0) setCurrentIndexImages((prev) => [prev[0] - 1, prev[1] - 1])
   }
-
   const chooseActive = (img: string) => setActiveImage(img)
-
   const handleZoom = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     const rect = event.currentTarget.getBoundingClientRect()
     const image = imageRef.current as HTMLImageElement
@@ -87,13 +82,8 @@ export default function ProductDetail() {
     image.style.top = top + 'px'
     image.style.left = left + 'px'
   }
-
   const handleRemoveZoom = () => imageRef.current?.removeAttribute('style')
-
-  const handleBuyCount = (value: number) => {
-    setBuyCount(value)
-  }
-
+  const handleBuyCount = (value: number) => setBuyCount(value)
   const addToCart = () => {
     addToCartMutation.mutate(
       { buy_count: buyCount, product_id: product?._id as string },
@@ -105,7 +95,6 @@ export default function ProductDetail() {
       }
     )
   }
-
   const buyNow = async () => {
     const res = await addToCartMutation.mutateAsync({ buy_count: buyCount, product_id: product?._id as string })
     const purchase = res.data.data
@@ -115,23 +104,24 @@ export default function ProductDetail() {
       }
     })
   }
-
   if (!product) return null
 
   return (
     <div className='bg-gray-200 py-6'>
+      {/* Tag tren title meta  */}
       <Helmet>
         <title>{product.name} | Shopee Clone</title>
         <meta
           name='description'
-          content={convert(product.description, {
+          content={convert(product.description.substring(1, 100), {
             limits: {
-              maxInputLength: 150
+              maxInputLength: 150 //gioi han ky tu
             }
           })}
         />
       </Helmet>
 
+      {/* Info Product */}
       <div className='container'>
         <div className='bg-white p-4 shadow'>
           <div className='grid grid-cols-12 gap-9'>
@@ -277,6 +267,8 @@ export default function ProductDetail() {
           </div>
         </div>
       </div>
+
+      {/* Product description paragraph */}
       <div className='mt-8'>
         <div className='container'>
           <div className=' bg-white p-4 shadow'>
@@ -292,6 +284,7 @@ export default function ProductDetail() {
         </div>
       </div>
 
+      {/* Product suggest */}
       <div className='mt-8'>
         <div className='container'>
           <div className='uppercase text-gray-400'>CÓ THỂ BẠN CŨNG THÍCH</div>

@@ -23,7 +23,7 @@ export default function Login() {
   const { setIsAuthenticated, setProfile } = useContext(AppContext)
   const navigate = useNavigate()
 
-  // Khai báo Form
+  // Declaration form
   const {
     register, // đk thông tin từng files vào useForm của react hook form
     setError,
@@ -33,7 +33,7 @@ export default function Login() {
     resolver: yupResolver(loginSchema)
   })
 
-  // Use mustaion react tanstank query call api
+  // Mutation async create/update/delete-post/put/delete
   const loginMutation = useMutation({
     /**
      *
@@ -44,7 +44,7 @@ export default function Login() {
     mutationFn: (body: Omit<FormData, 'confirm_password'>) => login(body)
   })
 
-  // Handle submit form
+  // Handle event
   const onSubmit = handleSubmit((data) => {
     /**
      * @param data Event submit form login success or failed

@@ -1,17 +1,18 @@
 import { useQuery } from '@tanstack/react-query'
 import { useContext } from 'react'
 import { Link } from 'react-router-dom'
-import path from 'src/constants/path'
-import { AppContext } from 'src/contexts/app.context'
-import Popover from '../Popover'
-import { purchasesStatus } from 'src/constants/purchase'
 import purchaseApi from 'src/apis/purchase.api'
 import noproduct from 'src/assets/images/no-product.png'
+import path from 'src/constants/path'
+import { purchasesStatus } from 'src/constants/purchase'
+import { AppContext } from 'src/contexts/app.context'
+import useSearchProducts from 'src/hooks/useSearchProducts'
 import { formatCurrency } from 'src/utils/utils'
 import NavHeader from '../NavHeader'
-import useSearchProducts from 'src/hooks/useSearchProducts'
+import Popover from '../Popover'
 
 const MAX_PURCHASES = 5
+
 export default function Header() {
   const { isAuthenticated } = useContext(AppContext)
   const { onSubmitSearch, register } = useSearchProducts()
@@ -20,7 +21,6 @@ export default function Header() {
   // Chứ không bị unmount - mounting again
   // (Tất nhiên là trừ trường hợp logout rồi nhảy sang RegisterLayout rồi nhảy vào lại)
   // Nên các query này sẽ không bị inactive => Không bị gọi lại => không cần thiết phải set stale: Infinity
-
   const { data: purchasesInCartData } = useQuery({
     queryKey: ['purchases', { status: purchasesStatus.inCart }],
     queryFn: () => purchaseApi.getPurchases({ status: purchasesStatus.inCart }),
@@ -33,6 +33,7 @@ export default function Header() {
     <div className='bg-[linear-gradient(-180deg,#f53d2d,#f63)] pb-5 pt-2 text-white'>
       <div className='container'>
         <NavHeader />
+
         <div className='mt-4 grid grid-cols-12 items-end gap-4'>
           {/* Logo */}
           <Link to='/' className='col-span-2'>
@@ -43,7 +44,7 @@ export default function Header() {
             </svg>
           </Link>
 
-          {/* Search Input */}
+          {/* Input search */}
           <form className='col-span-9' onSubmit={onSubmitSearch}>
             <div className='flex rounded-sm bg-white p-1'>
               <input
@@ -71,9 +72,9 @@ export default function Header() {
             </div>
           </form>
 
+          {/*  The pop-up cart item displays when hovering over the cart */}
           <div className='col-span-1 justify-self-end'>
             <Popover
-              // popup cart item  show khi hover vào cart
               renderPopover={
                 <div className='relative  max-w-[400px] rounded-sm border border-gray-200 bg-white text-sm shadow-md'>
                   {purchasesInCart && purchasesInCart.length > 0 ? (

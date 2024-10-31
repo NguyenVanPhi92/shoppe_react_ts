@@ -1,5 +1,4 @@
 // as const để chuyển object sang kiểu readonly => chỉ đọc không đc chỉnh sửa
-
 export const sortBy = {
   createdAt: 'createdAt',
   view: 'view',

@@ -3,7 +3,7 @@ import { ExtendedPurchase } from 'src/types/purchase.type'
 import { User } from 'src/types/user.type'
 import { getAccessTokenFromLS, getProfileFromLS } from 'src/utils/auth'
 
-// Tạo interface cho state
+// Create interface for state
 interface AppContextInterface {
   isAuthenticated: boolean
   setIsAuthenticated: React.Dispatch<React.SetStateAction<boolean>>
@@ -14,7 +14,7 @@ interface AppContextInterface {
   reset: () => void
 }
 
-// khởi tạo state store
+// Initial state store
 export const getInitialAppContext: () => AppContextInterface = () => ({
   isAuthenticated: Boolean(getAccessTokenFromLS()),
   setIsAuthenticated: () => null,
@@ -27,10 +27,10 @@ export const getInitialAppContext: () => AppContextInterface = () => ({
 
 const initialAppContext = getInitialAppContext()
 
-// Tạo Context
+// Create context
 export const AppContext = createContext<AppContextInterface>(initialAppContext)
 
-// Đưa state vào vào store
+// Create hook state app provider
 export const AppProvider = ({
   children,
   defaultValue = initialAppContext
@@ -48,6 +48,7 @@ export const AppProvider = ({
     setProfile(null)
   }
 
+  // Give state to provider
   return (
     <AppContext.Provider
       value={{

@@ -1,6 +1,6 @@
-export * from './useAsync'
+// export * from './useAsync'
+// export * from './useQuery'
 export * from './useCountdown'
 export * from './useDeBounce'
 export * from './useInputText'
-export * from './useQuery'
 export * from './useModal'

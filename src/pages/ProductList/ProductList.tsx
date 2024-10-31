@@ -12,16 +12,16 @@ import SortProductList from './components/SortProductList'
 export default function ProductList() {
   const queryConfig = useQueryConfig()
 
-  // Call Api lấy ra list product
+  // Queries async
   const { data: productsData } = useQuery({
-    // Khi queryConfig thay đổi thì api sẽ được gọi lại
+    // When queryConfig changes, the api will be called again
     queryKey: ['products', queryConfig],
     queryFn: () => productApi.getProducts(queryConfig as ProductListConfig),
     keepPreviousData: true,
     staleTime: 3 * 60 * 1000
   })
 
-  // Call Api lấy ra list category
+  // Queries async
   const { data: categoriesData } = useQuery({
     queryKey: ['categories'],
     queryFn: () => categoryApi.getCategories()

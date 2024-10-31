@@ -1,8 +1,8 @@
-import HttpStatusCode from 'src/constants/httpStatusCode.enum'
 import { access_token_1s, refresh_token_1000days } from 'src/msw/auth.msw'
 import { describe, expect, it, beforeEach } from 'vitest'
 import { setAccessTokenToLS, setRefreshTokenToLS } from '../auth'
 import { Http } from '../http'
+import { HttpStatusCode } from 'src/constants'
 
 describe('http axios', () => {
   let http = new Http().instance

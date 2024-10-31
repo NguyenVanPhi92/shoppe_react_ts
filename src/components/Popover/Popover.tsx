@@ -26,12 +26,9 @@ export default function Popover({
     placement: placement
   })
   const id = useId()
-  const showPopover = () => {
-    setOpen(true)
-  }
-  const hidePopover = () => {
-    setOpen(false)
-  }
+  const showPopover = () => setOpen(true)
+  const hidePopover = () => setOpen(false)
+
   return (
     <Element className={className} ref={reference} onMouseEnter={showPopover} onMouseLeave={hidePopover}>
       {children}

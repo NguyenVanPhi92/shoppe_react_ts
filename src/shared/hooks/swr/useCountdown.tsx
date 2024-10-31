@@ -24,7 +24,7 @@ function getReturnValues(countDown: number): Res {
       days: 0,
       hours: 0,
       minutes: 0,
-      seconds: 0,
+      seconds: 0
     }
   }
 
@@ -32,7 +32,7 @@ function getReturnValues(countDown: number): Res {
     days: days <= 0 ? 0 : days,
     hours: hours <= 0 ? 0 : hours,
     minutes: minutes <= 0 ? 0 : minutes,
-    seconds: seconds <= 0 ? 0 : seconds,
+    seconds: seconds <= 0 ? 0 : seconds
   }
 }
 
@@ -42,11 +42,7 @@ export const useCountdown = ({ targetDate, type = 'decrease' }: Props): Res => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCountDown(
-        type === 'decrease'
-          ? countDownDate - new Date().getTime()
-          : countDownDate + new Date().getTime()
-      )
+      setCountDown(type === 'decrease' ? countDownDate - new Date().getTime() : countDownDate + new Date().getTime())
     }, 1000)
 
     return () => clearInterval(interval)

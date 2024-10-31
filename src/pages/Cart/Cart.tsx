@@ -17,12 +17,13 @@ import { formatCurrency, generateNameId } from 'src/utils/utils'
 export default function Cart() {
   const { extendedPurchases, setExtendedPurchases } = useContext(AppContext)
 
-  // dùng react query mutation
+  // Queries async
   const { data: purchasesInCartData, refetch } = useQuery({
     queryKey: ['purchases', { status: purchasesStatus.inCart }],
     queryFn: () => purchaseApi.getPurchases({ status: purchasesStatus.inCart })
   })
 
+  // Mutations async
   const updatePurchaseMutation = useMutation({
     mutationFn: purchaseApi.updatePurchase,
     onSuccess: () => {
@@ -88,9 +89,7 @@ export default function Cart() {
   }, [purchasesInCart, choosenPurchaseIdFromLocation])
 
   useEffect(() => {
-    return () => {
-      history.replaceState(null, '')
-    }
+    return () => history.replaceState(null, '')
   }, [])
 
   // handle event
@@ -156,6 +155,7 @@ export default function Cart() {
       <div className='container'>
         {extendedPurchases.length > 0 ? (
           <>
+            {/* List products in the shopping cart */}
             <div className='overflow-auto'>
               <div className='min-w-[1000px]'>
                 <div className='grid grid-cols-12 rounded-sm bg-white py-5 px-9 text-sm capitalize text-gray-500 shadow'>
@@ -276,6 +276,7 @@ export default function Cart() {
               </div>
             </div>
 
+            {/* Product payment */}
             <div className='sticky bottom-0 z-10 mt-8 flex flex-col rounded-sm border border-gray-100 bg-white p-5 shadow sm:flex-row sm:items-center'>
               <div className='flex items-center'>
                 <div className='flex flex-shrink-0 items-center justify-center pr-3'>

@@ -118,6 +118,7 @@ export default function Profile() {
     }
   }, [profile, setValue])
 
+  // handle event
   const onSubmit = handleSubmit(async (data) => {
     try {
       let avatarName = avatar
@@ -152,9 +153,7 @@ export default function Profile() {
     }
   })
 
-  const handleChangeFile = (file?: File) => {
-    setFile(file)
-  }
+  const handleChangeFile = (file?: File) => setFile(file)
 
   return (
     <div className='rounded-sm bg-white px-2 pb-10 shadow md:px-7 md:pb-20'>

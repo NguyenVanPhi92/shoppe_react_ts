@@ -37,7 +37,7 @@ export class Http {
       timeout: 10000, // sau 10s thì không gọi api
       // setup headers
       headers: {
-        'Content-Type': 'application/json', // client gửi json xuong cho server
+        'Content-Type': 'application/json', // The client sends json to the server and receives json back
         'expire-access-token': 60 * 60 * 24, // 1 ngày
         'expire-refresh-token': 60 * 60 * 24 * 160 // 160 ngày
       }

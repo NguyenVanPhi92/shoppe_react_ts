@@ -15,11 +15,12 @@ export default function SortProductList({ queryConfig, pageSize }: Props) {
   const { sort_by = sortBy.createdAt, order } = queryConfig
   const navigate = useNavigate()
 
-  //Dùng Exclude loại bỏ undefined của thuộc tình sort_by
+  //Dùng Exclude loại bỏ undefined của thuộc tính sort_by
   const isActiveSortBy = (sortByValue: Exclude<ProductListConfig['sort_by'], undefined>) => {
     return sort_by === sortByValue
   }
 
+  // handle event
   const handleSort = (sortByValue: Exclude<ProductListConfig['sort_by'], undefined>) => {
     navigate({
       pathname: path.home,

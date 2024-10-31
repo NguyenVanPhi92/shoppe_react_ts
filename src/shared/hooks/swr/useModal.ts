@@ -9,6 +9,6 @@ export const useModal = () => {
   return {
     visible,
     closeModal,
-    openModal,
+    openModal
   }
 }

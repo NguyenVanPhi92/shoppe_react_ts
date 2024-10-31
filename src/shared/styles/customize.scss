@@ -4,11 +4,11 @@
 
 @layer components {
   .flex-center {
-    @apply flex justify-center items-center;
+    @apply flex items-center justify-center;
   }
 
   .container {
-    @apply w-full mx-auto max-w-container-width px-12 sm:px-16 lg:px-24;
+    @apply max-w-container-width mx-auto w-full px-12 sm:px-16 lg:px-24;
   }
 
   button {
@@ -16,26 +16,26 @@
   }
 
   button,
-  [type="button"],
-  [type="reset"],
-  [type="submit"] {
+  [type='button'],
+  [type='reset'],
+  [type='submit'] {
     background-color: unset;
   }
 
   .btn {
-    @apply cursor-pointer py-[10px] w-full sm:w-fit px-[32px] rounded-[5px] text-[14px] lg:text-16 outline-none font-semibold leading-[26px] flex-center sm:rounded-[30px] text-white-color;
+    @apply lg:text-16 flex-center text-white-color w-full cursor-pointer rounded-[5px] py-[10px] px-[32px] text-[14px] font-semibold leading-[26px] outline-none sm:w-fit sm:rounded-[30px];
   }
 
   .absolute-center {
-    @apply absolute left-[50%] top-[50%] transform -translate-x-1/2 -translate-y-1/2;
+    @apply absolute left-[50%] top-[50%] -translate-x-1/2 -translate-y-1/2 transform;
   }
 
   .absolute-vertical {
-    @apply absolute top-[50%] transform -translate-y-1/2;
+    @apply absolute top-[50%] -translate-y-1/2 transform;
   }
 
   .absolute-horizontal {
-    @apply absolute left-[50%] transform -translate-x-1/2;
+    @apply absolute left-[50%] -translate-x-1/2 transform;
   }
 
   .form-item {
@@ -43,15 +43,15 @@
   }
 
   .form-err-msg {
-    @apply text-[12px] text-error leading-[18px] mt-[4px] font-normal;
+    @apply text-error mt-[4px] text-[12px] font-normal leading-[18px];
   }
 
   .form-input-sm {
-    @apply px-[15px] rounded-[5px] md:rounded-[10px] border border-solid border-gray-20 md:border-gray-color-2 h-[32px] w-full outline-none text-14 md:text-16 font-medium;
+    @apply border-gray-20 md:border-gray-color-2 text-14 md:text-16 h-[32px] w-full rounded-[5px] border border-solid px-[15px] font-medium outline-none md:rounded-[10px];
   }
 
   .form-input {
-    @apply form-input-sm py-12 h-[44px] md:h-[52px];
+    @apply form-input-sm h-[44px] py-12 md:h-[52px];
   }
 
   .form-textarea {
@@ -63,7 +63,7 @@
   }
 
   .form-label {
-    @apply text-13 md:text-14 text-text-body leading-[26px] font-medium mb-[4px] inline-block;
+    @apply text-13 md:text-14 text-text-body mb-[4px] inline-block font-medium leading-[26px];
   }
 
   .form-date {
@@ -75,51 +75,51 @@
   }
 
   .btn-disabled {
-    @apply bg-[#bbbbbb] pointer-events-none text-gray-color-1 border-none;
+    @apply text-gray-color-1 pointer-events-none border-none bg-[#bbbbbb];
   }
 
   .content-container {
-    @apply sm:max-w-content-container-width w-full mx-auto;
+    @apply sm:max-w-content-container-width mx-auto w-full;
   }
 
   .block-element {
-    @apply bg-white-color rounded-[5px] shadow-shadow-base;
+    @apply bg-white-color shadow-shadow-base rounded-[5px];
   }
 
   .h1 {
-    @apply text-[20px] font-semibold leading-[28px] md:text-[28px] md:leading-[36px] md:font-medium lg:text-[48px] lg:leading-[56px] text-text-body;
+    @apply text-text-body text-[20px] font-semibold leading-[28px] md:text-[28px] md:font-medium md:leading-[36px] lg:text-[48px] lg:leading-[56px];
   }
 
   .h2 {
-    @apply text-[18px] leading-[24px] md:text-[22px] md:leading-[34px] lg:text-[40px] font-medium lg:leading-[48px] text-text-body;
+    @apply text-text-body text-[18px] font-medium leading-[24px] md:text-[22px] md:leading-[34px] lg:text-[40px] lg:leading-[48px];
   }
 
   .h3 {
-    @apply text-[20px] leading-[28px] md:text-[28px] font-medium md:leading-[36px] text-text-body;
+    @apply text-text-body text-[20px] font-medium leading-[28px] md:text-[28px] md:leading-[36px];
   }
 
   .h4 {
-    @apply text-[20px] leading-[26px] md:text-[24px] font-medium md:leading-[32px] text-text-body;
+    @apply text-text-body text-[20px] font-medium leading-[26px] md:text-[24px] md:leading-[32px];
   }
 
   .text-base {
-    @apply text-16 leading-26 font-medium text-text-body;
+    @apply text-16 leading-26 text-text-body font-medium;
   }
 
   .text-sm {
-    @apply text-14 leading-26 font-medium text-text-body;
+    @apply text-14 leading-26 text-text-body font-medium;
   }
 
   .text-xs {
-    @apply text-12 leading-16 font-medium text-text-body;
+    @apply text-12 leading-16 text-text-body font-medium;
   }
 
   .text-lg {
-    @apply text-[18px] leading-[28px] font-medium text-text-body;
+    @apply text-text-body text-[18px] font-medium leading-[28px];
   }
 
   .text-xl {
-    @apply text-[24px] leading-[32px] font-medium text-text-body;
+    @apply text-text-body text-[24px] font-medium leading-[32px];
   }
 
   .px-custom {
