@@ -3,7 +3,7 @@ import { AuthResponse } from 'src/types/auth.type'
 import http from 'src/utils/http'
 
 export const registerAccount = (body: { email: string; password: string }) => {
-  // AuthResponse: validate type reponse
+  // AuthResponse: validate type response
   return http.post<AuthResponse>(URL_REGISTER, body)
 }
 
