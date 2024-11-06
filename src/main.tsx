@@ -7,7 +7,7 @@ import 'src/i18n/i18n'
 import { AppProvider } from './contexts/app.context'
 import './index.css'
 
-//setup Stanstack query
+//setup tanstack query
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -16,8 +16,7 @@ const queryClient = new QueryClient({
     }
   }
 })
-
-console.log('.env ', import.meta.env.VITE_API_URL)
+console.log('.env', import.meta.env.VITE_API_URL)
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>

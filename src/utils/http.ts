@@ -35,10 +35,11 @@ export class Http {
     this.instance = axios.create({
       baseURL: config.baseUrl, // thiết lập base api - api dùng chung cho tất cả
       timeout: 10000, // sau 10s thì không gọi api
-      // setup headers
+      // config headers
       headers: {
         'Content-Type': 'application/json', // The client sends json to the server and receives json back
         'expire-access-token': 60 * 60 * 24, // 1 ngày
+        // default refresh  bigger to access
         'expire-refresh-token': 60 * 60 * 24 * 160 // 160 ngày
       }
     })
