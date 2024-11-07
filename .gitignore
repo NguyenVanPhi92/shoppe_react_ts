@@ -28,4 +28,4 @@ coverage/
 document/
 
 # add .env file to .gitignore
-echo ".env" >> .gitignore
+# echo ".env" >> .gitignore
