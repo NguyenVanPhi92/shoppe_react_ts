@@ -23,7 +23,7 @@ export default function ProductDetail() {
   const navigate = useNavigate()
   const { nameId } = useParams()
   const id = getIdFromNameId(nameId as string)
-  // Queries async
+  // Queries async: Get
   const { data: productDetailData } = useQuery({
     queryKey: ['product', id],
     queryFn: () => productApi.getProductDetail(id as string)
@@ -37,7 +37,7 @@ export default function ProductDetail() {
     [product, currentIndexImages]
   )
   const queryConfig: ProductListConfig = { limit: '20', page: '1', category: product?.category._id }
-  // Queries async
+  // Queries async: Get
   const { data: productsData } = useQuery({
     queryKey: ['products', queryConfig],
     queryFn: () => {
@@ -46,7 +46,7 @@ export default function ProductDetail() {
     staleTime: 3 * 60 * 1000,
     enabled: Boolean(product)
   })
-  // Mutations async
+  // Mutation async create/update/delete-post/put/delete
   const addToCartMutation = useMutation(purchaseApi.addToCart)
 
   console.log('char: ', product?.description.substring(1, 100))

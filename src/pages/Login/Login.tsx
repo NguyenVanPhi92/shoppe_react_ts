@@ -12,10 +12,10 @@ import { ErrorResponse } from 'src/types/utils.type'
 import { SchemaYup, schema } from 'src/utils/rules'
 import { isAxiosUnprocessableEntityError } from 'src/utils/utils'
 
-// tạo type cho form
-// form chỉ được chọn 1 kiểu trong 2 kiêu email or password
+// type the form
+// Form can only select 1 of 2 fields: email or password
 type FormData = Pick<SchemaYup, 'email' | 'password'>
-// tạo schema cho login
+// create schema for login
 const loginSchema = schema.pick(['email', 'password'])
 
 export default function Login() {

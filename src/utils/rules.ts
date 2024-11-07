@@ -3,7 +3,7 @@ import type { RegisterOptions, UseFormGetValues } from 'react-hook-form'
 import * as yup from 'yup'
 import { AnyObject } from 'yup/lib/types'
 
-// ALL SCHEMA QUY TẮC CỦA FORM INPUT
+// ALL INPUT SAMPLE SCHEMA RULES
 
 // RegisterOptions chứa các option của form trong react hook form
 // tạo 3 kiểu của form register

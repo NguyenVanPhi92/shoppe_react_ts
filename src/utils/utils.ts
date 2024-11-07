@@ -12,7 +12,7 @@ export function isAxiosError<T>(error: unknown): error is AxiosError<T> {
   return axios.isAxiosError(error)
 }
 
-// function check lỗi có phải là lỗi 422 không
+// Is the function check error a 422 error?
 /**
  *
  * @param error check error cli
@@ -37,7 +37,7 @@ export function isAxiosExpiredTokenError<UnauthorizedError>(error: unknown): err
 export function formatCurrency(currency: number) {
   return new Intl.NumberFormat('de-DE').format(currency)
 }
-// format giá tiền theo k
+// format giá tiền theo 'k'
 export function formatNumberToSocialStyle(value: number) {
   return new Intl.NumberFormat('en', {
     notation: 'compact',

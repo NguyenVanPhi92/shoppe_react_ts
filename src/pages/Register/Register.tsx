@@ -18,7 +18,7 @@ import { schema, SchemaYup } from 'src/utils/rules'
 import { isAxiosUnprocessableEntityError } from 'src/utils/utils'
 import { registerAccount } from 'src/apis'
 
-// form chỉ được chọn 1 kiểu trong 3 kiêu email or password or confirm_password
+// Form can only choose 1 of 3 types: email or password or confirm_password
 type FormData = Pick<SchemaYup, 'email' | 'password' | 'confirm_password'>
 const registerSchema = schema.pick(['email', 'password', 'confirm_password'])
 

@@ -23,10 +23,10 @@ function App() {
     <HelmetProvider>
       {/* Detect Component error   */}
       <ErrorBoundary>
-        {/* Route Các Page */}
+        {/* Route all Page */}
         {routeElements}
 
-        {/* motify when erorr and user togger */}
+        {/* motify when error and user toggle */}
         <ToastContainer />
       </ErrorBoundary>
 

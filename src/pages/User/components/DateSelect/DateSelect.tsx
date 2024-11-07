@@ -13,6 +13,7 @@ export default function DateSelect({ value, onChange, errorMessage }: Props) {
     month: value?.getMonth() || 0,
     year: value?.getFullYear() || 1990
   })
+
   useEffect(() => {
     if (value) {
       setDate({

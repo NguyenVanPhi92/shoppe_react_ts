@@ -1,16 +1,16 @@
-// dữ liệu trả về thành công và Data sẽ có dữ liệu
+// data returns successfully and Data will have data
 export interface SuccessResponse<Data> {
   message: string
   data: Data
 }
 
-// dữ liệu trả về thất bại và Data có thể undefiend
+// Data is returned 'unsuccessfully' and Data maybe 'Undefine'
 export interface ErrorResponse<Data> {
   message: string
   data?: Data
 }
 
-// cú pháp `-?` sẽ loại bỏ undefiend của key optional
+// cú pháp `-?` sẽ loại bỏ 'Undefine' của key optional
 export type NoUndefinedField<T> = {
   [P in keyof T]-?: NoUndefinedField<NonNullable<T[P]>>
 }

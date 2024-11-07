@@ -22,7 +22,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     {/* Route la cao nhat */}
     <BrowserRouter>
-      {/* Stanstack store */}
+      {/* Tanstack store */}
       <QueryClientProvider client={queryClient}>
         {/* Context API */}
         <AppProvider>
