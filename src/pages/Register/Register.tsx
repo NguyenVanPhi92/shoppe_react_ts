@@ -80,7 +80,7 @@ export default function Register() {
   return (
     <div className="bg-[url('https://down-vn.img.susercontent.com/file/sg-11134004-7rdww-lz7fzhaqivg745')]">
       <Helmet>
-        <title>Đăng ký | Shopee Clone</title>
+        <title>Đăng ký Test re-build | Shopee Clone</title>
         <meta name='description' content='Đăng ký tài khoản vào dự án Shopee Clone' />
       </Helmet>
 
