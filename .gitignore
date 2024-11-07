@@ -28,4 +28,7 @@ coverage/
 document/
 
 # add .env file to .gitignore
-# echo ".env" >> .gitignore
+*.env
+*.env.example
+*.env.local
+*.env.staging
