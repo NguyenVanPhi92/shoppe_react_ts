@@ -13,6 +13,8 @@ dist-ssr
 *.local
 stats.html
 coverage/
+doc
+.env
 
 # Editor directories and files
 .vscode/*
