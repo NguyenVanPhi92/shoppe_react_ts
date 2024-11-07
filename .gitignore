@@ -13,8 +13,7 @@ dist-ssr
 *.local
 stats.html
 coverage/
-doc
-.env
+
 
 # Editor directories and files
 .vscode/*
@@ -26,3 +25,7 @@ doc
 *.njsproj
 *.sln
 *.sw?
+document/
+
+# add .env file to .gitignore
+echo ".env" >> .gitignore
