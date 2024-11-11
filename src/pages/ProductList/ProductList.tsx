@@ -44,7 +44,7 @@ export default function ProductList() {
 
             <div className='col-span-9'>
               {/* Fiter Sort Product */}
-              <SortProductList queryConfig={queryConfig} pageSize={productsData.data.data.pagination.page_size} />
+              <SortProductList queryConfig={queryConfig} pageSize={productsData.data.data?.pagination?.page_size} />
 
               {/* List Product */}
               <div className='mt-6 grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5'>
@@ -55,7 +55,7 @@ export default function ProductList() {
                 ))}
               </div>
 
-              <Pagination queryConfig={queryConfig} pageSize={productsData.data.data.pagination.page_size} />
+              <Pagination queryConfig={queryConfig} pageSize={productsData.data.data?.pagination?.page_size} />
             </div>
           </div>
         )}
