@@ -21,6 +21,8 @@ export default function ProductList() {
     staleTime: 3 * 60 * 1000
   })
 
+  console.log('productsData: ', productsData?.data.data?.products)
+
   // Queries async: Get
   const { data: categoriesData } = useQuery({
     queryKey: ['categories'],
@@ -48,7 +50,7 @@ export default function ProductList() {
 
               {/* List Product */}
               <div className='mt-6 grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5'>
-                {productsData.data.data.products.map((product) => (
+                {productsData?.data.data?.products.map((product) => (
                   <div className='col-span-1' key={product._id}>
                     <Product product={product} />
                   </div>
