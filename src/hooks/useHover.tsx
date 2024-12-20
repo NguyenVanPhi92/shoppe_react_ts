@@ -1,22 +1,30 @@
 import { useEffect, useRef, useState } from 'react'
 
-export default function useHover() {
-  // event js: mouseover, mouseout
+// how use
+// example: const { hovered, nodeRef } = useHover<HTMLDivElement>()
+export default function useHover<T extends HTMLElement>() {
   const [hovered, setHovered] = useState(false)
-  const nodeRef = useRef(null)
+  const nodeRef = useRef<T | null>(null)
+
   useEffect(() => {
     const handleMouseOver = () => setHovered(true)
     const handleMouseOut = () => setHovered(false)
+
     const dom = nodeRef.current
     if (dom) {
       dom.addEventListener('mouseover', handleMouseOver)
       dom.addEventListener('mouseout', handleMouseOut)
     }
+
+    // Dọn dẹp khi component unmount
     return () => {
-      dom && dom.removeEventListener('mouseover', handleMouseOver)
-      dom && dom.removeEventListener('mouseout', handleMouseOut)
+      if (dom) {
+        dom.removeEventListener('mouseover', handleMouseOver)
+        dom.removeEventListener('mouseout', handleMouseOut)
+      }
     }
   }, [])
+
   return {
     hovered,
     nodeRef
