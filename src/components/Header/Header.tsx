@@ -6,7 +6,7 @@ import noproduct from 'src/assets/images/no-product.png'
 import path from 'src/constants/path'
 import { purchasesStatus } from 'src/constants/purchase'
 import { AppContext } from 'src/contexts/app.context'
-import useSearchProducts from 'src/hooks/useSearchProducts'
+import useSearchProducts from 'src/hooks/ts/useSearchProducts'
 import { formatCurrency } from 'src/utils/utils'
 import NavHeader from '../NavHeader'
 import Popover from '../Popover'
@@ -21,6 +21,7 @@ export default function Header() {
   // Chứ không bị unmount - mounting again
   // (Tất nhiên là trừ trường hợp logout rồi nhảy sang RegisterLayout rồi nhảy vào lại)
   // Nên các query này sẽ không bị inactive => Không bị gọi lại => không cần thiết phải set stale: Infinity
+  // Queries async - Get
   const { data: purchasesInCartData } = useQuery({
     queryKey: ['purchases', { status: purchasesStatus.inCart }],
     queryFn: () => purchaseApi.getPurchases({ status: purchasesStatus.inCart }),

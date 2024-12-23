@@ -23,13 +23,13 @@ export default function Cart() {
     queryFn: () => purchaseApi.getPurchases({ status: purchasesStatus.inCart })
   })
 
-  // Mutation async create/update/delete-post/put/delete
+  // Mutate async: POST, PUT, DELETE
   const updatePurchaseMutation = useMutation({
     mutationFn: purchaseApi.updatePurchase,
     onSuccess: () => refetch()
   })
 
-  // Mutation async create/update/delete-post/put/delete
+  // Mutate async: POST, PUT, DELETE
   const buyProductsMutation = useMutation({
     mutationFn: purchaseApi.buyProducts,
     onSuccess: (data) => {
@@ -41,7 +41,7 @@ export default function Cart() {
     }
   })
 
-  // Mutation async create/update/delete-post/put/delete
+  // Mutate async: POST, PUT, DELETE
   const deletePurchasesMutation = useMutation({
     mutationFn: purchaseApi.deletePurchase,
     onSuccess: () => refetch()

@@ -84,6 +84,7 @@ export default function Profile() {
     queryFn: userApi.getProfile
   })
   const profile = profileData?.data.data
+  // Mutate async: POST, PUT, DELETE
   const updateProfileMutation = useMutation(userApi.updateProfile)
   const uploadAvatarMutaion = useMutation(userApi.uploadAvatar)
   const methods = useForm<FormData>({

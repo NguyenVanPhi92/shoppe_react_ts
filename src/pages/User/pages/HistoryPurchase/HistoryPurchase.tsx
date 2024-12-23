@@ -4,7 +4,7 @@ import { createSearchParams, Link } from 'react-router-dom'
 import purchaseApi from 'src/apis/purchase.api'
 import path from 'src/constants/path'
 import { purchasesStatus } from 'src/constants/purchase'
-import useQueryParams from 'src/hooks/useQueryParams'
+import useQueryParams from 'src/hooks/ts/useQueryParams'
 import { PurchaseListStatus } from 'src/types/purchase.type'
 import { formatCurrency, generateNameId } from 'src/utils/utils'
 

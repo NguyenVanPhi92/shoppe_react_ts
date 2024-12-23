@@ -29,7 +29,7 @@ export default function ChangePassword() {
     resolver: yupResolver(passwordSchema)
   })
 
-  // Mutation async create/update/delete-post/put/delete
+  // Mutate async: POST, PUT, DELETE
   const updateProfileMutation = useMutation(userApi.updateProfile)
 
   // Handle event

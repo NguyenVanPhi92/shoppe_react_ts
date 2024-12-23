@@ -33,7 +33,7 @@ export default function Login() {
     resolver: yupResolver(loginSchema)
   })
 
-  // Mutation async create/update/delete-post/put/delete
+  // Mutate async: POST, PUT, DELETE
   const loginMutation = useMutation({
     /**
      *

@@ -16,7 +16,7 @@ export default function NavHeader() {
   const { setIsAuthenticated, isAuthenticated, setProfile, profile } = useContext(AppContext)
   const queryClient = useQueryClient()
 
-  // mutate async
+  // Mutate async: POST, PUT, DELETE
   const logoutMutation = useMutation({
     mutationFn: logout,
     onSuccess: () => {

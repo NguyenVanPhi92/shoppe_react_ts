@@ -36,7 +36,7 @@ export default function Register() {
     resolver: yupResolver(registerSchema)
   })
 
-  // Mutations async create/update/delete-post/put/delete
+  // Mutate async: POST, PUT, DELETE
   const registerAccountMutation = useMutation({
     /**
      Omit<FormData, 'confirm_password': delete confirm_password in FormData

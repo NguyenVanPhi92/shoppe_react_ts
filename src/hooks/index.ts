@@ -1,1 +1,1 @@
-export * from './useQueryConfig'
+export * from './ts/useQueryConfig'
