@@ -1,5 +1,6 @@
-các folder components cần làm:
-inputs
-modal
-spinner
-backdrop
+\*\*Các folder components cần làm:
+
+- Modal
+- Spinner
+- Backdrop
+- Form: Inputs, Field

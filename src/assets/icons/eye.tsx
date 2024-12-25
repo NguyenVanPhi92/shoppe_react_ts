@@ -1,9 +1,9 @@
 type Props = {
-  classNameEye: string
+  classNameEye?: string
   toggleEye: () => void
 }
 
-export const EyeShow = ({ classNameEye, toggleEye }: Props) => {
+export const EyeShow = ({ classNameEye = '', toggleEye }: Props) => {
   return (
     <svg
       xmlns='http://www.w3.org/2000/svg'
@@ -24,7 +24,7 @@ export const EyeShow = ({ classNameEye, toggleEye }: Props) => {
   )
 }
 
-export const EyeHide = ({ classNameEye, toggleEye }: Props) => {
+export const EyeHide = ({ classNameEye = '', toggleEye }: Props) => {
   return (
     <svg
       xmlns='http://www.w3.org/2000/svg'

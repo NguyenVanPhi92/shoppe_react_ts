@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "ES2015", // build project ra phiên bản js ES2015
+    "target": "ES2015", // build project ra phiên bản js ES2015-ES6
     "useDefineForClassFields": true,
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "allowJs": false,

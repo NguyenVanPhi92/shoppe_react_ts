@@ -11,89 +11,88 @@ import {
   differenceInMonths,
   differenceInWeeks,
   differenceInYears,
-  format,
-} from 'date-fns';
-import dayjs from 'dayjs';
-import relativeTime from 'dayjs/plugin/relativeTime';
+  format
+} from 'date-fns'
+import dayjs from 'dayjs'
+import relativeTime from 'dayjs/plugin/relativeTime'
 /* Version Minh Trung */
 
 const formatTimes = (data: string, formatType?: string) => {
   // Initial value of the difference in time
-  let result = ``;
+  let result = ``
 
   // Convert data to type Date
-  const inputDate = new Date(data);
-  const currentDate = new Date();
+  const inputDate = new Date(data)
+  const currentDate = new Date()
 
   // Format date strings
-  const typeDateMonth = format(inputDate, 'dd/MM');
-  const typeMonthDateYear = format(inputDate, 'dd MMM, yyyy');
-  const typeDateMonthYear = format(inputDate, 'dd/MM/yyyy');
-  const typeDateFull = format(inputDate, 'EEEE, d MMMM yyyy, h:mm a');
-  const typeHourDateMonthYear = format(inputDate, 'HH:mm dd/MM/yyyy');
+  const typeDateMonth = format(inputDate, 'dd/MM')
+  const typeMonthDateYear = format(inputDate, 'dd MMM, yyyy')
+  const typeDateMonthYear = format(inputDate, 'dd/MM/yyyy')
+  const typeDateFull = format(inputDate, 'EEEE, d MMMM yyyy, h:mm a')
+  const typeHourDateMonthYear = format(inputDate, 'HH:mm dd/MM/yyyy')
 
   // Calculate time differences
-  const diffMinutes = differenceInMinutes(currentDate, inputDate);
-  const diffHours = differenceInHours(currentDate, inputDate);
-  const diffDays = differenceInDays(currentDate, inputDate);
-  const diffWeeks = differenceInWeeks(currentDate, inputDate);
-  const diffMonths = differenceInMonths(currentDate, inputDate);
-  const diffYears = differenceInYears(currentDate, inputDate);
+  const diffMinutes = differenceInMinutes(currentDate, inputDate)
+  const diffHours = differenceInHours(currentDate, inputDate)
+  const diffDays = differenceInDays(currentDate, inputDate)
+  const diffWeeks = differenceInWeeks(currentDate, inputDate)
+  const diffMonths = differenceInMonths(currentDate, inputDate)
+  const diffYears = differenceInYears(currentDate, inputDate)
 
   // Check if input data is available
   if (!data) {
-    result = `No data`;
+    result = `No data`
   } else {
     switch (true) {
       case formatType === `dateMonth`:
-        result = typeDateMonth;
-        break;
+        result = typeDateMonth
+        break
       case formatType === `monthDateYear`:
-        result = typeMonthDateYear;
-        break;
+        result = typeMonthDateYear
+        break
       case formatType === `dateMonthYear`:
-        result = typeDateMonthYear;
-        break;
+        result = typeDateMonthYear
+        break
       case formatType === `dateFull`:
-        result = typeDateFull;
-        break;
+        result = typeDateFull
+        break
       case formatType === `dateHourDateMonthYear`:
-        result = typeHourDateMonthYear;
-        break;
+        result = typeHourDateMonthYear
+        break
       case diffMinutes < 0:
-        result = `Invalid data`;
-        break;
+        result = `Invalid data`
+        break
       case diffMinutes >= 0 && diffMinutes < 1:
-        result = `Just now`;
-        break;
+        result = `Just now`
+        break
       case diffMinutes >= 1 && diffMinutes < 60:
-        result = `${diffMinutes} minutes ago`;
-        break;
+        result = `${diffMinutes} minutes ago`
+        break
       case diffHours >= 1 && diffHours < 24:
-        result = `${diffHours} hours ago`;
-        break;
+        result = `${diffHours} hours ago`
+        break
       case diffDays >= 1 && diffDays < 7:
-        result = `${diffDays} days ago`;
-        break;
+        result = `${diffDays} days ago`
+        break
       case diffDays >= 7 && diffDays < 31:
-        result = `${diffWeeks} weeks ago`;
-        break;
+        result = `${diffWeeks} weeks ago`
+        break
       case diffMonths >= 1 && diffMonths < 12:
-        result = `${diffMonths} months ago`;
-        break;
+        result = `${diffMonths} months ago`
+        break
       default:
-        result = `${diffYears} years ago`;
-        break;
+        result = `${diffYears} years ago`
+        break
     }
   }
-  return result;
-};
+  return result
+}
 
-export default formatTimes;
-
+export default formatTimes
 
 // Cần thêm plugin relativeTime vào dayjs
-dayjs.extend(relativeTime);
+dayjs.extend(relativeTime)
 
 /**
  * Formats the given date into a relative time string (e.g., "1 hour ago", "2 days ago").
@@ -108,8 +107,5 @@ dayjs.extend(relativeTime);
  * ```
  */
 export function formatTimesInstant(date: Date | string | number): string {
-  return dayjs(date).fromNow(); // Sử dụng dayjs để tính thời gian tương đối
+  return dayjs(date).fromNow() // Sử dụng dayjs để tính thời gian tương đối
 }
-
-
-
