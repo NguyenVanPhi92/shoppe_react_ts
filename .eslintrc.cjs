@@ -34,6 +34,7 @@ module.exports = {
   env: {
     node: true
   },
+  // tạo rule cho các file js và jsx
   rules: {
     // Tắt rule yêu cầu import React trong file jsx
     'react/react-in-jsx-scope': 'off',

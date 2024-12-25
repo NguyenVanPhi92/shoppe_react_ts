@@ -1,4 +1,4 @@
-export default function Footer() {
+export const Footer = () => {
   return (
     <footer className='bg-neutral-100 py-16'>
       <div className='container'>

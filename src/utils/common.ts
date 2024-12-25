@@ -1,5 +1,5 @@
-import { jwtDecode, JwtPayload } from 'jwt-decode';
-import { TGService } from '@/types/common.ts';
+import { jwtDecode, JwtPayload } from 'jwt-decode'
+import { TGService } from '@/types/common.ts'
 
 /**
  * Capitalizes the first letter of the given string.
@@ -10,9 +10,9 @@ import { TGService } from '@/types/common.ts';
  */
 export function capitalizeFirstLetter(string: string) {
   if (string.length === 0) {
-    return string;
+    return string
   }
-  return string.charAt(0).toUpperCase() + string.slice(1);
+  return string.charAt(0).toUpperCase() + string.slice(1)
 }
 
 /**
@@ -22,14 +22,14 @@ export function capitalizeFirstLetter(string: string) {
  * @returns {number} The number of occurrences of the character in the string.
  */
 export const countOccurrences = (str: string, char: string) => {
-  let count = 0;
+  let count = 0
   for (let i = 0; i < str.length; i++) {
     if (str[i] === char) {
-      count++;
+      count++
     }
   }
-  return count;
-};
+  return count
+}
 
 /**
  * Deep comparison function that uses loose equality (==) instead of strict equality (===).
@@ -40,27 +40,27 @@ export const countOccurrences = (str: string, char: string) => {
  */
 export function isEqualLoose(value: never, other: never): boolean {
   if (value == other) {
-    return true;
+    return true
   }
 
   if (typeof value !== 'object' || typeof other !== 'object' || value === null || other === null) {
-    return value == other;
+    return value == other
   }
 
-  const valueKeys = Object.keys(value);
-  const otherKeys = Object.keys(other);
+  const valueKeys = Object.keys(value)
+  const otherKeys = Object.keys(other)
 
   if (valueKeys.length !== otherKeys.length) {
-    return false;
+    return false
   }
 
   for (const key of valueKeys) {
     if (!isEqualLoose(value[key], other[key])) {
-      return false;
+      return false
     }
   }
 
-  return true;
+  return true
 }
 
 /**
@@ -71,9 +71,9 @@ export function isEqualLoose(value: never, other: never): boolean {
  * @throws {Error} If there is an error during fetching or creating the File object.
  */
 export async function convertUrlToFile(url: string, filename: string) {
-  const response = await fetch(url);
-  const blob = await response.blob();
-  return new File([blob], filename, { type: blob.type });
+  const response = await fetch(url)
+  const blob = await response.blob()
+  return new File([blob], filename, { type: blob.type })
 }
 
 /**
@@ -84,30 +84,30 @@ export async function convertUrlToFile(url: string, filename: string) {
  */
 export function checkJWTExpire(token: string) {
   try {
-    const decoded: JwtPayload = jwtDecode(token);
-    return (decoded.exp ?? 1) * 1000 > Date.now();
+    const decoded: JwtPayload = jwtDecode(token)
+    return (decoded.exp ?? 1) * 1000 > Date.now()
   } catch (error) {
-    return false;
+    return false
   }
 }
 
 type Schedule = {
-  id: number;
-  day: string;
-  start: string;
-  end: string;
-  user_id: string;
-};
+  id: number
+  day: string
+  start: string
+  end: string
+  user_id: string
+}
 
 type Change = {
-  from: string | number;
-  to: string | number;
-};
+  from: string | number
+  to: string | number
+}
 
 type ChangedObject = {
-  id: number;
-  changes: { [key: string]: Change };
-};
+  id: number
+  changes: { [key: string]: Change }
+}
 
 /**
  * Compares two arrays of Schedule objects and returns the objects that have changed.
@@ -119,36 +119,36 @@ type ChangedObject = {
  */
 export function compareArrays(array1: Schedule[], array2: Schedule[]): ChangedObject[] {
   if (array1.length !== array2.length) {
-    throw new Error('Arrays have different lengths');
+    throw new Error('Arrays have different lengths')
   }
 
-  const changedObjects: ChangedObject[] = [];
+  const changedObjects: ChangedObject[] = []
 
   array1.forEach((obj1, index) => {
-    const obj2 = array2[index];
-    const changes: { [key: string]: Change } = {};
+    const obj2 = array2[index]
+    const changes: { [key: string]: Change } = {}
 
-    Object.keys(obj1).forEach(key => {
+    Object.keys(obj1).forEach((key) => {
       if (obj1[key as keyof Schedule] !== obj2[key as keyof Schedule]) {
-        changes[key] = { from: obj1[key as keyof Schedule], to: obj2[key as keyof Schedule] };
+        changes[key] = { from: obj1[key as keyof Schedule], to: obj2[key as keyof Schedule] }
       }
-    });
+    })
 
     if (Object.keys(changes).length > 0) {
-      changedObjects.push({ id: obj1.id, changes });
+      changedObjects.push({ id: obj1.id, changes })
     }
-  });
+  })
 
-  return changedObjects;
+  return changedObjects
 }
 
 type ScheduleArray = {
-  id: number;
-  day: string;
-  start: string;
-  end: string;
-  user_id: string;
-};
+  id: number
+  day: string
+  start: string
+  end: string
+  user_id: string
+}
 
 /**
  * Compares two arrays of Schedule objects and returns the objects from the first array that have changed.
@@ -160,23 +160,23 @@ type ScheduleArray = {
  */
 export function getChangedFromArrays(array1: ScheduleArray[], array2: ScheduleArray[]): ScheduleArray[] {
   if (array1.length !== array2.length) {
-    throw new Error('Arrays have different lengths');
+    throw new Error('Arrays have different lengths')
   }
 
-  const changedObjects: ScheduleArray[] = [];
+  const changedObjects: ScheduleArray[] = []
 
   array1.forEach((obj1, index) => {
-    const obj2 = array2[index];
+    const obj2 = array2[index]
 
     for (const key in obj1) {
       if (obj1[key as keyof ScheduleArray] !== obj2[key as keyof ScheduleArray]) {
-        changedObjects.push(obj1);
-        break;
+        changedObjects.push(obj1)
+        break
       }
     }
-  });
+  })
 
-  return changedObjects;
+  return changedObjects
 }
 
 /**
@@ -189,18 +189,18 @@ export function getChangedFromArrays(array1: ScheduleArray[], array2: ScheduleAr
  */
 export function sortByFieldName<T>(array: T[], fieldName: keyof T) {
   return array.sort((a, b) => {
-    const fieldA = a[fieldName];
-    const fieldB = b[fieldName];
+    const fieldA = a[fieldName]
+    const fieldB = b[fieldName]
 
     if (typeof fieldA === 'number' && typeof fieldB === 'number') {
-      return fieldA - fieldB;
+      return fieldA - fieldB
     }
 
     if (typeof fieldA === 'string' && typeof fieldB === 'string') {
-      return fieldA.localeCompare(fieldB);
+      return fieldA.localeCompare(fieldB)
     }
-    return 0;
-  });
+    return 0
+  })
 }
 
 /**
@@ -211,7 +211,7 @@ export function sortByFieldName<T>(array: T[], fieldName: keyof T) {
  * @returns {number} A random integer between min and max, inclusive.
  */
 export function getRandomNumber(min: number, max: number): number {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
+  return Math.floor(Math.random() * (max - min + 1)) + min
 }
 
 /**
@@ -221,13 +221,13 @@ export function getRandomNumber(min: number, max: number): number {
  * @returns {string} A random alphanumeric ID.
  */
 export function getRandomID(length: number): string {
-  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-  let result = '';
+  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+  let result = ''
   for (let i = 0; i < length; i++) {
-    const randomIndex = getRandomNumber(0, characters.length - 1);
-    result += characters[randomIndex];
+    const randomIndex = getRandomNumber(0, characters.length - 1)
+    result += characters[randomIndex]
   }
-  return result;
+  return result
 }
 
 /**
@@ -258,14 +258,14 @@ export function canViewFileInBrowser(fileName: string): boolean {
     '.mp3',
     '.wav',
     '.ogv',
-    '.json',
-  ];
+    '.json'
+  ]
 
   // Extract the file extension from the file name
-  const fileExtension = fileName.slice(fileName.lastIndexOf('.')).toLowerCase();
+  const fileExtension = fileName.slice(fileName.lastIndexOf('.')).toLowerCase()
 
   // Check if the file extension is in the list of viewable extensions
-  return viewableExtensions.includes(fileExtension);
+  return viewableExtensions.includes(fileExtension)
 }
 
 /**
@@ -277,19 +277,19 @@ export function canViewFileInBrowser(fileName: string): boolean {
  * @param {number} [decimals=2] - The number of decimal places to use in the result.
  * @returns {string} The formatted string with appropriate units.
  */
-export function formatBytes(bytes: number, decimals: number = 2): string {
-  const k = 1024;
-  const dm = decimals < 0 ? 0 : decimals;
+export function formatBytes(bytes: number, decimals = 2): string {
+  const k = 1024
+  const dm = decimals < 0 ? 0 : decimals
 
   if (bytes < Math.pow(k, 2)) {
     // Less than 1 MB, return in KB
-    return parseFloat((bytes / k).toFixed(dm)) + ' KB';
+    return parseFloat((bytes / k).toFixed(dm)) + ' KB'
   } else if (bytes < 3 * Math.pow(k, 3)) {
     // Less than 3 GB, return in MB
-    return parseFloat((bytes / Math.pow(k, 2)).toFixed(dm)) + ' MB';
+    return parseFloat((bytes / Math.pow(k, 2)).toFixed(dm)) + ' MB'
   } else {
     // 3 GB or more, return in GB
-    return parseFloat((bytes / Math.pow(k, 3)).toFixed(dm)) + ' GB';
+    return parseFloat((bytes / Math.pow(k, 3)).toFixed(dm)) + ' GB'
   }
 }
 
@@ -301,12 +301,12 @@ export function formatBytes(bytes: number, decimals: number = 2): string {
  * @returns {any[]} - An array of objects from array2 whose ids are not found in array1.
  */
 export function getChangedValueInArray(array1: any[], array2: any[]): any[] {
-  return array2.filter(item2 => !array1.some(item1 => item1.id === item2.id));
+  return array2.filter((item2) => !array1.some((item1) => item1.id === item2.id))
 }
 
 export function getLabelFromService(serviceArray: TGService[], names: string[]): string {
-  const labels = serviceArray.filter(service => names.includes(service.name)).map(service => service.label);
-  return labels.join(', ');
+  const labels = serviceArray.filter((service) => names.includes(service.name)).map((service) => service.label)
+  return labels.join(', ')
 }
 
 /**
@@ -323,17 +323,17 @@ export function getLabelFromService(serviceArray: TGService[], names: string[]):
  * formatCurrency(1234567.89, 'de-DE', '€'); // "1.234.567,89 €"
  * ```
  */
-function formatCurrency(amount: number, locale: string = 'en-AU'): string {
+function formatCurrency(amount: number, locale = 'en-AU'): string {
   return new Intl.NumberFormat(locale, {
     style: 'currency',
     currency: 'AUD', // Australian Dollar
-    minimumFractionDigits: 2,
+    minimumFractionDigits: 2
   })
     .format(amount)
-    .replace('A$', ''); // Removes the 'A$' symbol from the formatted string
+    .replace('A$', '') // Removes the 'A$' symbol from the formatted string
 }
 
-export default formatCurrency;
+export default formatCurrency
 
 /**
  * Formats the number of days based on whether it's singular or plural.
@@ -342,7 +342,7 @@ export default formatCurrency;
  * @returns A formatted string with "day" or "days" based on the number of days.
  */
 export function formatPluralDays(days: number): string {
-  const pluralRules = new Intl.PluralRules('en-US');
-  const dayLabel = pluralRules.select(days) === 'one' ? 'day' : 'days';
-  return `${days} ${dayLabel}`;
+  const pluralRules = new Intl.PluralRules('en-US')
+  const dayLabel = pluralRules.select(days) === 'one' ? 'day' : 'days'
+  return `${days} ${dayLabel}`
 }

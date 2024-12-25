@@ -9,7 +9,7 @@
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
-    "module": "ESNext", // build project ra phiên bản module ESNext: phiên bản mới nhất
+    "module": "ESNext", // build project ra phiên bản module, ESNext: phiên bản mới nhất
     "moduleResolution": "Node",
     "resolveJsonModule": true,
     "isolatedModules": true,
@@ -17,6 +17,6 @@
     "jsx": "react-jsx",
     "baseUrl": "."
   },
-  "include": ["src"],
+  "include": ["src"], // tạo path import từ thư mục src
   "references": [{ "path": "./tsconfig.node.json" }]
 }
