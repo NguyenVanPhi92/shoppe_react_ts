@@ -15,7 +15,6 @@ import { isAxiosUnprocessableEntityError } from 'src/utils/utils'
 // type the form
 // Form can only select 1 of 2 fields: email or password
 type FormData = Pick<SchemaYup, 'email' | 'password'>
-// create schema for login
 const loginSchema = schema.pick(['email', 'password'])
 
 export default function Login() {

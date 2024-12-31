@@ -18,6 +18,7 @@ export function isAxiosError<T>(error: unknown): error is AxiosError<T> {
  * @param error check error cli
  * @returns error to server error
  */
+// <FormError>: định nghĩa kiểu dữ liệu nhận vào
 export function isAxiosUnprocessableEntityError<FormError>(error: unknown): error is AxiosError<FormError> {
   return isAxiosError(error) && error.response?.status === HttpStatusCode.UnprocessableEntity
 }

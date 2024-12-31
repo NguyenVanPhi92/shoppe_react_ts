@@ -1,3 +1,6 @@
-import SortProductList from './SortProductList'
+// cách 1:
+// import SortProductList from './SortProductList'
+// export default SortProductList
 
-export default SortProductList
+// cách 2:
+export { default } from './SortProductList'

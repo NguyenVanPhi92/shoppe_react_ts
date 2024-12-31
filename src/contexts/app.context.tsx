@@ -30,7 +30,7 @@ const initialAppContext = getInitialAppContext()
 // Create context
 export const AppContext = createContext<AppContextInterface>(initialAppContext)
 
-// Create hook state app provider
+// Create hook state App Provider
 export const AppProvider = ({
   children,
   defaultValue = initialAppContext
