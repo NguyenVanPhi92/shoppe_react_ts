@@ -21,7 +21,6 @@ export default function Login() {
   // Call state in ContextAPI
   const { setIsAuthenticated, setProfile } = useContext(AppContext)
   const navigate = useNavigate()
-  const a = 9999397839485
 
   // Declaration form
   const {
