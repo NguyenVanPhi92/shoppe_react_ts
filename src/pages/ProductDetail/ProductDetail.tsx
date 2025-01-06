@@ -1,7 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import DOMPurify from 'dompurify'
 import { convert } from 'html-to-text'
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { MouseEventHandler, useEffect, useMemo, useRef, useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { useTranslation } from 'react-i18next'
 import { useNavigate, useParams } from 'react-router-dom'
@@ -58,11 +58,11 @@ export default function ProductDetail() {
   }, [product])
 
   // Handle event
-  const next = () => {
+  const next: MouseEventHandler<HTMLButtonElement> = () => {
     if (currentIndexImages[1] < (product as ProductType).images.length)
       setCurrentIndexImages((prev) => [prev[0] + 1, prev[1] + 1])
   }
-  const prev = () => {
+  const prev: MouseEventHandler<HTMLButtonElement> = () => {
     if (currentIndexImages[0] > 0) setCurrentIndexImages((prev) => [prev[0] - 1, prev[1] - 1])
   }
   const chooseActive = (img: string) => setActiveImage(img)
@@ -87,7 +87,7 @@ export default function ProductDetail() {
   }
   const handleRemoveZoom = () => imageRef.current?.removeAttribute('style')
   const handleBuyCount = (value: number) => setBuyCount(value)
-  const addToCart = () => {
+  const addToCart: MouseEventHandler<HTMLButtonElement> = () => {
     addToCartMutation.mutate(
       { buy_count: buyCount, product_id: product?._id as string },
       {
@@ -98,7 +98,7 @@ export default function ProductDetail() {
       }
     )
   }
-  const buyNow = async () => {
+  const buyNow: MouseEventHandler<HTMLButtonElement> = async () => {
     const res = await addToCartMutation.mutateAsync({ buy_count: buyCount, product_id: product?._id as string })
     const purchase = res.data.data
     navigate(path.cart, {

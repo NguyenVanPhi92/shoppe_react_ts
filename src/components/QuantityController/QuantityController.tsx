@@ -35,14 +35,14 @@ export default function QuantityController({
     setLocalValue(_value)
   }
 
-  const increase = () => {
+  const increase: React.MouseEventHandler<HTMLButtonElement> = () => {
     let _value = Number(value || localValue) + 1
     if (max !== undefined && _value > max) _value = max
     onIncrease && onIncrease(_value)
     setLocalValue(_value)
   }
 
-  const decrease = () => {
+  const decrease: React.MouseEventHandler<HTMLButtonElement> = (event) => {
     let _value = Number(value || localValue) - 1
     if (_value < 1) _value = 1
     onDecrease && onDecrease(_value)

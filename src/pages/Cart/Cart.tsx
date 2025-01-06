@@ -1,7 +1,7 @@
 import { useMutation, useQuery } from '@tanstack/react-query'
 import produce from 'immer'
 import keyBy from 'lodash/keyBy'
-import React, { useContext, useEffect, useMemo } from 'react'
+import React, { MouseEventHandler, useContext, useEffect, useMemo } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import purchaseApi from 'src/apis/purchase.api'
@@ -126,7 +126,7 @@ export default function Cart() {
     deletePurchasesMutation.mutate(purchasesIds)
   }
 
-  const handleBuyPurchases = () => {
+  const handleBuyPurchases: MouseEventHandler<HTMLButtonElement> = () => {
     if (checkedPurchases.length > 0) {
       const body = checkedPurchases.map((purchase) => ({
         product_id: purchase.product._id,

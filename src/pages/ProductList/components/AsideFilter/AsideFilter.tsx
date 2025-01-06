@@ -12,6 +12,7 @@ import { Category } from 'src/types/category.type'
 import { NoUndefinedField } from 'src/types/utils.type'
 import { schema, SchemaYup } from 'src/utils/rules'
 import RatingStars from '../RatingStars'
+import { MouseEventHandler } from 'react'
 
 interface Props {
   queryConfig: QueryConfig
@@ -58,7 +59,7 @@ export default function AsideFilter({ queryConfig, categories }: Props) {
     })
   })
 
-  const handleRemoveAll = () => {
+  const handleRemoveAll: MouseEventHandler<HTMLButtonElement> = () => {
     navigate({
       pathname: path.home,
       search: createSearchParams(omit(queryConfig, ['price_min', 'price_max', 'rating_filter', 'category'])).toString()
