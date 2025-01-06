@@ -9,7 +9,6 @@ export default function useHover<T extends HTMLElement>() {
   useEffect(() => {
     const handleMouseOver = () => setHovered(true)
     const handleMouseOut = () => setHovered(false)
-
     const dom = nodeRef.current
     if (dom) {
       dom.addEventListener('mouseover', handleMouseOver)
