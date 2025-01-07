@@ -21,14 +21,11 @@ function ReactPortal({ children, wrapperId = 'react-portal-wrapper' }: { childre
     setWrapperElement(element)
 
     return () => {
-      if (systemCreated && element?.parentNode) {
-        element.parentNode.removeChild(element)
-      }
+      if (systemCreated && element?.parentNode) element.parentNode.removeChild(element)
     }
   }, [wrapperId])
 
   if (wrapperElement === null) return null
-
   return createPortal(children, wrapperElement)
 }
 

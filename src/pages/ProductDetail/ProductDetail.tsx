@@ -42,16 +42,13 @@ export default function ProductDetail() {
   // Queries async: Get
   const { data: productsData } = useQuery({
     queryKey: ['products', queryConfig],
-    queryFn: () => {
-      return productApi.getProducts(queryConfig)
-    },
+    queryFn: () => productApi.getProducts(queryConfig),
     staleTime: 3 * 60 * 1000,
     enabled: Boolean(product)
   })
 
   // Mutate async: POST, PUT, DELETE
   const addToCartMutation = useMutation(purchaseApi.addToCart)
-
   console.log('char: ', product?.description.substring(1, 100))
   useEffect(() => {
     if (product && product.images.length > 0) setActiveImage(product.images[0])
@@ -101,11 +98,7 @@ export default function ProductDetail() {
   const buyNow: MouseEventHandler<HTMLButtonElement> = async () => {
     const res = await addToCartMutation.mutateAsync({ buy_count: buyCount, product_id: product?._id as string })
     const purchase = res.data.data
-    navigate(path.cart, {
-      state: {
-        purchaseId: purchase._id
-      }
-    })
+    navigate(path.cart, { state: { purchaseId: purchase._id } })
   }
   if (!product) return null
 

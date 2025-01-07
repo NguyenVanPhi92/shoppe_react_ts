@@ -39,7 +39,6 @@ export default function Input({
 
   const handleType = () => {
     if (rest.type === 'password') return openEye ? 'text' : 'password'
-
     return rest.type
   }
 

@@ -40,10 +40,7 @@ export default function AsideFilter({ queryConfig, categories }: Props) {
     trigger,
     formState: { errors }
   } = useForm<FormData>({
-    defaultValues: {
-      price_min: '',
-      price_max: ''
-    },
+    defaultValues: { price_min: '', price_max: '' },
     resolver: yupResolver(priceSchema)
   })
 
@@ -69,12 +66,7 @@ export default function AsideFilter({ queryConfig, categories }: Props) {
   return (
     <div className='py-4'>
       {/* Title */}
-      <Link
-        to={path.home}
-        className={classNames('flex items-center font-bold', {
-          'text-orange': !category
-        })}
-      >
+      <Link to={path.home} className={classNames('flex items-center font-bold', { 'text-orange': !category })}>
         <svg viewBox='0 0 12 10' className='mr-3 h-4 w-3 fill-current'>
           <g fillRule='evenodd' stroke='none' strokeWidth={1}>
             <g transform='translate(-373 -208)'>
@@ -102,14 +94,9 @@ export default function AsideFilter({ queryConfig, categories }: Props) {
               <Link
                 to={{
                   pathname: path.home,
-                  search: createSearchParams({
-                    ...queryConfig,
-                    category: categoryItem._id
-                  }).toString()
+                  search: createSearchParams({ ...queryConfig, category: categoryItem._id }).toString()
                 }}
-                className={classNames('relative px-2', {
-                  'font-semibold text-orange': isActive
-                })}
+                className={classNames('relative px-2', { 'font-semibold text-orange': isActive })}
               >
                 {isActive && (
                   <svg viewBox='0 0 4 7' className='absolute top-1 left-[-10px] h-2 w-2 fill-orange'>

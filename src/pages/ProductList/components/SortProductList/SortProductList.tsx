@@ -16,23 +16,14 @@ export default function SortProductList({ queryConfig, pageSize }: Props) {
   const navigate = useNavigate()
 
   // Using 'Exclude' will remove the undefined portion from the 'Sort_by' attribute
-  const isActiveSortBy = (sortByValue: Exclude<ProductListConfig['sort_by'], undefined>) => {
-    return sort_by === sortByValue
-  }
-
+  const isActiveSortBy = (sortByValue: Exclude<ProductListConfig['sort_by'], undefined>) => sort_by === sortByValue
   // handle event
   const handleSort = (sortByValue: Exclude<ProductListConfig['sort_by'], undefined>) => {
     navigate({
       pathname: path.home,
       search: createSearchParams(
         // Use skip to remove the order element
-        omit(
-          {
-            ...queryConfig,
-            sort_by: sortByValue
-          },
-          ['order']
-        )
+        omit({ ...queryConfig, sort_by: sortByValue }, ['order'])
       ).toString()
     })
   }
@@ -40,11 +31,7 @@ export default function SortProductList({ queryConfig, pageSize }: Props) {
   const handlePriceOrder = (orderValue: Exclude<ProductListConfig['order'], undefined>) => {
     navigate({
       pathname: path.home,
-      search: createSearchParams({
-        ...queryConfig,
-        sort_by: sortBy.price,
-        order: orderValue
-      }).toString()
+      search: createSearchParams({ ...queryConfig, sort_by: sortBy.price, order: orderValue }).toString()
     })
   }
 
@@ -123,10 +110,7 @@ export default function SortProductList({ queryConfig, pageSize }: Props) {
               <Link
                 to={{
                   pathname: path.home,
-                  search: createSearchParams({
-                    ...queryConfig,
-                    page: (page - 1).toString()
-                  }).toString()
+                  search: createSearchParams({ ...queryConfig, page: (page - 1).toString() }).toString()
                 }}
                 className='flex h-8 w-9  items-center justify-center rounded-tl-sm rounded-bl-sm bg-white  shadow hover:bg-slate-100'
               >
@@ -159,10 +143,7 @@ export default function SortProductList({ queryConfig, pageSize }: Props) {
               <Link
                 to={{
                   pathname: path.home,
-                  search: createSearchParams({
-                    ...queryConfig,
-                    page: (page + 1).toString()
-                  }).toString()
+                  search: createSearchParams({ ...queryConfig, page: (page + 1).toString() }).toString()
                 }}
                 className='flex h-8 w-9  items-center justify-center rounded-tl-sm rounded-bl-sm bg-white  shadow hover:bg-slate-100'
               >

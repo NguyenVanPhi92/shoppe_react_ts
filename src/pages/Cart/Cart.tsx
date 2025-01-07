@@ -34,10 +34,7 @@ export default function Cart() {
     mutationFn: purchaseApi.buyProducts,
     onSuccess: (data) => {
       refetch()
-      toast.success(data.data.message, {
-        position: 'top-center',
-        autoClose: 1000
-      })
+      toast.success(data.data.message, { position: 'top-center', autoClose: 1000 })
     }
   })
 

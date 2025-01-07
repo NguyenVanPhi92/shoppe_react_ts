@@ -73,10 +73,8 @@ export class Http {
         // Xử lý khi là login và register
         if (url === URL_LOGIN || url === URL_REGISTER) {
           const data = response.data as AuthResponse // gán kiểu data reponse
-
           this.accessToken = data.data.access_token // lưu access_token vào biến
           this.refreshToken = data.data.refresh_token // lưu refresh_token vào biến
-
           // Lưu các token vào localStorage
           setAccessTokenToLS(this.accessToken)
           setRefreshTokenToLS(this.refreshToken)
@@ -100,7 +98,6 @@ export class Http {
           const message = data?.message || error.message // nếu server lỗi và trả về kiểu string html thì sẽ lấy error message của axios show lên
           toast.error(message) // send error to toastyfi
         }
-
         // Lỗi Unauthorized (401) có rất nhiều trường hợp
         // - Token không đúng
         // - Không truyền token
@@ -132,7 +129,6 @@ export class Http {
           // không truyền token,
           // token hết hạn nhưng gọi refresh token bị fail
           // thì tiến hành xóa local storage và toast message
-
           clearLS()
           this.accessToken = ''
           this.refreshToken = ''
@@ -146,9 +142,7 @@ export class Http {
 
   private handleRefreshToken() {
     return this.instance
-      .post<RefreshTokenReponse>(URL_REFRESH_TOKEN, {
-        refresh_token: this.refreshToken
-      })
+      .post<RefreshTokenReponse>(URL_REFRESH_TOKEN, { refresh_token: this.refreshToken })
       .then((res) => {
         const { access_token } = res.data.data
         setAccessTokenToLS(access_token)

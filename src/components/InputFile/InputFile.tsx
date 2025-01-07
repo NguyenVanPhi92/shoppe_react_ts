@@ -9,11 +9,9 @@ interface Props {
 // Upload file input component
 export default function InputFile({ onChange }: Props) {
   const fileInputRef = useRef<HTMLInputElement>(null)
-
   // handle event
   const onFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const fileFromLocal = event.target.files?.[0]
-
     fileInputRef.current?.setAttribute('value', '')
     if (fileFromLocal && (fileFromLocal.size >= config.maxSizeUploadAvatar || !fileFromLocal.type.includes('image'))) {
       toast.error(`Dụng lượng file tối đa 1 MB. Định dạng:.JPEG, .PNG`, {
