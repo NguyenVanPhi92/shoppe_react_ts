@@ -1,7 +1,7 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 import Login from './Login'
 import path from 'src/constants/path'
-import RegisterLayout from 'src/layouts/RegisterLayout'
+import RegisterLayout from 'src/layouts/registerLayout'
 
 export default {
   title: 'pages/Login',

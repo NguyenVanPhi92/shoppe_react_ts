@@ -11,15 +11,9 @@ export const locales = {
 } as const
 
 export const resources = {
-  en: {
-    // namespace and value
-    home: HOME_EN,
-    product: PRODUCT_EN
-  },
-  vi: {
-    home: HOME_VI,
-    product: PRODUCT_VI
-  }
+  // namespace and value
+  en: { home: HOME_EN, product: PRODUCT_EN },
+  vi: { home: HOME_VI, product: PRODUCT_VI }
 } as const
 
 export const defaultNS = 'product'

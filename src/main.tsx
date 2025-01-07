@@ -9,14 +9,8 @@ import './index.css'
 import VITE_API_URL from './utils/api'
 
 //setup tanstack query
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      refetchOnWindowFocus: false,
-      retry: 0
-    }
-  }
-})
+const queryClient = new QueryClient({ defaultOptions: { queries: { refetchOnWindowFocus: false, retry: 0 } } })
+
 console.log('.env vite', import.meta.env.VITE_API_URL)
 console.log('.env const', VITE_API_URL)
 
