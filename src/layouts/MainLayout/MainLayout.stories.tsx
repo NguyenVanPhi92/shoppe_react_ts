@@ -1,6 +1,6 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 import MainLayout from './MainLayout'
-import ProductDetail from 'src/pages/ProductDetail'
+import ProductDetail from 'src/pages/productDetail'
 export default {
   title: 'Layouts/MainLayout',
   component: MainLayout,

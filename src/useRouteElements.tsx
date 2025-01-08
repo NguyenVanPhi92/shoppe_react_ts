@@ -5,7 +5,7 @@ import { AppContext } from './contexts/app.context'
 import CartLayout from './layouts/cartLayout'
 import MainLayout from './layouts/mainLayout'
 import RegisterLayout from './layouts/registerLayout'
-import UserLayout from './pages/User/layouts/UserLayout'
+import UserLayout from './pages/user/layouts/UserLayout'
 
 // import Login from './pages/Login'
 // import Register from './pages/Register'
@@ -18,15 +18,15 @@ import UserLayout from './pages/User/layouts/UserLayout'
 // import NotFound from './pages/NotFound'
 
 //Kỹ thuật lazy load: dùng đến page nào load ra page đó
-const Login = lazy(() => import('./pages/Login'))
-const ProductList = lazy(() => import('./pages/ProductList'))
-const Profile = lazy(() => import('./pages/User/pages/Profile'))
-const Register = lazy(() => import('./pages/Register'))
-const ProductDetail = lazy(() => import('./pages/ProductDetail'))
-const Cart = lazy(() => import('./pages/Cart'))
-const ChangePassword = lazy(() => import('./pages/User/pages/ChangePassword'))
-const HistoryPurchase = lazy(() => import('./pages/User/pages/HistoryPurchase'))
-const NotFound = lazy(() => import('./pages/NotFound'))
+const Login = lazy(() => import('./pages/login'))
+const ProductList = lazy(() => import('./pages/productList'))
+const Profile = lazy(() => import('./pages/user/pages/Profile'))
+const Register = lazy(() => import('./pages/register'))
+const ProductDetail = lazy(() => import('./pages/productDetail'))
+const Cart = lazy(() => import('./pages/cart'))
+const ChangePassword = lazy(() => import('./pages/user/pages/ChangePassword'))
+const HistoryPurchase = lazy(() => import('./pages/user/pages/HistoryPurchase'))
+const NotFound = lazy(() => import('./pages/notFound'))
 
 // check user đã login chưa
 function ProtectedRoute() {

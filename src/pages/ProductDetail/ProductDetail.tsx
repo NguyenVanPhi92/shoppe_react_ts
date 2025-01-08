@@ -14,7 +14,7 @@ import path from 'src/constants/path'
 import { purchasesStatus } from 'src/constants/purchase'
 import { ProductListConfig, Product as ProductType } from 'src/types/product.type'
 import { formatCurrency, formatNumberToSocialStyle, getIdFromNameId, rateSale } from 'src/utils/utils'
-import Product from '../ProductList/components/Product'
+import Product from '../productList/components/Product'
 
 export default function ProductDetail() {
   const { t } = useTranslation(['product'])
