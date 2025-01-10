@@ -10,14 +10,8 @@ export const handleError = (error: Error, info: ExtendedErrorInfo, shouldThrow =
   // Log the error to console
   console.error(`Error caught by handleError from ${info?.from || 'unknown source'}:`, error)
   console.error('Additional info:', info)
-
-  if (process.env.NODE_ENV === 'development') {
-    console.error('Error stack:', error.stack)
-  }
-
-  if (process.env.NODE_ENV !== 'development') {
-    sendErrorToTrackingService(error, info)
-  }
+  if (process.env.NODE_ENV === 'development') console.error('Error stack:', error.stack)
+  if (process.env.NODE_ENV !== 'development') sendErrorToTrackingService(error, info)
 
   switch (info.priority) {
     case 'high':
@@ -48,9 +42,7 @@ export const handleError = (error: Error, info: ExtendedErrorInfo, shouldThrow =
 
   // If shouldThrow is true, we rethrow the error
   // This can be useful if you want to let it bubble up to an Error Boundary
-  if (shouldThrow) {
-    throw error
-  }
+  if (shouldThrow) throw error
 }
 
 // Function for sending errors to a tracking service

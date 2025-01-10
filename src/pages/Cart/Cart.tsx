@@ -129,7 +129,6 @@ export default function Cart() {
         product_id: purchase.product._id,
         buy_count: purchase.buy_count
       }))
-
       buyProductsMutation.mutate(body)
     }
   }

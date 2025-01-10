@@ -47,7 +47,6 @@ const handleConfirmPasswordYup = (refString: string) => {
     .max(160, 'Độ dài từ 6 - 160 ký tự')
     .oneOf([yup.ref(refString)], 'Nhập lại password không khớp')
 }
-
 export const schema = yup.object({
   email: yup
     .string()
@@ -61,19 +60,10 @@ export const schema = yup.object({
     .min(6, 'Độ dài từ 6 - 160 ký tự')
     .max(160, 'Độ dài từ 6 - 160 ký tự'),
   confirm_password: handleConfirmPasswordYup('password'),
-  price_min: yup.string().test({
-    name: 'price-not-allowed',
-    message: 'Giá không phù hợp',
-    test: testPriceMinMax
-  }),
-  price_max: yup.string().test({
-    name: 'price-not-allowed',
-    message: 'Giá không phù hợp',
-    test: testPriceMinMax
-  }),
+  price_min: yup.string().test({ name: 'price-not-allowed', message: 'Giá không phù hợp', test: testPriceMinMax }),
+  price_max: yup.string().test({ name: 'price-not-allowed', message: 'Giá không phù hợp', test: testPriceMinMax }),
   name: yup.string().trim().required('Tên sản phẩm là bắt buộc')
 })
-
 export const userSchema = yup.object({
   name: yup.string().max(160, 'Độ dài tối đa là 160 ký tự'),
   phone: yup.string().max(20, 'Độ dài tối đa là 20 ký tự'),
@@ -84,7 +74,6 @@ export const userSchema = yup.object({
   new_password: schema.fields['password'],
   confirm_password: handleConfirmPasswordYup('new_password')
 })
-
 // export interface type data của schema để add vào form
 export type UserSchemaYup = yup.InferType<typeof userSchema>
 export type SchemaYup = yup.InferType<typeof schema>

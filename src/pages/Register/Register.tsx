@@ -23,7 +23,6 @@ const registerSchema = schema.pick(['email', 'password', 'confirm_password'])
 export default function Register() {
   const { setIsAuthenticated, setProfile } = useContext(AppContext)
   const navigate = useNavigate()
-
   // Declaration form
   const {
     register, // đk thông tin từng field cho form
@@ -33,7 +32,6 @@ export default function Register() {
   } = useForm<FormData>({
     resolver: yupResolver(registerSchema)
   })
-
   // Mutate async: POST, PUT, DELETE
   const registerAccountMutation = useMutation({
     /**
@@ -44,7 +42,6 @@ export default function Register() {
      */
     mutationFn: (body: Omit<FormData, 'confirm_password'>) => registerAccount(body)
   })
-
   // Handle event
   const onSubmit = handleSubmit((data) => {
     // Use omit trong lodash loại bỏ confirm_password trong object schema

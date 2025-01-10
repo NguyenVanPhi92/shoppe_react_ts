@@ -21,7 +21,6 @@ export default function Login() {
   // Call state in ContextAPI
   const { setIsAuthenticated, setProfile } = useContext(AppContext)
   const navigate = useNavigate()
-
   // Declaration form
   const {
     register, // đk thông tin từng files vào useForm của react hook form
@@ -31,7 +30,6 @@ export default function Login() {
   } = useForm<FormData>({
     resolver: yupResolver(loginSchema)
   })
-
   // Mutate async: POST, PUT, DELETE
   const loginMutation = useMutation({
     /**
@@ -42,7 +40,6 @@ export default function Login() {
      */
     mutationFn: (body: Omit<FormData, 'confirm_password'>) => login(body)
   })
-
   // Handle event
   const onSubmit = handleSubmit((data) => {
     /**
@@ -56,7 +53,6 @@ export default function Login() {
         setProfile(data.data.data.user) // lưu info user vào store context
         navigate('/')
       },
-
       // gọi sự kiện thất bại sau khi call API
       onError: (error) => {
         // nếu như response trả về error
@@ -65,10 +61,7 @@ export default function Login() {
           if (formError) {
             Object.keys(formError).forEach((key) => {
               // key as keyof FormData => key as keyof: chỉ định key sẽ chỉ có là email or password
-              setError(key as keyof FormData, {
-                message: formError[key as keyof FormData],
-                type: 'Server'
-              })
+              setError(key as keyof FormData, { message: formError[key as keyof FormData], type: 'Server' })
             })
           }
         }
