@@ -14,7 +14,6 @@ export default function Button({ className, isLoading, disabled, children, ...re
   return (
     <button className={newClassName} disabled={disabled} {...rest}>
       {isLoading && <Spinner />}
-
       <span>{children}</span>
     </button>
   )
