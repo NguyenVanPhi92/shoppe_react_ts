@@ -20,22 +20,18 @@ const purchaseTabs = [
 export default function HistoryPurchase() {
   const queryParams: { status?: string } = useQueryParams()
   const status: number = Number(queryParams.status) || purchasesStatus.all
-
   // Queries async - Get
   const { data: purchasesInCartData } = useQuery({
     queryKey: ['purchases', { status }],
     queryFn: () => purchaseApi.getPurchases({ status: status as PurchaseListStatus })
   })
-
   const purchasesInCart = purchasesInCartData?.data.data
   const purchaseTabsLink = purchaseTabs.map((tab) => (
     <Link
       key={tab.status}
       to={{
         pathname: path.historyPurchase,
-        search: createSearchParams({
-          status: String(tab.status)
-        }).toString()
+        search: createSearchParams({ status: String(tab.status) }).toString()
       }}
       className={classNames('flex flex-1 items-center justify-center border-b-2 bg-white py-4 text-center', {
         'border-b-orange text-orange': status === tab.status,

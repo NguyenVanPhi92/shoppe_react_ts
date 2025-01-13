@@ -11,7 +11,7 @@ import { QueryConfig } from 'src/hooks/ts/useQueryConfig'
 import { Category } from 'src/types/category.type'
 import { NoUndefinedField } from 'src/types/utils.type'
 import { schema, SchemaYup } from 'src/utils/rules'
-import RatingStars from '../RatingStars'
+import RatingStars from '../ratingStars'
 import { MouseEventHandler } from 'react'
 
 interface Props {
@@ -32,7 +32,6 @@ export default function AsideFilter({ queryConfig, categories }: Props) {
   const { t } = useTranslation('home')
   const navigate = useNavigate()
   const { category } = queryConfig
-
   // Declaration form
   const {
     control,
@@ -43,19 +42,13 @@ export default function AsideFilter({ queryConfig, categories }: Props) {
     defaultValues: { price_min: '', price_max: '' },
     resolver: yupResolver(priceSchema)
   })
-
   // Handle event
   const onSubmit = handleSubmit((data) => {
     navigate({
       pathname: path.home,
-      search: createSearchParams({
-        ...queryConfig,
-        price_max: data.price_max,
-        price_min: data.price_min
-      }).toString()
+      search: createSearchParams({ ...queryConfig, price_max: data.price_max, price_min: data.price_min }).toString()
     })
   })
-
   const handleRemoveAll: MouseEventHandler<HTMLButtonElement> = () => {
     navigate({
       pathname: path.home,

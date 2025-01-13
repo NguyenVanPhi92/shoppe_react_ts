@@ -15,13 +15,7 @@ export default function DateSelect({ value, onChange, errorMessage }: Props) {
   })
 
   useEffect(() => {
-    if (value) {
-      setDate({
-        date: value.getDate(),
-        month: value.getMonth(),
-        year: value.getFullYear()
-      })
-    }
+    if (value) setDate({ date: value.getDate(), month: value.getMonth(), year: value.getFullYear() })
   }, [value])
 
   // Handle event

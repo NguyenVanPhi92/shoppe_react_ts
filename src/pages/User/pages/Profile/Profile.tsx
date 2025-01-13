@@ -13,7 +13,7 @@ import { ErrorResponse } from 'src/types/utils.type'
 import { setProfileToLS } from 'src/utils/auth'
 import { userSchema, UserSchemaYup } from 'src/utils/rules'
 import { getAvatarUrl, isAxiosUnprocessableEntityError } from 'src/utils/utils'
-import DateSelect from '../../components/DateSelect'
+import DateSelect from '../../components/dateSelect'
 
 function Info() {
   const {

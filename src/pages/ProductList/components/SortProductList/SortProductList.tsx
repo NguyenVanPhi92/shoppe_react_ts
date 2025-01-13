@@ -14,7 +14,6 @@ export default function SortProductList({ queryConfig, pageSize }: Props) {
   const page = Number(queryConfig.page)
   const { sort_by = sortBy.createdAt, order } = queryConfig
   const navigate = useNavigate()
-
   // Using 'Exclude' will remove the undefined portion from the 'Sort_by' attribute
   const isActiveSortBy = (sortByValue: Exclude<ProductListConfig['sort_by'], undefined>) => sort_by === sortByValue
   // handle event
@@ -27,7 +26,6 @@ export default function SortProductList({ queryConfig, pageSize }: Props) {
       ).toString()
     })
   }
-
   const handlePriceOrder = (orderValue: Exclude<ProductListConfig['order'], undefined>) => {
     navigate({
       pathname: path.home,

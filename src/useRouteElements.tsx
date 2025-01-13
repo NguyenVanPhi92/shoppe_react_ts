@@ -20,12 +20,12 @@ import UserLayout from './pages/user/layouts/UserLayout'
 //Kỹ thuật lazy load: dùng đến page nào load ra page đó
 const Login = lazy(() => import('./pages/login'))
 const ProductList = lazy(() => import('./pages/productList'))
-const Profile = lazy(() => import('./pages/user/pages/Profile'))
+const Profile = lazy(() => import('./pages/user/pages/profile'))
 const Register = lazy(() => import('./pages/register'))
 const ProductDetail = lazy(() => import('./pages/productDetail'))
 const Cart = lazy(() => import('./pages/cart'))
-const ChangePassword = lazy(() => import('./pages/user/pages/ChangePassword'))
-const HistoryPurchase = lazy(() => import('./pages/user/pages/HistoryPurchase'))
+const ChangePassword = lazy(() => import('./pages/user/pages/changePassword'))
+const HistoryPurchase = lazy(() => import('./pages/user/pages/historyPurchase'))
 const NotFound = lazy(() => import('./pages/notFound'))
 
 // check user đã login chưa

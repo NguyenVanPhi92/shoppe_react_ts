@@ -21,17 +21,11 @@ export default function ChangePassword() {
     setError,
     reset
   } = useForm<FormData>({
-    defaultValues: {
-      password: '',
-      confirm_password: '',
-      new_password: ''
-    },
+    defaultValues: { password: '', confirm_password: '', new_password: '' },
     resolver: yupResolver(passwordSchema)
   })
-
   // Mutate async: POST, PUT, DELETE
   const updateProfileMutation = useMutation(userApi.updateProfile)
-
   // Handle event
   const onSubmit = handleSubmit(async (data) => {
     try {
@@ -43,10 +37,7 @@ export default function ChangePassword() {
         const formError = error.response?.data.data
         if (formError) {
           Object.keys(formError).forEach((key) => {
-            setError(key as keyof FormData, {
-              message: formError[key as keyof FormData],
-              type: 'Server'
-            })
+            setError(key as keyof FormData, { message: formError[key as keyof FormData], type: 'Server' })
           })
         }
       }

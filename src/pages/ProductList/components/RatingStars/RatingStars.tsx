@@ -22,10 +22,7 @@ export default function RatingStars({ queryConfig }: Props) {
   const handleFilterStar = (ratingFilter: number) => {
     navigate({
       pathname: path.home,
-      search: createSearchParams({
-        ...queryConfig,
-        rating_filter: String(ratingFilter)
-      }).toString()
+      search: createSearchParams({ ...queryConfig, rating_filter: String(ratingFilter) }).toString()
     })
   }
 

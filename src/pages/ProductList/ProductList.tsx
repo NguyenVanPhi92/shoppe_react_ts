@@ -11,7 +11,6 @@ import Product from './components/product'
 
 export default function ProductList() {
   const queryConfig = useQueryConfig()
-
   // Queries async: Get
   const { data: productsData } = useQuery({
     // When queryConfig changes, the api will be called again
@@ -20,14 +19,9 @@ export default function ProductList() {
     keepPreviousData: true,
     staleTime: 3 * 60 * 1000
   })
-
   console.log('productsData: ', productsData?.data.data?.products)
-
   // Queries async: Get
-  const { data: categoriesData } = useQuery({
-    queryKey: ['categories'],
-    queryFn: () => categoryApi.getCategories()
-  })
+  const { data: categoriesData } = useQuery({ queryKey: ['categories'], queryFn: () => categoryApi.getCategories() })
 
   return (
     <div className='bg-gray-200 py-6'>
@@ -47,7 +41,6 @@ export default function ProductList() {
             <div className='col-span-9'>
               {/* Fiter Sort Product */}
               <SortProductList queryConfig={queryConfig} pageSize={productsData.data.data?.pagination?.page_size} />
-
               {/* List Product */}
               <div className='mt-6 grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5'>
                 {productsData?.data.data?.products.map((product) => (
