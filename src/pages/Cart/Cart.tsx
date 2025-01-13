@@ -16,19 +16,16 @@ import { formatCurrency, generateNameId } from 'src/utils/utils'
 
 export default function Cart() {
   const { extendedPurchases, setExtendedPurchases } = useContext(AppContext)
-
   // Queries async: Get
   const { data: purchasesInCartData, refetch } = useQuery({
     queryKey: ['purchases', { status: purchasesStatus.inCart }],
     queryFn: () => purchaseApi.getPurchases({ status: purchasesStatus.inCart })
   })
-
   // Mutate async: POST, PUT, DELETE
   const updatePurchaseMutation = useMutation({
     mutationFn: purchaseApi.updatePurchase,
     onSuccess: () => refetch()
   })
-
   // Mutate async: POST, PUT, DELETE
   const buyProductsMutation = useMutation({
     mutationFn: purchaseApi.buyProducts,
@@ -37,20 +34,17 @@ export default function Cart() {
       toast.success(data.data.message, { position: 'top-center', autoClose: 1000 })
     }
   })
-
   // Mutate async: POST, PUT, DELETE
   const deletePurchasesMutation = useMutation({
     mutationFn: purchaseApi.deletePurchase,
     onSuccess: () => refetch()
   })
-
   const location = useLocation()
   const choosenPurchaseIdFromLocation = (location.state as { purchaseId: string } | null)?.purchaseId
   const purchasesInCart = purchasesInCartData?.data.data
   const isAllChecked = useMemo(() => extendedPurchases.every((purchase) => purchase.checked), [extendedPurchases])
   const checkedPurchases = useMemo(() => extendedPurchases.filter((purchase) => purchase.checked), [extendedPurchases])
   const checkedPurchasesCount = checkedPurchases.length
-
   const totalCheckedPurchasePrice = useMemo(
     () =>
       checkedPurchases.reduce((result, current) => {
@@ -58,7 +52,6 @@ export default function Cart() {
       }, 0),
     [checkedPurchases]
   )
-
   const totalCheckedPurchaseSavingPrice = useMemo(
     () =>
       checkedPurchases.reduce((result, current) => {
@@ -66,7 +59,6 @@ export default function Cart() {
       }, 0),
     [checkedPurchases]
   )
-
   useEffect(() => {
     setExtendedPurchases((prev) => {
       const extendedPurchasesObject = keyBy(prev, '_id')
@@ -82,29 +74,19 @@ export default function Cart() {
       )
     })
   }, [purchasesInCart, choosenPurchaseIdFromLocation])
-
   useEffect(() => {
     return () => history.replaceState(null, '')
   }, [])
-
   // handle event
   const handleCheck = (purchaseIndex: number) => (event: React.ChangeEvent<HTMLInputElement>) => {
     setExtendedPurchases(produce((draft) => (draft[purchaseIndex].checked = event.target.checked)))
   }
-
   const handleCheckAll = () => {
-    setExtendedPurchases((prev) =>
-      prev.map((purchase) => ({
-        ...purchase,
-        checked: !isAllChecked
-      }))
-    )
+    setExtendedPurchases((prev) => prev.map((purchase) => ({ ...purchase, checked: !isAllChecked })))
   }
-
   const handleTypeQuantity = (purchaseIndex: number) => (value: number) => {
     setExtendedPurchases(produce((draft) => (draft[purchaseIndex].buy_count = value)))
   }
-
   const handleQuantity = (purchaseIndex: number, value: number, enable: boolean) => {
     if (enable) {
       const purchase = extendedPurchases[purchaseIndex]
@@ -112,17 +94,14 @@ export default function Cart() {
       updatePurchaseMutation.mutate({ product_id: purchase.product._id, buy_count: value })
     }
   }
-
   const handleDelete = (purchaseIndex: number) => () => {
     const purchaseId = extendedPurchases[purchaseIndex]._id
     deletePurchasesMutation.mutate([purchaseId])
   }
-
   const handleDeleteManyPurchases = () => {
     const purchasesIds = checkedPurchases.map((purchase) => purchase._id)
     deletePurchasesMutation.mutate(purchasesIds)
   }
-
   const handleBuyPurchases: MouseEventHandler<HTMLButtonElement> = () => {
     if (checkedPurchases.length > 0) {
       const body = checkedPurchases.map((purchase) => ({
@@ -132,7 +111,6 @@ export default function Cart() {
       buyProductsMutation.mutate(body)
     }
   }
-
   return (
     <div className='bg-neutral-100 py-16'>
       <div className='container'>

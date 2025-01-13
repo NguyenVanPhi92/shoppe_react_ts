@@ -27,9 +27,7 @@ export default function Login() {
     setError,
     handleSubmit,
     formState: { errors }
-  } = useForm<FormData>({
-    resolver: yupResolver(loginSchema)
-  })
+  } = useForm<FormData>({ resolver: yupResolver(loginSchema) })
   // Mutate async: POST, PUT, DELETE
   const loginMutation = useMutation({
     /**

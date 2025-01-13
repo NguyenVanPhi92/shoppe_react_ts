@@ -23,7 +23,6 @@ export default function ProductDetail() {
   const navigate = useNavigate()
   const { nameId } = useParams()
   const id = getIdFromNameId(nameId as string)
-
   // Queries async: Get
   const { data: productDetailData } = useQuery({
     queryKey: ['product', id],
@@ -38,7 +37,6 @@ export default function ProductDetail() {
     [product, currentIndexImages]
   )
   const queryConfig: ProductListConfig = { limit: '20', page: '1', category: product?.category._id }
-
   // Queries async: Get
   const { data: productsData } = useQuery({
     queryKey: ['products', queryConfig],
@@ -46,14 +44,12 @@ export default function ProductDetail() {
     staleTime: 3 * 60 * 1000,
     enabled: Boolean(product)
   })
-
   // Mutate async: POST, PUT, DELETE
   const addToCartMutation = useMutation(purchaseApi.addToCart)
   console.log('char: ', product?.description.substring(1, 100))
   useEffect(() => {
     if (product && product.images.length > 0) setActiveImage(product.images[0])
   }, [product])
-
   // Handle event
   const next: MouseEventHandler<HTMLButtonElement> = () => {
     if (currentIndexImages[1] < (product as ProductType).images.length)
@@ -69,11 +65,9 @@ export default function ProductDetail() {
     const { naturalHeight, naturalWidth } = image
     // Cách 1: Lấy offsetX, offsetY đơn giản khi chúng ta đã xử lý được bubble event
     // const { offsetX, offsetY } = event.nativeEvent
-
     // Cách 2: Lấy offsetX, offsetY khi chúng ta không xử lý được bubble event
     const offsetX = event.pageX - (rect.x + window.scrollX)
     const offsetY = event.pageY - (rect.y + window.scrollY)
-
     const top = offsetY * (1 - naturalHeight / rect.height)
     const left = offsetX * (1 - naturalWidth / rect.width)
     image.style.width = naturalWidth + 'px'
