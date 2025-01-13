@@ -85,7 +85,6 @@ export default function Register() {
           <div className='lg:col-span-2 lg:col-start-4'>
             <form className='rounded bg-white p-10 shadow-sm' onSubmit={onSubmit} noValidate>
               <div className='text-2xl'>Đăng ký</div>
-
               <Input
                 name='email'
                 register={register}
@@ -94,7 +93,6 @@ export default function Register() {
                 errorMessage={errors.email?.message}
                 placeholder='Email'
               />
-
               <Input
                 name='password'
                 register={register}
@@ -105,7 +103,6 @@ export default function Register() {
                 placeholder='Password'
                 autoComplete='on' // các input là passwork nên thêm trường này để tốt cho mặt UX
               />
-
               <Input
                 name='confirm_password'
                 register={register}
@@ -116,7 +113,6 @@ export default function Register() {
                 placeholder='Confirm Password'
                 autoComplete='on' // các input là passwork nên thêm trường này để tốt cho mặt UX
               />
-
               <div className='mt-2'>
                 <Button
                   className='flex w-full items-center justify-center bg-red-500 py-4 px-2 text-sm uppercase text-white hover:bg-red-600'
@@ -126,7 +122,6 @@ export default function Register() {
                   Đăng ký
                 </Button>
               </div>
-
               <div className='mt-8 flex items-center justify-center'>
                 <span className='text-gray-400'>Bạn đã có tài khoản?</span>
                 <Link className='ml-1 text-red-400' to='/login'>

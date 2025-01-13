@@ -5,9 +5,9 @@ import productApi from 'src/apis/product.api'
 import Pagination from 'src/components/Pagination'
 import useQueryConfig from 'src/hooks/ts/useQueryConfig'
 import { ProductListConfig } from 'src/types/product.type'
-import AsideFilter from './components/AsideFilter'
-import SortProductList from './components/SortProductList'
-import Product from './components/Product'
+import AsideFilter from './components/asideFilter'
+import SortProductList from './components/sortProductList'
+import Product from './components/product'
 
 export default function ProductList() {
   const queryConfig = useQueryConfig()

@@ -82,7 +82,6 @@ export default function Login() {
           <div className='lg:col-span-2 lg:col-start-4'>
             <form className='rounded bg-white p-10 shadow-sm' onSubmit={onSubmit} noValidate>
               <div className='text-2xl'>Đăng nhập</div>
-
               <Input
                 name='email'
                 register={register}
@@ -112,7 +111,6 @@ export default function Login() {
                   Đăng nhập
                 </Button>
               </div>
-
               <div className='mt-8 flex items-center justify-center'>
                 <span className='text-gray-400'>Bạn chưa có tài khoản?</span>
                 <Link className='ml-1 text-red-400' to='/register'>
