@@ -104,9 +104,8 @@ export default function ProductDetail() {
         <meta
           name='description'
           content={convert(product.description.substring(1, 100), {
-            limits: {
-              maxInputLength: 150 //gioi han ky tu
-            }
+            //giới hạn ký tự
+            limits: { maxInputLength: 150 }
           })}
         />
       </Helmet>

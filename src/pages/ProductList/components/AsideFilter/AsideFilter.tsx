@@ -27,7 +27,6 @@ type FormData = NoUndefinedField<Pick<SchemaYup, 'price_max' | 'price_min'>>
  */
 
 const priceSchema = schema.pick(['price_min', 'price_max'])
-
 export default function AsideFilter({ queryConfig, categories }: Props) {
   const { t } = useTranslation('home')
   const navigate = useNavigate()
@@ -38,10 +37,7 @@ export default function AsideFilter({ queryConfig, categories }: Props) {
     handleSubmit,
     trigger,
     formState: { errors }
-  } = useForm<FormData>({
-    defaultValues: { price_min: '', price_max: '' },
-    resolver: yupResolver(priceSchema)
-  })
+  } = useForm<FormData>({ defaultValues: { price_min: '', price_max: '' }, resolver: yupResolver(priceSchema) })
   // Handle event
   const onSubmit = handleSubmit((data) => {
     navigate({
