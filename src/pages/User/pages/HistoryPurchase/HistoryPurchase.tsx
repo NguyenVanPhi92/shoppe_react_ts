@@ -20,7 +20,7 @@ const purchaseTabs = [
 export default function HistoryPurchase() {
   const queryParams: { status?: string } = useQueryParams()
   const status: number = Number(queryParams.status) || purchasesStatus.all
-  // Queries async - Get
+  // Queries async: Get
   const { data: purchasesInCartData } = useQuery({
     queryKey: ['purchases', { status }],
     queryFn: () => purchaseApi.getPurchases({ status: status as PurchaseListStatus })

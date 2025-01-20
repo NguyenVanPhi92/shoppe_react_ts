@@ -12,7 +12,6 @@ const nameSchema = schema.pick(['name'])
 export default function useSearchProducts() {
   const queryConfig = useQueryConfig()
   const navigate = useNavigate()
-
   const { register, handleSubmit } = useForm<FormData>({
     defaultValues: { name: '' },
     resolver: yupResolver(nameSchema)

@@ -15,10 +15,8 @@ import { QueryConfig } from 'src/hooks/ts/useQueryConfig'
 interface Props {
   queryConfig: QueryConfig
 }
-
 export default function RatingStars({ queryConfig }: Props) {
   const navigate = useNavigate()
-
   const handleFilterStar = (ratingFilter: number) => {
     navigate({
       pathname: path.home,

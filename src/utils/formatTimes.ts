@@ -20,18 +20,15 @@ import relativeTime from 'dayjs/plugin/relativeTime'
 const formatTimes = (data: string, formatType?: string) => {
   // Initial value of the difference in time
   let result = ``
-
   // Convert data to type Date
   const inputDate = new Date(data)
   const currentDate = new Date()
-
   // Format date strings
   const typeDateMonth = format(inputDate, 'dd/MM')
   const typeMonthDateYear = format(inputDate, 'dd MMM, yyyy')
   const typeDateMonthYear = format(inputDate, 'dd/MM/yyyy')
   const typeDateFull = format(inputDate, 'EEEE, d MMMM yyyy, h:mm a')
   const typeHourDateMonthYear = format(inputDate, 'HH:mm dd/MM/yyyy')
-
   // Calculate time differences
   const diffMinutes = differenceInMinutes(currentDate, inputDate)
   const diffHours = differenceInHours(currentDate, inputDate)
@@ -90,7 +87,6 @@ const formatTimes = (data: string, formatType?: string) => {
 }
 
 export default formatTimes
-
 // Cần thêm plugin relativeTime vào dayjs
 dayjs.extend(relativeTime)
 

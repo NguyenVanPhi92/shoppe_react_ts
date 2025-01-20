@@ -5,7 +5,6 @@ import { useEffect, useRef, useState } from 'react'
 export default function useHover<T extends HTMLElement>() {
   const [hovered, setHovered] = useState(false)
   const nodeRef = useRef<T | null>(null)
-
   useEffect(() => {
     const handleMouseOver = () => setHovered(true)
     const handleMouseOut = () => setHovered(false)
@@ -14,7 +13,6 @@ export default function useHover<T extends HTMLElement>() {
       dom.addEventListener('mouseover', handleMouseOver)
       dom.addEventListener('mouseout', handleMouseOut)
     }
-
     // Dọn dẹp khi component unmount
     return () => {
       if (dom) {
@@ -23,9 +21,5 @@ export default function useHover<T extends HTMLElement>() {
       }
     }
   }, [])
-
-  return {
-    hovered,
-    nodeRef
-  }
+  return { hovered, nodeRef }
 }

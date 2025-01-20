@@ -1,6 +1,6 @@
 import { useSearchParams } from 'react-router-dom'
 
-// tạo hook search lấy từ params url
+// Create Hook Search lấy từ params url
 export const useQueryString = () => {
   const [searchParams] = useSearchParams()
   const searchParamsObject = Object.fromEntries([...searchParams])

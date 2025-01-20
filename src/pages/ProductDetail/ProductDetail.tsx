@@ -263,11 +263,7 @@ export default function ProductDetail() {
           <div className=' bg-white p-4 shadow'>
             <div className='rounded bg-gray-50 p-4 text-lg capitalize text-slate-700'>Mô tả sản phẩm</div>
             <div className='mx-4 mt-12 mb-4 text-sm leading-loose'>
-              <div
-                dangerouslySetInnerHTML={{
-                  __html: DOMPurify.sanitize(product.description)
-                }}
-              />
+              <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(product.description) }} />
             </div>
           </div>
         </div>

@@ -9,5 +9,4 @@ export type AuthResponse = SuccessResponse<{
   expires: number
   user: User
 }>
-
 export type RefreshTokenReponse = SuccessResponse<{ access_token: string }>

@@ -35,10 +35,7 @@ export default function Cart() {
     }
   })
   // Mutate async: POST, PUT, DELETE
-  const deletePurchasesMutation = useMutation({
-    mutationFn: purchaseApi.deletePurchase,
-    onSuccess: () => refetch()
-  })
+  const deletePurchasesMutation = useMutation({ mutationFn: purchaseApi.deletePurchase, onSuccess: () => refetch() })
   const location = useLocation()
   const choosenPurchaseIdFromLocation = (location.state as { purchaseId: string } | null)?.purchaseId
   const purchasesInCart = purchasesInCartData?.data.data
@@ -79,18 +76,30 @@ export default function Cart() {
   }, [])
   // handle event
   const handleCheck = (purchaseIndex: number) => (event: React.ChangeEvent<HTMLInputElement>) => {
-    setExtendedPurchases(produce((draft) => (draft[purchaseIndex].checked = event.target.checked)))
+    setExtendedPurchases(
+      produce((draft) => {
+        draft[purchaseIndex].checked = event.target.checked
+      })
+    )
   }
   const handleCheckAll = () => {
     setExtendedPurchases((prev) => prev.map((purchase) => ({ ...purchase, checked: !isAllChecked })))
   }
   const handleTypeQuantity = (purchaseIndex: number) => (value: number) => {
-    setExtendedPurchases(produce((draft) => (draft[purchaseIndex].buy_count = value)))
+    setExtendedPurchases(
+      produce((draft) => {
+        draft[purchaseIndex].buy_count = value
+      })
+    )
   }
   const handleQuantity = (purchaseIndex: number, value: number, enable: boolean) => {
     if (enable) {
       const purchase = extendedPurchases[purchaseIndex]
-      setExtendedPurchases(produce((draft) => (draft[purchaseIndex].disabled = true)))
+      setExtendedPurchases(
+        produce((draft) => {
+          draft[purchaseIndex].disabled = true
+        })
+      )
       updatePurchaseMutation.mutate({ product_id: purchase.product._id, buy_count: value })
     }
   }

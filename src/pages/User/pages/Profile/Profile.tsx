@@ -66,7 +66,6 @@ const profileSchema = userSchema.pick(['name', 'address', 'phone', 'date_of_birt
 // Flow 1:
 // Nhấn upload: upload lên server luôn => server trả về url ảnh
 // Nhấn submit thì gửi url ảnh cộng với data lên server
-
 // Flow 2:
 // Nhấn upload: không upload lên server
 // Nhấn submit thì tiến hành upload lên server, nếu upload thành công thì tiến hành gọi api updateProfile
@@ -78,23 +77,15 @@ export default function Profile() {
   const previewImage = useMemo(() => {
     return file ? URL.createObjectURL(file) : ''
   }, [file])
-
-  const { data: profileData, refetch } = useQuery({
-    queryKey: ['profile'],
-    queryFn: userApi.getProfile
-  })
+  // Queries async: Get
+  const { data: profileData, refetch } = useQuery({ queryKey: ['profile'], queryFn: userApi.getProfile })
   const profile = profileData?.data.data
   // Mutate async: POST, PUT, DELETE
   const updateProfileMutation = useMutation(userApi.updateProfile)
   const uploadAvatarMutaion = useMutation(userApi.uploadAvatar)
+  // Declaration form
   const methods = useForm<FormData>({
-    defaultValues: {
-      name: '',
-      phone: '',
-      address: '',
-      avatar: '',
-      date_of_birth: new Date(1990, 0, 1)
-    },
+    defaultValues: { name: '', phone: '', address: '', avatar: '', date_of_birth: new Date(1990, 0, 1) },
     resolver: yupResolver(profileSchema)
   })
   const {
@@ -106,9 +97,7 @@ export default function Profile() {
     watch,
     setError
   } = methods
-
   const avatar = watch('avatar')
-
   useEffect(() => {
     if (profile) {
       setValue('name', profile.name)
@@ -144,10 +133,7 @@ export default function Profile() {
         const formError = error.response?.data.data
         if (formError) {
           Object.keys(formError).forEach((key) => {
-            setError(key as keyof FormDataError, {
-              message: formError[key as keyof FormDataError],
-              type: 'Server'
-            })
+            setError(key as keyof FormDataError, { message: formError[key as keyof FormDataError], type: 'Server' })
           })
         }
       }

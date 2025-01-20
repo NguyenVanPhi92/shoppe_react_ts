@@ -22,9 +22,7 @@ export function capitalizeFirstLetter(string: string) {
 export const countOccurrences = (str: string, char: string) => {
   let count = 0
   for (let i = 0; i < str.length; i++) {
-    if (str[i] === char) {
-      count++
-    }
+    if (str[i] === char) count++
   }
   return count
 }
@@ -37,27 +35,16 @@ export const countOccurrences = (str: string, char: string) => {
  * @returns Returns true if the values are equal, false otherwise.
  */
 export function isEqualLoose(value: never, other: never): boolean {
-  if (value == other) {
-    return true
-  }
-
+  if (value == other) return true
   if (typeof value !== 'object' || typeof other !== 'object' || value === null || other === null) {
     return value == other
   }
-
   const valueKeys = Object.keys(value)
   const otherKeys = Object.keys(other)
-
-  if (valueKeys.length !== otherKeys.length) {
-    return false
-  }
-
+  if (valueKeys.length !== otherKeys.length) return false
   for (const key of valueKeys) {
-    if (!isEqualLoose(value[key], other[key])) {
-      return false
-    }
+    if (!isEqualLoose(value[key], other[key])) return false
   }
-
   return true
 }
 
@@ -89,23 +76,9 @@ export function checkJWTExpire(token: string) {
   }
 }
 
-type Schedule = {
-  id: number
-  day: string
-  start: string
-  end: string
-  user_id: string
-}
-
-type Change = {
-  from: string | number
-  to: string | number
-}
-
-type ChangedObject = {
-  id: number
-  changes: { [key: string]: Change }
-}
+type Schedule = { id: number; day: string; start: string; end: string; user_id: string }
+type Change = { from: string | number; to: string | number }
+type ChangedObject = { id: number; changes: { [key: string]: Change } }
 
 /**
  * Compares two arrays of Schedule objects and returns the objects that have changed.
@@ -116,37 +89,23 @@ type ChangedObject = {
  * @throws {Error} If the arrays have different lengths.
  */
 export function compareArrays(array1: Schedule[], array2: Schedule[]): ChangedObject[] {
-  if (array1.length !== array2.length) {
-    throw new Error('Arrays have different lengths')
-  }
-
+  if (array1.length !== array2.length) throw new Error('Arrays have different lengths')
   const changedObjects: ChangedObject[] = []
-
   array1.forEach((obj1, index) => {
     const obj2 = array2[index]
     const changes: { [key: string]: Change } = {}
-
     Object.keys(obj1).forEach((key) => {
       if (obj1[key as keyof Schedule] !== obj2[key as keyof Schedule]) {
         changes[key] = { from: obj1[key as keyof Schedule], to: obj2[key as keyof Schedule] }
       }
     })
-
-    if (Object.keys(changes).length > 0) {
-      changedObjects.push({ id: obj1.id, changes })
-    }
+    if (Object.keys(changes).length > 0) changedObjects.push({ id: obj1.id, changes })
   })
 
   return changedObjects
 }
 
-type ScheduleArray = {
-  id: number
-  day: string
-  start: string
-  end: string
-  user_id: string
-}
+type ScheduleArray = { id: number; day: string; start: string; end: string; user_id: string }
 
 /**
  * Compares two arrays of Schedule objects and returns the objects from the first array that have changed.
@@ -157,15 +116,10 @@ type ScheduleArray = {
  * @throws {Error} If the arrays have different lengths.
  */
 export function getChangedFromArrays(array1: ScheduleArray[], array2: ScheduleArray[]): ScheduleArray[] {
-  if (array1.length !== array2.length) {
-    throw new Error('Arrays have different lengths')
-  }
-
+  if (array1.length !== array2.length) throw new Error('Arrays have different lengths')
   const changedObjects: ScheduleArray[] = []
-
   array1.forEach((obj1, index) => {
     const obj2 = array2[index]
-
     for (const key in obj1) {
       if (obj1[key as keyof ScheduleArray] !== obj2[key as keyof ScheduleArray]) {
         changedObjects.push(obj1)
@@ -189,14 +143,8 @@ export function sortByFieldName<T>(array: T[], fieldName: keyof T) {
   return array.sort((a, b) => {
     const fieldA = a[fieldName]
     const fieldB = b[fieldName]
-
-    if (typeof fieldA === 'number' && typeof fieldB === 'number') {
-      return fieldA - fieldB
-    }
-
-    if (typeof fieldA === 'string' && typeof fieldB === 'string') {
-      return fieldA.localeCompare(fieldB)
-    }
+    if (typeof fieldA === 'number' && typeof fieldB === 'number') return fieldA - fieldB
+    if (typeof fieldA === 'string' && typeof fieldB === 'string') return fieldA.localeCompare(fieldB)
     return 0
   })
 }

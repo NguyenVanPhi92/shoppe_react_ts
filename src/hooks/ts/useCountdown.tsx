@@ -4,7 +4,6 @@ interface Props {
   targetDate: string
   type?: 'increase' | 'decrease'
 }
-
 interface Res {
   days: number
   hours: number
@@ -18,15 +17,7 @@ function getReturnValues(countDown: number): Res {
   const hours = Math.floor((countDown % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
   const minutes = Math.floor((countDown % (1000 * 60 * 60)) / (1000 * 60))
   const seconds = Math.floor((countDown % (1000 * 60)) / 1000)
-
-  if (Number.isNaN(seconds)) {
-    return {
-      days: 0,
-      hours: 0,
-      minutes: 0,
-      seconds: 0
-    }
-  }
+  if (Number.isNaN(seconds)) return { days: 0, hours: 0, minutes: 0, seconds: 0 }
 
   return {
     days: days <= 0 ? 0 : days,
@@ -39,12 +30,10 @@ function getReturnValues(countDown: number): Res {
 export const useCountdown = ({ targetDate, type = 'decrease' }: Props): Res => {
   const countDownDate = new Date(targetDate).getTime()
   const [countDown, setCountDown] = useState(countDownDate - new Date().getTime())
-
   useEffect(() => {
     const interval = setInterval(() => {
       setCountDown(type === 'decrease' ? countDownDate - new Date().getTime() : countDownDate + new Date().getTime())
     }, 1000)
-
     return () => clearInterval(interval)
   }, [countDownDate])
 

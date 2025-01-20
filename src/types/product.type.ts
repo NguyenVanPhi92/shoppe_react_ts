@@ -17,7 +17,6 @@ export interface Product {
   createdAt: string
   updatedAt: string
 }
-
 export interface ProductList {
   products: Product[]
   pagination: {
@@ -26,7 +25,6 @@ export interface ProductList {
     page_size: number
   }
 }
-
 // params truyền vào call api product
 export interface ProductListConfig {
   page?: number | string
