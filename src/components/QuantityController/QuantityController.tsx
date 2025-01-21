@@ -22,7 +22,6 @@ export default function QuantityController({
   ...rest
 }: Props) {
   const [localValue, setLocalValue] = useState<number>(Number(value || 0))
-
   // handle event
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     let _value = Number(event.target.value)
@@ -34,21 +33,18 @@ export default function QuantityController({
     onType && onType(_value)
     setLocalValue(_value)
   }
-
   const increase: React.MouseEventHandler<HTMLButtonElement> = () => {
     let _value = Number(value || localValue) + 1
     if (max !== undefined && _value > max) _value = max
     onIncrease && onIncrease(_value)
     setLocalValue(_value)
   }
-
   const decrease: React.MouseEventHandler<HTMLButtonElement> = () => {
     let _value = Number(value || localValue) - 1
     if (_value < 1) _value = 1
     onDecrease && onDecrease(_value)
     setLocalValue(_value)
   }
-
   const handleBlur = (event: React.FocusEvent<HTMLInputElement, Element>) => {
     onFocusOut && onFocusOut(Number(event.target.value))
   }

@@ -15,14 +15,7 @@ export const delay = (time: number) =>
 
 const createWrapper = () => {
   const queryClient = new QueryClient({
-    defaultOptions: {
-      queries: {
-        retry: false
-      },
-      mutations: {
-        retry: false
-      }
-    },
+    defaultOptions: { queries: { retry: false }, mutations: { retry: false } },
     logger: {
       log: console.log,
       warn: console.warn,
@@ -37,7 +30,6 @@ const createWrapper = () => {
 }
 
 const Provider = createWrapper()
-
 export const renderWithRouter = ({ route = '/' } = {}) => {
   window.history.pushState({}, 'Test page', route)
   const defaultValueAppContext = getInitialAppContext()

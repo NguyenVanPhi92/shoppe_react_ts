@@ -16,7 +16,6 @@ const MAX_PURCHASES = 5
 export default function Header() {
   const { isAuthenticated } = useContext(AppContext)
   const { onSubmitSearch, register } = useSearchProducts()
-
   // Khi chúng ta chuyển trang thì Header chỉ bị re-render
   // Chứ không bị unmount - mounting again
   // (Tất nhiên là trừ trường hợp logout rồi nhảy sang RegisterLayout rồi nhảy vào lại)
@@ -27,7 +26,6 @@ export default function Header() {
     queryFn: () => purchaseApi.getPurchases({ status: purchasesStatus.inCart }),
     enabled: isAuthenticated
   })
-
   const purchasesInCart = purchasesInCartData?.data.data
 
   return (

@@ -9,21 +9,14 @@ export interface Product {
   view: number
   name: string
   description: string
-  category: {
-    _id: string
-    name: string
-  }
+  category: { _id: string; name: string }
   image: string
   createdAt: string
   updatedAt: string
 }
 export interface ProductList {
   products: Product[]
-  pagination: {
-    page: number
-    limit: number
-    page_size: number
-  }
+  pagination: { page: number; limit: number; page_size: number }
 }
 // params truyền vào call api product
 export interface ProductListConfig {

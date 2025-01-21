@@ -45,10 +45,8 @@ export default function Input({
   return (
     <div className={'relative ' + className}>
       <input className={classNameInput} {...registerResult} {...rest} type={handleType()} />
-
       {rest.type === 'password' && !openEye && <EyeHide classNameEye={classNameEye} toggleEye={toggleEye} />}
       {rest.type === 'password' && openEye && <EyeShow classNameEye={classNameEye} toggleEye={toggleEye} />}
-
       <div className={classNameError}>{errorMessage}</div>
     </div>
   )

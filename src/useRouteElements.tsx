@@ -35,7 +35,6 @@ function ProtectedRoute() {
   const { isAuthenticated } = useContext(AppContext)
   return isAuthenticated ? <Outlet /> : <Navigate to='/login' />
 }
-
 // check user đã login rồi thì không cho vào trang login nữa
 function RejectedRoute() {
   const { isAuthenticated } = useContext(AppContext)
@@ -43,7 +42,6 @@ function RejectedRoute() {
   // !Login: route home
   return !isAuthenticated ? <Outlet /> : <Navigate to='/' />
 }
-
 // tạo hook router page
 export default function useRouteElements() {
   //element: check trc khi vào children

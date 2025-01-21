@@ -178,11 +178,7 @@ export const formatMoneyVndString = (number: number): string => {
 export const toImageUrl = (url: string) => `${process.env.NEXT_PUBLIC_API_URL}${url}`
 export const getActiveStringOrListString = (a: string[] | string, b: string[] | string): boolean => {
   if (typeof a !== typeof b) return false
-  if (typeof a === 'string') {
-    return a === b
-  }
-  if (typeof a === 'object') {
-    return a.length === b.length && a.every((item, index) => item === b[index])
-  }
+  if (typeof a === 'string') return a === b
+  if (typeof a === 'object') return a.length === b.length && a.every((item, index) => item === b[index])
   return false
 }

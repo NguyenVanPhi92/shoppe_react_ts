@@ -33,12 +33,10 @@ Trường hợp 3
 const RANGE = 2
 export default function Pagination({ queryConfig, pageSize }: Props) {
   const page = Number(queryConfig.page)
-
   // handle event
   const renderPagination = () => {
     let dotAfter = false
     let dotBefore = false
-
     // hiển thị dấu 3 chấm phía trước page hiện tại
     const renderDotBefore = (index: number) => {
       if (!dotBefore) {
@@ -87,10 +85,7 @@ export default function Pagination({ queryConfig, pageSize }: Props) {
           <Link
             to={{
               pathname: path.home,
-              search: createSearchParams({
-                ...queryConfig,
-                page: pageNumber.toString()
-              }).toString()
+              search: createSearchParams({ ...queryConfig, page: pageNumber.toString() }).toString()
             }}
             key={index}
             className={classNames('mx-2 cursor-pointer rounded border bg-white px-3 py-2 shadow-sm', {
@@ -112,10 +107,7 @@ export default function Pagination({ queryConfig, pageSize }: Props) {
         <Link
           to={{
             pathname: path.home,
-            search: createSearchParams({
-              ...queryConfig,
-              page: (page - 1).toString()
-            }).toString()
+            search: createSearchParams({ ...queryConfig, page: (page - 1).toString() }).toString()
           }}
           className='mx-2 cursor-pointer rounded border bg-white px-3 py-2  shadow-sm'
         >
@@ -131,10 +123,7 @@ export default function Pagination({ queryConfig, pageSize }: Props) {
         <Link
           to={{
             pathname: path.home,
-            search: createSearchParams({
-              ...queryConfig,
-              page: (page + 1).toString()
-            }).toString()
+            search: createSearchParams({ ...queryConfig, page: (page + 1).toString() }).toString()
           }}
           className='mx-2 cursor-pointer rounded border bg-white px-3 py-2  shadow-sm'
         >
