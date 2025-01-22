@@ -1,4 +1,4 @@
-// data returns successfully and Data will have data
+// Data returns successfully and Data will have data
 export interface SuccessResponse<Data> {
   message: string
   data: Data

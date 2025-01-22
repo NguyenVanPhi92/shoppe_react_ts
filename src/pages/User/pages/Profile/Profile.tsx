@@ -70,17 +70,16 @@ const profileSchema = userSchema.pick(['name', 'address', 'phone', 'date_of_birt
 // Nhấn upload: không upload lên server
 // Nhấn submit thì tiến hành upload lên server, nếu upload thành công thì tiến hành gọi api updateProfile
 
+// Queries async: Get
+// Mutate async: POST, PUT, DELETE
 export default function Profile() {
   const { setProfile } = useContext(AppContext)
   const [file, setFile] = useState<File>()
-
   const previewImage = useMemo(() => {
     return file ? URL.createObjectURL(file) : ''
   }, [file])
-  // Queries async: Get
   const { data: profileData, refetch } = useQuery({ queryKey: ['profile'], queryFn: userApi.getProfile })
   const profile = profileData?.data.data
-  // Mutate async: POST, PUT, DELETE
   const updateProfileMutation = useMutation(userApi.updateProfile)
   const uploadAvatarMutaion = useMutation(userApi.uploadAvatar)
   // Declaration form

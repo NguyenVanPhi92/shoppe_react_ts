@@ -36,6 +36,7 @@ export default function AsideFilter({ queryConfig, categories }: Props) {
     control,
     handleSubmit,
     trigger,
+    reset,
     formState: { errors }
   } = useForm<FormData>({ defaultValues: { price_min: '', price_max: '' }, resolver: yupResolver(priceSchema) })
   // Handle event
@@ -46,6 +47,7 @@ export default function AsideFilter({ queryConfig, categories }: Props) {
     })
   })
   const handleRemoveAll: MouseEventHandler<HTMLButtonElement> = () => {
+    reset()
     navigate({
       pathname: path.home,
       search: createSearchParams(omit(queryConfig, ['price_min', 'price_max', 'rating_filter', 'category'])).toString()

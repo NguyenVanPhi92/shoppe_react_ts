@@ -21,6 +21,9 @@ import { isAxiosExpiredTokenError, isAxiosUnauthorizedError } from './utils'
 // Refresh Token mới cho me: 5 - 6
 // Gọi lại Me: 6
 
+// Setup Axios gồm 2 phần chính
+// 1. Setup axios Request: Client to Server
+// 2. Setup axios Response: Server to Client
 // Setup axios instance các kiểu response trả về và gán các token, access token, refesh token vào localStorage
 export class Http {
   instance: AxiosInstance
@@ -46,7 +49,7 @@ export class Http {
 
     /**
      * Xử lý các route cần xác thực token
-     * request cli to server
+     * request client to server
      */
     this.instance.interceptors.request.use(
       (config) => {
@@ -64,7 +67,7 @@ export class Http {
 
     /**
      * Xử lý lưu các token vào trong localStorage
-     * response server to cli
+     * response server to client
      */
     this.instance.interceptors.response.use(
       // dùng arrow function mới truy cập đc this
@@ -73,8 +76,8 @@ export class Http {
         // Xử lý khi là login và register
         if (url === URL_LOGIN || url === URL_REGISTER) {
           const data = response.data as AuthResponse // gán kiểu data reponse
-          this.accessToken = data.data.access_token // lưu access_token vào biến
-          this.refreshToken = data.data.refresh_token // lưu refresh_token vào biến
+          this.accessToken = data.data.access_token // gán access_token vào biến
+          this.refreshToken = data.data.refresh_token // gán refresh_token vào biến
           // Lưu các token vào localStorage
           setAccessTokenToLS(this.accessToken)
           setRefreshTokenToLS(this.refreshToken)
@@ -87,9 +90,9 @@ export class Http {
         return response
       },
 
-      // handler error msg server send cli
+      // handler error message server send client
       (error: AxiosError) => {
-        // Chỉ toast lỗi không phải 422 và 401
+        // Chỉ bắn ra thông báo lỗi không phải 422 và 401
         if (
           ![HttpStatusCode.UnprocessableEntity, HttpStatusCode.Unauthorized].includes(error.response?.status as number)
         ) {
@@ -101,7 +104,7 @@ export class Http {
         // Lỗi Unauthorized (401) có rất nhiều trường hợp
         // - Token không đúng
         // - Không truyền token
-        // - Token hết hạn*
+        // - Token hết hạn
 
         // Nếu là lỗi 401
         if (isAxiosUnauthorizedError<ErrorResponse<{ name: string; message: string }>>(error)) {
@@ -140,6 +143,7 @@ export class Http {
     )
   }
 
+  // tạo hàm refresh token
   private handleRefreshToken() {
     return this.instance
       .post<RefreshTokenReponse>(URL_REFRESH_TOKEN, { refresh_token: this.refreshToken })
@@ -158,5 +162,6 @@ export class Http {
   }
 }
 
+// export http
 const http = new Http().instance
 export default http
