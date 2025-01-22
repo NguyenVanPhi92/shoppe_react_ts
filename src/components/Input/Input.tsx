@@ -1,16 +1,17 @@
 import { InputHTMLAttributes, useState } from 'react'
-import type { UseFormRegister, RegisterOptions } from 'react-hook-form'
+import type { UseFormRegister, RegisterOptions, FieldValue, FieldValues, FieldPath } from 'react-hook-form'
 import { EyeHide, EyeShow } from 'src/assets/icons/eye'
 
 // Props inherit InputHtml node properties
-interface Props extends InputHTMLAttributes<HTMLInputElement> {
+interface Props<TFieldValues extends FieldValues> extends InputHTMLAttributes<HTMLInputElement> {
   errorMessage?: string
   classNameInput?: string
   classNameError?: string
   classNameEye?: string
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  register?: UseFormRegister<any>
+  register?: UseFormRegister<TFieldValues>
   rules?: RegisterOptions
+  name: FieldPath<TFieldValues>
 }
 
 /**
@@ -20,7 +21,7 @@ interface Props extends InputHTMLAttributes<HTMLInputElement> {
  * toggle eye
  * input validation
  */
-export default function Input({
+export default function Input<TFieldValues extends FieldValues>({
   errorMessage,
   className,
   name,
@@ -30,7 +31,7 @@ export default function Input({
   classNameError = 'mt-1 text-red-600 min-h-[1.25rem] text-sm',
   classNameEye = 'absolute top-[8px] right-[5px] h-5 w-5 cursor-pointer',
   ...rest // ...rest are all attributes
-}: Props) {
+}: Props<TFieldValues>) {
   const [openEye, setOpenEye] = useState(false)
   const registerResult = register && name ? register(name, rules) : null
 
