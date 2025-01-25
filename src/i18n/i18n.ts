@@ -6,7 +6,6 @@ import HOME_VI from 'src/locales/vi/home.json'
 import PRODUCT_VI from 'src/locales/vi/product.json'
 
 export const locales = { en: 'English', vi: 'Tiếng Việt' } as const
-
 export const resources = {
   // namespace and value
   en: { home: HOME_EN, product: PRODUCT_EN },
