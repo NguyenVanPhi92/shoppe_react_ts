@@ -16,9 +16,5 @@ export default function useClickOutSide(dom = 'button') {
     }
   }, [])
 
-  return {
-    show,
-    setShow,
-    nodeRef
-  }
+  return { show, setShow, nodeRef }
 }
