@@ -1,6 +1,13 @@
 # Dự án Shopee Clone Typescript
 
-## Chức năng trong dự án
+## 📌 Overview
+
+## 👥 Team 1
+
+- **Frontend Developers:** React Typescript
+- **Backend Developers:** Nodejs Expressjs MongoDB
+
+## 🎯 Chức Năng
 
 - Authentication module: Quản lý bằng JWT
 
@@ -34,7 +41,7 @@
   - Đổi mật khẩu
   - Xem tình trạng đơn hàng
 
-## Công nghệ sử dụng
+## 🛠️ Tech Stack
 
 - UI / CSS Library: Tailwindcss + HeadlessUI
 - State Management: React Query cho async state và React Context cho state thường
@@ -47,3 +54,8 @@
 - Mô hình hóa các component với story book
 - Unit Test
 - Và còn nhiều thứ nữa khi làm chúng ta sẽ áp dụng...
+
+## 🔗 Links
+
+- **Demo:** [Coming Soon]
+- **Repository:** [Private]
