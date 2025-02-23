@@ -311,6 +311,6 @@ Các bạn thêm đoạn code này vào `settings.json` của VS Code
 ```json
 {
   //...
-  "tailwindCSS.experimental.classRegex": ["[a-zA-Z]*class[a-zA-Z]*='([^']+)'"]
+  "tailwindCSS.experimepntal.classRegex": ["[a-zA-Z]*class[a-zA-Z]*='([^']+)'"]
 }
 ```
